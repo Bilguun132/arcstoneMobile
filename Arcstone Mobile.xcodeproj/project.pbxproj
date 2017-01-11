@@ -1,0 +1,754 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		053031F31E13B65C003D9659 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 053031F51E13B65C003D9659 /* Main.storyboard */; };
+		0530617C1E053394000F0D1F /* SVProgressHUD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0530617B1E053394000F0D1F /* SVProgressHUD.framework */; };
+		0530617E1E053416000F0D1F /* SVProgressHUD.framework in Copy Files */ = {isa = PBXBuildFile; fileRef = 0530617B1E053394000F0D1F /* SVProgressHUD.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		0536FF051E06E31B0013E732 /* EZAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0536FF041E06E31B0013E732 /* EZAlertController.swift */; };
+		0536FF141E06EFA70013E732 /* CollectionViewStackCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0536FF0B1E06EFA70013E732 /* CollectionViewStackCell.swift */; };
+		0536FF151E06EFA70013E732 /* CollectionStackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0536FF0C1E06EFA70013E732 /* CollectionStackViewController.swift */; };
+		0536FF161E06EFA70013E732 /* CollectionViewStackFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0536FF0E1E06EFA70013E732 /* CollectionViewStackFlowLayout.swift */; };
+		0536FF171E06EFA70013E732 /* OpenSans-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0536FF101E06EFA70013E732 /* OpenSans-Light.ttf */; };
+		0536FF181E06EFA70013E732 /* OpenSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0536FF111E06EFA70013E732 /* OpenSans-Regular.ttf */; };
+		0536FF191E06EFA70013E732 /* OpenSans-Semibold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0536FF121E06EFA70013E732 /* OpenSans-Semibold.ttf */; };
+		0536FF1A1E06EFA70013E732 /* NavigationStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0536FF131E06EFA70013E732 /* NavigationStack.swift */; };
+		056947E21E04DD7300BECB7C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056947E11E04DD7300BECB7C /* AppDelegate.swift */; };
+		056947E41E04DD7300BECB7C /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056947E31E04DD7300BECB7C /* LoginViewController.swift */; };
+		056947EA1E04DD7300BECB7C /* Arcstone_Mobile.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 056947E81E04DD7300BECB7C /* Arcstone_Mobile.xcdatamodeld */; };
+		056947EC1E04DD7300BECB7C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 056947EB1E04DD7300BECB7C /* Assets.xcassets */; };
+		056947EF1E04DD7300BECB7C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 056947ED1E04DD7300BECB7C /* LaunchScreen.storyboard */; };
+		056947FA1E04DD7300BECB7C /* Arcstone_MobileTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056947F91E04DD7300BECB7C /* Arcstone_MobileTests.swift */; };
+		056948071E04E8EF00BECB7C /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 056948051E04E8EF00BECB7C /* Alamofire.framework */; };
+		056948081E04E8EF00BECB7C /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 056948061E04E8EF00BECB7C /* SwiftyJSON.framework */; };
+		0569480A1E04E91300BECB7C /* Alamofire.framework in Copy Files */ = {isa = PBXBuildFile; fileRef = 056948051E04E8EF00BECB7C /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		0569480B1E04E91300BECB7C /* SwiftyJSON.framework in Copy Files */ = {isa = PBXBuildFile; fileRef = 056948061E04E8EF00BECB7C /* SwiftyJSON.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		0569480D1E04E9B000BECB7C /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0569480C1E04E9B000BECB7C /* DataController.swift */; };
+		05736A311E0BC35A008125AF /* NiceButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05736A301E0BC35A008125AF /* NiceButton.swift */; };
+		058BFBDF1E20BA4000B274E3 /* BatchRunStepParameterTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058BFBDE1E20BA4000B274E3 /* BatchRunStepParameterTableViewController.swift */; };
+		058BFBE11E20CAC900B274E3 /* BatchRunStepParameterInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058BFBE01E20CAC900B274E3 /* BatchRunStepParameterInfoViewController.swift */; };
+		059D16B21E0544DD0067581E /* BatchRunListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 059D16B11E0544DD0067581E /* BatchRunListViewController.swift */; };
+		05EAD91C1E0BBAE500FB6BC0 /* BatchRunStatusViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05EAD91B1E0BBAE500FB6BC0 /* BatchRunStatusViewController.swift */; };
+		05EE6B9E1E08D99E00616AC4 /* BatchRunTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05EE6B9C1E08D99E00616AC4 /* BatchRunTableViewCell.swift */; };
+		05EE6B9F1E08D99E00616AC4 /* BatchRunTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 05EE6B9D1E08D99E00616AC4 /* BatchRunTableViewCell.xib */; };
+		05EE6BA41E090FB800616AC4 /* ShowJobViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05EE6BA31E090FB800616AC4 /* ShowJobViewController.swift */; };
+		05EE6BA61E0A1F7400616AC4 /* AvailableJobsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05EE6BA51E0A1F7400616AC4 /* AvailableJobsViewController.swift */; };
+		05FB90811E081C3B0096E69A /* Eight One.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 05FB90801E081B880096E69A /* Eight One.ttf */; };
+		7421312BF8AB6ACC76FB17A3 /* Pods_Arcstone_MobileTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07B21813E848BF38CD4B8FB1 /* Pods_Arcstone_MobileTests.framework */; };
+		95F59A1FB34A354024C4FA78 /* Pods_Arcstone_Mobile.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD879C9403DD2BE447BC1B75 /* Pods_Arcstone_Mobile.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		056947F61E04DD7300BECB7C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 056947D61E04DD7300BECB7C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 056947DD1E04DD7300BECB7C;
+			remoteInfo = "Arcstone Mobile";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		056948091E04E90400BECB7C /* Copy Files */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				0530617E1E053416000F0D1F /* SVProgressHUD.framework in Copy Files */,
+				0569480A1E04E91300BECB7C /* Alamofire.framework in Copy Files */,
+				0569480B1E04E91300BECB7C /* SwiftyJSON.framework in Copy Files */,
+			);
+			name = "Copy Files";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		053031F41E13B65C003D9659 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		053031F71E13B65E003D9659 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
+		053031F91E13B6E6003D9659 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
+		053031FB1E13BA77003D9659 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
+		0530617B1E053394000F0D1F /* SVProgressHUD.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SVProgressHUD.framework; path = Carthage/Build/iOS/SVProgressHUD.framework; sourceTree = "<group>"; };
+		0536FF041E06E31B0013E732 /* EZAlertController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EZAlertController.swift; sourceTree = "<group>"; };
+		0536FF0B1E06EFA70013E732 /* CollectionViewStackCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewStackCell.swift; sourceTree = "<group>"; };
+		0536FF0C1E06EFA70013E732 /* CollectionStackViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionStackViewController.swift; sourceTree = "<group>"; };
+		0536FF0E1E06EFA70013E732 /* CollectionViewStackFlowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewStackFlowLayout.swift; sourceTree = "<group>"; };
+		0536FF101E06EFA70013E732 /* OpenSans-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Light.ttf"; sourceTree = "<group>"; };
+		0536FF111E06EFA70013E732 /* OpenSans-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Regular.ttf"; sourceTree = "<group>"; };
+		0536FF121E06EFA70013E732 /* OpenSans-Semibold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Semibold.ttf"; sourceTree = "<group>"; };
+		0536FF131E06EFA70013E732 /* NavigationStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationStack.swift; sourceTree = "<group>"; };
+		056947DE1E04DD7300BECB7C /* Arcstone Mobile.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Arcstone Mobile.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		056947E11E04DD7300BECB7C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		056947E31E04DD7300BECB7C /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		056947E91E04DD7300BECB7C /* Arcstone_Mobile.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Arcstone_Mobile.xcdatamodel; sourceTree = "<group>"; };
+		056947EB1E04DD7300BECB7C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		056947EE1E04DD7300BECB7C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		056947F01E04DD7300BECB7C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		056947F51E04DD7300BECB7C /* Arcstone MobileTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Arcstone MobileTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		056947F91E04DD7300BECB7C /* Arcstone_MobileTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Arcstone_MobileTests.swift; sourceTree = "<group>"; };
+		056947FB1E04DD7300BECB7C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		056948051E04E8EF00BECB7C /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
+		056948061E04E8EF00BECB7C /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = Carthage/Build/iOS/SwiftyJSON.framework; sourceTree = "<group>"; };
+		0569480C1E04E9B000BECB7C /* DataController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
+		05736A301E0BC35A008125AF /* NiceButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NiceButton.swift; sourceTree = "<group>"; };
+		058BFBDE1E20BA4000B274E3 /* BatchRunStepParameterTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BatchRunStepParameterTableViewController.swift; sourceTree = "<group>"; };
+		058BFBE01E20CAC900B274E3 /* BatchRunStepParameterInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BatchRunStepParameterInfoViewController.swift; sourceTree = "<group>"; };
+		059D16B11E0544DD0067581E /* BatchRunListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BatchRunListViewController.swift; sourceTree = "<group>"; };
+		05EAD91B1E0BBAE500FB6BC0 /* BatchRunStatusViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BatchRunStatusViewController.swift; sourceTree = "<group>"; };
+		05EE6B9C1E08D99E00616AC4 /* BatchRunTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BatchRunTableViewCell.swift; sourceTree = "<group>"; };
+		05EE6B9D1E08D99E00616AC4 /* BatchRunTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BatchRunTableViewCell.xib; sourceTree = "<group>"; };
+		05EE6BA31E090FB800616AC4 /* ShowJobViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowJobViewController.swift; sourceTree = "<group>"; };
+		05EE6BA51E0A1F7400616AC4 /* AvailableJobsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AvailableJobsViewController.swift; sourceTree = "<group>"; };
+		05FB90801E081B880096E69A /* Eight One.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Eight One.ttf"; sourceTree = "<group>"; };
+		07B21813E848BF38CD4B8FB1 /* Pods_Arcstone_MobileTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Arcstone_MobileTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		0C84C097E807948EBCE13EFC /* Pods-Arcstone Mobile.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Arcstone Mobile.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Arcstone Mobile/Pods-Arcstone Mobile.debug.xcconfig"; sourceTree = "<group>"; };
+		86182E7150583A80A105FFAD /* Pods-Arcstone Mobile.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Arcstone Mobile.release.xcconfig"; path = "Pods/Target Support Files/Pods-Arcstone Mobile/Pods-Arcstone Mobile.release.xcconfig"; sourceTree = "<group>"; };
+		94B409531797B9A3DEE8427E /* Pods-Arcstone MobileTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Arcstone MobileTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Arcstone MobileTests/Pods-Arcstone MobileTests.release.xcconfig"; sourceTree = "<group>"; };
+		EF44E063656339CE4637CAC2 /* Pods-Arcstone MobileTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Arcstone MobileTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Arcstone MobileTests/Pods-Arcstone MobileTests.debug.xcconfig"; sourceTree = "<group>"; };
+		FD879C9403DD2BE447BC1B75 /* Pods_Arcstone_Mobile.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Arcstone_Mobile.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		056947DB1E04DD7300BECB7C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				056948071E04E8EF00BECB7C /* Alamofire.framework in Frameworks */,
+				056948081E04E8EF00BECB7C /* SwiftyJSON.framework in Frameworks */,
+				0530617C1E053394000F0D1F /* SVProgressHUD.framework in Frameworks */,
+				95F59A1FB34A354024C4FA78 /* Pods_Arcstone_Mobile.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		056947F21E04DD7300BECB7C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7421312BF8AB6ACC76FB17A3 /* Pods_Arcstone_MobileTests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		0536FF081E06EFA70013E732 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				0536FF091E06EFA70013E732 /* CollectionView */,
+				0536FF0F1E06EFA70013E732 /* Fonts */,
+				0536FF131E06EFA70013E732 /* NavigationStack.swift */,
+			);
+			path = Source;
+			sourceTree = "<group>";
+		};
+		0536FF091E06EFA70013E732 /* CollectionView */ = {
+			isa = PBXGroup;
+			children = (
+				0536FF0A1E06EFA70013E732 /* Cell */,
+				0536FF0C1E06EFA70013E732 /* CollectionStackViewController.swift */,
+				0536FF0D1E06EFA70013E732 /* FlowLayout */,
+			);
+			path = CollectionView;
+			sourceTree = "<group>";
+		};
+		0536FF0A1E06EFA70013E732 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				0536FF0B1E06EFA70013E732 /* CollectionViewStackCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		0536FF0D1E06EFA70013E732 /* FlowLayout */ = {
+			isa = PBXGroup;
+			children = (
+				0536FF0E1E06EFA70013E732 /* CollectionViewStackFlowLayout.swift */,
+			);
+			path = FlowLayout;
+			sourceTree = "<group>";
+		};
+		0536FF0F1E06EFA70013E732 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				0536FF101E06EFA70013E732 /* OpenSans-Light.ttf */,
+				0536FF111E06EFA70013E732 /* OpenSans-Regular.ttf */,
+				05FB90801E081B880096E69A /* Eight One.ttf */,
+				0536FF121E06EFA70013E732 /* OpenSans-Semibold.ttf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
+		056947D51E04DD7300BECB7C = {
+			isa = PBXGroup;
+			children = (
+				056947E01E04DD7300BECB7C /* Arcstone Mobile */,
+				056947F81E04DD7300BECB7C /* Arcstone MobileTests */,
+				056947DF1E04DD7300BECB7C /* Products */,
+				056948041E04E8EF00BECB7C /* Frameworks */,
+				8935201EE9EDEA43BB807656 /* Pods */,
+			);
+			sourceTree = "<group>";
+		};
+		056947DF1E04DD7300BECB7C /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				056947DE1E04DD7300BECB7C /* Arcstone Mobile.app */,
+				056947F51E04DD7300BECB7C /* Arcstone MobileTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		056947E01E04DD7300BECB7C /* Arcstone Mobile */ = {
+			isa = PBXGroup;
+			children = (
+				05736A301E0BC35A008125AF /* NiceButton.swift */,
+				056947E11E04DD7300BECB7C /* AppDelegate.swift */,
+				05EE6BA51E0A1F7400616AC4 /* AvailableJobsViewController.swift */,
+				05EE6BA31E090FB800616AC4 /* ShowJobViewController.swift */,
+				056947E31E04DD7300BECB7C /* LoginViewController.swift */,
+				059D16B11E0544DD0067581E /* BatchRunListViewController.swift */,
+				053031F51E13B65C003D9659 /* Main.storyboard */,
+				058BFBE01E20CAC900B274E3 /* BatchRunStepParameterInfoViewController.swift */,
+				058BFBDE1E20BA4000B274E3 /* BatchRunStepParameterTableViewController.swift */,
+				05EAD91B1E0BBAE500FB6BC0 /* BatchRunStatusViewController.swift */,
+				05EE6B9C1E08D99E00616AC4 /* BatchRunTableViewCell.swift */,
+				05EE6B9D1E08D99E00616AC4 /* BatchRunTableViewCell.xib */,
+				056947EB1E04DD7300BECB7C /* Assets.xcassets */,
+				056947ED1E04DD7300BECB7C /* LaunchScreen.storyboard */,
+				056947F01E04DD7300BECB7C /* Info.plist */,
+				056947E81E04DD7300BECB7C /* Arcstone_Mobile.xcdatamodeld */,
+				0569480C1E04E9B000BECB7C /* DataController.swift */,
+			);
+			path = "Arcstone Mobile";
+			sourceTree = "<group>";
+		};
+		056947F81E04DD7300BECB7C /* Arcstone MobileTests */ = {
+			isa = PBXGroup;
+			children = (
+				056947F91E04DD7300BECB7C /* Arcstone_MobileTests.swift */,
+				056947FB1E04DD7300BECB7C /* Info.plist */,
+			);
+			path = "Arcstone MobileTests";
+			sourceTree = "<group>";
+		};
+		056948041E04E8EF00BECB7C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				0536FF081E06EFA70013E732 /* Source */,
+				0536FF041E06E31B0013E732 /* EZAlertController.swift */,
+				0530617B1E053394000F0D1F /* SVProgressHUD.framework */,
+				056948051E04E8EF00BECB7C /* Alamofire.framework */,
+				056948061E04E8EF00BECB7C /* SwiftyJSON.framework */,
+				FD879C9403DD2BE447BC1B75 /* Pods_Arcstone_Mobile.framework */,
+				07B21813E848BF38CD4B8FB1 /* Pods_Arcstone_MobileTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		8935201EE9EDEA43BB807656 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				0C84C097E807948EBCE13EFC /* Pods-Arcstone Mobile.debug.xcconfig */,
+				86182E7150583A80A105FFAD /* Pods-Arcstone Mobile.release.xcconfig */,
+				EF44E063656339CE4637CAC2 /* Pods-Arcstone MobileTests.debug.xcconfig */,
+				94B409531797B9A3DEE8427E /* Pods-Arcstone MobileTests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		056947DD1E04DD7300BECB7C /* Arcstone Mobile */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 056947FE1E04DD7300BECB7C /* Build configuration list for PBXNativeTarget "Arcstone Mobile" */;
+			buildPhases = (
+				0C7E0B667DC660A3B7515AC5 /* [CP] Check Pods Manifest.lock */,
+				056947DA1E04DD7300BECB7C /* Sources */,
+				056947DB1E04DD7300BECB7C /* Frameworks */,
+				056947DC1E04DD7300BECB7C /* Resources */,
+				056948091E04E90400BECB7C /* Copy Files */,
+				5B6A36F39C262C86051FDE47 /* [CP] Embed Pods Frameworks */,
+				F2E6DCDF7353A7FB5A3302D7 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Arcstone Mobile";
+			productName = "Arcstone Mobile";
+			productReference = 056947DE1E04DD7300BECB7C /* Arcstone Mobile.app */;
+			productType = "com.apple.product-type.application";
+		};
+		056947F41E04DD7300BECB7C /* Arcstone MobileTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 056948011E04DD7300BECB7C /* Build configuration list for PBXNativeTarget "Arcstone MobileTests" */;
+			buildPhases = (
+				577868DF023745F8B847A58D /* [CP] Check Pods Manifest.lock */,
+				056947F11E04DD7300BECB7C /* Sources */,
+				056947F21E04DD7300BECB7C /* Frameworks */,
+				056947F31E04DD7300BECB7C /* Resources */,
+				A8B4143856F3AE60CBE993E5 /* [CP] Embed Pods Frameworks */,
+				4E02AEB580DC2B63D59D3A22 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				056947F71E04DD7300BECB7C /* PBXTargetDependency */,
+			);
+			name = "Arcstone MobileTests";
+			productName = "Arcstone MobileTests";
+			productReference = 056947F51E04DD7300BECB7C /* Arcstone MobileTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		056947D61E04DD7300BECB7C /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0820;
+				LastUpgradeCheck = 0820;
+				ORGANIZATIONNAME = Bilguun;
+				TargetAttributes = {
+					056947DD1E04DD7300BECB7C = {
+						CreatedOnToolsVersion = 8.2;
+						DevelopmentTeam = CN924VFVRA;
+						LastSwiftMigration = 0820;
+						ProvisioningStyle = Automatic;
+					};
+					056947F41E04DD7300BECB7C = {
+						CreatedOnToolsVersion = 8.2;
+						DevelopmentTeam = CN924VFVRA;
+						LastSwiftMigration = 0820;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 056947DD1E04DD7300BECB7C;
+					};
+				};
+			};
+			buildConfigurationList = 056947D91E04DD7300BECB7C /* Build configuration list for PBXProject "Arcstone Mobile" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 056947D51E04DD7300BECB7C;
+			productRefGroup = 056947DF1E04DD7300BECB7C /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				056947DD1E04DD7300BECB7C /* Arcstone Mobile */,
+				056947F41E04DD7300BECB7C /* Arcstone MobileTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		056947DC1E04DD7300BECB7C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0536FF191E06EFA70013E732 /* OpenSans-Semibold.ttf in Resources */,
+				0536FF181E06EFA70013E732 /* OpenSans-Regular.ttf in Resources */,
+				056947EF1E04DD7300BECB7C /* LaunchScreen.storyboard in Resources */,
+				053031F31E13B65C003D9659 /* Main.storyboard in Resources */,
+				05EE6B9F1E08D99E00616AC4 /* BatchRunTableViewCell.xib in Resources */,
+				05FB90811E081C3B0096E69A /* Eight One.ttf in Resources */,
+				0536FF171E06EFA70013E732 /* OpenSans-Light.ttf in Resources */,
+				056947EC1E04DD7300BECB7C /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		056947F31E04DD7300BECB7C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		0C7E0B667DC660A3B7515AC5 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		4E02AEB580DC2B63D59D3A22 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Arcstone MobileTests/Pods-Arcstone MobileTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		577868DF023745F8B847A58D /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		5B6A36F39C262C86051FDE47 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Arcstone Mobile/Pods-Arcstone Mobile-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A8B4143856F3AE60CBE993E5 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Arcstone MobileTests/Pods-Arcstone MobileTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F2E6DCDF7353A7FB5A3302D7 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Arcstone Mobile/Pods-Arcstone Mobile-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		056947DA1E04DD7300BECB7C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				05736A311E0BC35A008125AF /* NiceButton.swift in Sources */,
+				0536FF1A1E06EFA70013E732 /* NavigationStack.swift in Sources */,
+				0536FF161E06EFA70013E732 /* CollectionViewStackFlowLayout.swift in Sources */,
+				05EE6B9E1E08D99E00616AC4 /* BatchRunTableViewCell.swift in Sources */,
+				058BFBDF1E20BA4000B274E3 /* BatchRunStepParameterTableViewController.swift in Sources */,
+				056947E41E04DD7300BECB7C /* LoginViewController.swift in Sources */,
+				05EE6BA61E0A1F7400616AC4 /* AvailableJobsViewController.swift in Sources */,
+				058BFBE11E20CAC900B274E3 /* BatchRunStepParameterInfoViewController.swift in Sources */,
+				0536FF141E06EFA70013E732 /* CollectionViewStackCell.swift in Sources */,
+				0536FF051E06E31B0013E732 /* EZAlertController.swift in Sources */,
+				05EE6BA41E090FB800616AC4 /* ShowJobViewController.swift in Sources */,
+				0569480D1E04E9B000BECB7C /* DataController.swift in Sources */,
+				05EAD91C1E0BBAE500FB6BC0 /* BatchRunStatusViewController.swift in Sources */,
+				056947EA1E04DD7300BECB7C /* Arcstone_Mobile.xcdatamodeld in Sources */,
+				059D16B21E0544DD0067581E /* BatchRunListViewController.swift in Sources */,
+				056947E21E04DD7300BECB7C /* AppDelegate.swift in Sources */,
+				0536FF151E06EFA70013E732 /* CollectionStackViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		056947F11E04DD7300BECB7C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				056947FA1E04DD7300BECB7C /* Arcstone_MobileTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		056947F71E04DD7300BECB7C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 056947DD1E04DD7300BECB7C /* Arcstone Mobile */;
+			targetProxy = 056947F61E04DD7300BECB7C /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		053031F51E13B65C003D9659 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				053031F41E13B65C003D9659 /* Base */,
+				053031F71E13B65E003D9659 /* en */,
+				053031FB1E13BA77003D9659 /* zh-Hans */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		056947ED1E04DD7300BECB7C /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				056947EE1E04DD7300BECB7C /* Base */,
+				053031F91E13B6E6003D9659 /* zh-Hans */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		056947FC1E04DD7300BECB7C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		056947FD1E04DD7300BECB7C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		056947FF1E04DD7300BECB7C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0C84C097E807948EBCE13EFC /* Pods-Arcstone Mobile.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				DEVELOPMENT_TEAM = CN924VFVRA;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
+				INFOPLIST_FILE = "Arcstone Mobile/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.Arcstone.Arcstone-Mobile";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		056948001E04DD7300BECB7C /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 86182E7150583A80A105FFAD /* Pods-Arcstone Mobile.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				DEVELOPMENT_TEAM = CN924VFVRA;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
+				INFOPLIST_FILE = "Arcstone Mobile/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.Arcstone.Arcstone-Mobile";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+		056948021E04DD7300BECB7C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = EF44E063656339CE4637CAC2 /* Pods-Arcstone MobileTests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = CN924VFVRA;
+				INFOPLIST_FILE = "Arcstone MobileTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.Arcstone.Arcstone-MobileTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Arcstone Mobile.app/Arcstone Mobile";
+			};
+			name = Debug;
+		};
+		056948031E04DD7300BECB7C /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 94B409531797B9A3DEE8427E /* Pods-Arcstone MobileTests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = CN924VFVRA;
+				INFOPLIST_FILE = "Arcstone MobileTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.Arcstone.Arcstone-MobileTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Arcstone Mobile.app/Arcstone Mobile";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		056947D91E04DD7300BECB7C /* Build configuration list for PBXProject "Arcstone Mobile" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				056947FC1E04DD7300BECB7C /* Debug */,
+				056947FD1E04DD7300BECB7C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		056947FE1E04DD7300BECB7C /* Build configuration list for PBXNativeTarget "Arcstone Mobile" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				056947FF1E04DD7300BECB7C /* Debug */,
+				056948001E04DD7300BECB7C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		056948011E04DD7300BECB7C /* Build configuration list for PBXNativeTarget "Arcstone MobileTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				056948021E04DD7300BECB7C /* Debug */,
+				056948031E04DD7300BECB7C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		056947E81E04DD7300BECB7C /* Arcstone_Mobile.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				056947E91E04DD7300BECB7C /* Arcstone_Mobile.xcdatamodel */,
+			);
+			currentVersion = 056947E91E04DD7300BECB7C /* Arcstone_Mobile.xcdatamodel */;
+			path = Arcstone_Mobile.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = 056947D61E04DD7300BECB7C /* Project object */;
+}
