@@ -12,8 +12,9 @@ class BatchRunTableViewCell: UITableViewCell {
 
     @IBOutlet weak var name_text: UILabel!
     @IBOutlet var status_view: UIView!
+    @IBOutlet weak var start: UILabel!
+    @IBOutlet weak var end: UILabel!
 
-    
     
     override func awakeFromNib() {
         super.awakeFromNib()

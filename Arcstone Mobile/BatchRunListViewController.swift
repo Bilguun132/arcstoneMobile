@@ -15,9 +15,9 @@ class BatchRunListViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         //        table.register(UINib(nibName: "BatchRunTableViewCell", bundle: nil), forCellReuseIdentifier: "cell")
-        self.navigationItem.setHidesBackButton(true, animated: false)
-        self.navigationItem.title = "Available Jobs"
+//        self.navigationItem.setHidesBackButton(true, animated: false)
         SVProgressHUD.dismiss()
+        check_if_empty()
         
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -83,11 +83,23 @@ class BatchRunListViewController: UITableViewController {
     
     //MARK: - Support Functions
     
+    
+    @IBAction func logout_button(_ sender: Any) {
+        UserDefaults.standard.setValue("nil", forKey: "PersonnelID")
+        self.performSegue(withIdentifier: "back_to_login", sender: self)
+    }
+    
+    func check_if_empty(){
+        print(batch_run_list_json_by_personnelID)
+        print(batch_run_list_json_by_personnelID["BatchrunHeaderList"].count)
+        if batch_run_list_json_by_personnelID["BatchrunHeaderList"].count == 0 {
+            EZAlertController.alert("Alert", message: "No jobs created by current user")
+        }
+    }
+    
     func makeAttributedString(title: String) -> NSAttributedString {
         let titleAttributes = [NSFontAttributeName: UIFont.preferredFont(forTextStyle: .title1), NSForegroundColorAttributeName: UIColor.darkGray]
         let titleString = NSMutableAttributedString(string: "\(title)\n", attributes: titleAttributes)
         return titleString
     }
-    
-    
 }

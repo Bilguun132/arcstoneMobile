@@ -30,12 +30,15 @@
 		0569480B1E04E91300BECB7C /* SwiftyJSON.framework in Copy Files */ = {isa = PBXBuildFile; fileRef = 056948061E04E8EF00BECB7C /* SwiftyJSON.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0569480D1E04E9B000BECB7C /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0569480C1E04E9B000BECB7C /* DataController.swift */; };
 		05736A311E0BC35A008125AF /* NiceButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05736A301E0BC35A008125AF /* NiceButton.swift */; };
+		057845011E3445F70053EF14 /* AdminPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057845001E3445F70053EF14 /* AdminPageViewController.swift */; };
+		057845051E34742A0053EF14 /* AdminBatchRunTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057845041E34742A0053EF14 /* AdminBatchRunTableViewController.swift */; };
+		057845081E348CD60053EF14 /* PersonnelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057845071E348CD60053EF14 /* PersonnelViewController.swift */; };
+		0586DDA31E32FA2F006491DF /* AdminViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0586DDA21E32FA2F006491DF /* AdminViewController.swift */; };
 		058BFBDF1E20BA4000B274E3 /* BatchRunStepParameterTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058BFBDE1E20BA4000B274E3 /* BatchRunStepParameterTableViewController.swift */; };
 		058BFBE11E20CAC900B274E3 /* BatchRunStepParameterInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058BFBE01E20CAC900B274E3 /* BatchRunStepParameterInfoViewController.swift */; };
 		059D16B21E0544DD0067581E /* BatchRunListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 059D16B11E0544DD0067581E /* BatchRunListViewController.swift */; };
 		05EAD91C1E0BBAE500FB6BC0 /* BatchRunStatusViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05EAD91B1E0BBAE500FB6BC0 /* BatchRunStatusViewController.swift */; };
 		05EE6B9E1E08D99E00616AC4 /* BatchRunTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05EE6B9C1E08D99E00616AC4 /* BatchRunTableViewCell.swift */; };
-		05EE6B9F1E08D99E00616AC4 /* BatchRunTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 05EE6B9D1E08D99E00616AC4 /* BatchRunTableViewCell.xib */; };
 		05EE6BA41E090FB800616AC4 /* ShowJobViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05EE6BA31E090FB800616AC4 /* ShowJobViewController.swift */; };
 		05EE6BA61E0A1F7400616AC4 /* AvailableJobsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05EE6BA51E0A1F7400616AC4 /* AvailableJobsViewController.swift */; };
 		05FB90811E081C3B0096E69A /* Eight One.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 05FB90801E081B880096E69A /* Eight One.ttf */; };
@@ -97,12 +100,15 @@
 		056948061E04E8EF00BECB7C /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = Carthage/Build/iOS/SwiftyJSON.framework; sourceTree = "<group>"; };
 		0569480C1E04E9B000BECB7C /* DataController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
 		05736A301E0BC35A008125AF /* NiceButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NiceButton.swift; sourceTree = "<group>"; };
+		057845001E3445F70053EF14 /* AdminPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdminPageViewController.swift; sourceTree = "<group>"; };
+		057845041E34742A0053EF14 /* AdminBatchRunTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdminBatchRunTableViewController.swift; sourceTree = "<group>"; };
+		057845071E348CD60053EF14 /* PersonnelViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonnelViewController.swift; sourceTree = "<group>"; };
+		0586DDA21E32FA2F006491DF /* AdminViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdminViewController.swift; sourceTree = "<group>"; };
 		058BFBDE1E20BA4000B274E3 /* BatchRunStepParameterTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BatchRunStepParameterTableViewController.swift; sourceTree = "<group>"; };
 		058BFBE01E20CAC900B274E3 /* BatchRunStepParameterInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BatchRunStepParameterInfoViewController.swift; sourceTree = "<group>"; };
 		059D16B11E0544DD0067581E /* BatchRunListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BatchRunListViewController.swift; sourceTree = "<group>"; };
 		05EAD91B1E0BBAE500FB6BC0 /* BatchRunStatusViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BatchRunStatusViewController.swift; sourceTree = "<group>"; };
 		05EE6B9C1E08D99E00616AC4 /* BatchRunTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BatchRunTableViewCell.swift; sourceTree = "<group>"; };
-		05EE6B9D1E08D99E00616AC4 /* BatchRunTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BatchRunTableViewCell.xib; sourceTree = "<group>"; };
 		05EE6BA31E090FB800616AC4 /* ShowJobViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowJobViewController.swift; sourceTree = "<group>"; };
 		05EE6BA51E0A1F7400616AC4 /* AvailableJobsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AvailableJobsViewController.swift; sourceTree = "<group>"; };
 		05FB90801E081B880096E69A /* Eight One.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Eight One.ttf"; sourceTree = "<group>"; };
@@ -207,20 +213,9 @@
 		056947E01E04DD7300BECB7C /* Arcstone Mobile */ = {
 			isa = PBXGroup;
 			children = (
-				05736A301E0BC35A008125AF /* NiceButton.swift */,
-				056947E11E04DD7300BECB7C /* AppDelegate.swift */,
-				05EE6BA51E0A1F7400616AC4 /* AvailableJobsViewController.swift */,
-				05EE6BA31E090FB800616AC4 /* ShowJobViewController.swift */,
-				056947E31E04DD7300BECB7C /* LoginViewController.swift */,
-				059D16B11E0544DD0067581E /* BatchRunListViewController.swift */,
-				053031F51E13B65C003D9659 /* Main.storyboard */,
-				058BFBE01E20CAC900B274E3 /* BatchRunStepParameterInfoViewController.swift */,
-				058BFBDE1E20BA4000B274E3 /* BatchRunStepParameterTableViewController.swift */,
-				05EAD91B1E0BBAE500FB6BC0 /* BatchRunStatusViewController.swift */,
-				05EE6B9C1E08D99E00616AC4 /* BatchRunTableViewCell.swift */,
-				05EE6B9D1E08D99E00616AC4 /* BatchRunTableViewCell.xib */,
+				0586DDA41E32FA38006491DF /* Storyboard */,
+				0586DDA11E32FA14006491DF /* View Controlllers */,
 				056947EB1E04DD7300BECB7C /* Assets.xcassets */,
-				056947ED1E04DD7300BECB7C /* LaunchScreen.storyboard */,
 				056947F01E04DD7300BECB7C /* Info.plist */,
 				056947E81E04DD7300BECB7C /* Arcstone_Mobile.xcdatamodeld */,
 				0569480C1E04E9B000BECB7C /* DataController.swift */,
@@ -249,6 +244,44 @@
 				07B21813E848BF38CD4B8FB1 /* Pods_Arcstone_MobileTests.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		057845061E347D3E0053EF14 /* Admin */ = {
+			isa = PBXGroup;
+			children = (
+				057845041E34742A0053EF14 /* AdminBatchRunTableViewController.swift */,
+				0586DDA21E32FA2F006491DF /* AdminViewController.swift */,
+				057845001E3445F70053EF14 /* AdminPageViewController.swift */,
+				057845071E348CD60053EF14 /* PersonnelViewController.swift */,
+			);
+			name = Admin;
+			sourceTree = "<group>";
+		};
+		0586DDA11E32FA14006491DF /* View Controlllers */ = {
+			isa = PBXGroup;
+			children = (
+				056947E11E04DD7300BECB7C /* AppDelegate.swift */,
+				057845061E347D3E0053EF14 /* Admin */,
+				05736A301E0BC35A008125AF /* NiceButton.swift */,
+				05EE6BA51E0A1F7400616AC4 /* AvailableJobsViewController.swift */,
+				05EE6BA31E090FB800616AC4 /* ShowJobViewController.swift */,
+				056947E31E04DD7300BECB7C /* LoginViewController.swift */,
+				059D16B11E0544DD0067581E /* BatchRunListViewController.swift */,
+				058BFBE01E20CAC900B274E3 /* BatchRunStepParameterInfoViewController.swift */,
+				058BFBDE1E20BA4000B274E3 /* BatchRunStepParameterTableViewController.swift */,
+				05EAD91B1E0BBAE500FB6BC0 /* BatchRunStatusViewController.swift */,
+				05EE6B9C1E08D99E00616AC4 /* BatchRunTableViewCell.swift */,
+			);
+			name = "View Controlllers";
+			sourceTree = "<group>";
+		};
+		0586DDA41E32FA38006491DF /* Storyboard */ = {
+			isa = PBXGroup;
+			children = (
+				053031F51E13B65C003D9659 /* Main.storyboard */,
+				056947ED1E04DD7300BECB7C /* LaunchScreen.storyboard */,
+			);
+			name = Storyboard;
 			sourceTree = "<group>";
 		};
 		8935201EE9EDEA43BB807656 /* Pods */ = {
@@ -360,7 +393,6 @@
 				0536FF181E06EFA70013E732 /* OpenSans-Regular.ttf in Resources */,
 				056947EF1E04DD7300BECB7C /* LaunchScreen.storyboard in Resources */,
 				053031F31E13B65C003D9659 /* Main.storyboard in Resources */,
-				05EE6B9F1E08D99E00616AC4 /* BatchRunTableViewCell.xib in Resources */,
 				05FB90811E081C3B0096E69A /* Eight One.ttf in Resources */,
 				0536FF171E06EFA70013E732 /* OpenSans-Light.ttf in Resources */,
 				056947EC1E04DD7300BECB7C /* Assets.xcassets in Resources */,
@@ -474,16 +506,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0586DDA31E32FA2F006491DF /* AdminViewController.swift in Sources */,
 				05736A311E0BC35A008125AF /* NiceButton.swift in Sources */,
 				0536FF1A1E06EFA70013E732 /* NavigationStack.swift in Sources */,
 				0536FF161E06EFA70013E732 /* CollectionViewStackFlowLayout.swift in Sources */,
 				05EE6B9E1E08D99E00616AC4 /* BatchRunTableViewCell.swift in Sources */,
+				057845081E348CD60053EF14 /* PersonnelViewController.swift in Sources */,
 				058BFBDF1E20BA4000B274E3 /* BatchRunStepParameterTableViewController.swift in Sources */,
 				056947E41E04DD7300BECB7C /* LoginViewController.swift in Sources */,
 				05EE6BA61E0A1F7400616AC4 /* AvailableJobsViewController.swift in Sources */,
+				057845051E34742A0053EF14 /* AdminBatchRunTableViewController.swift in Sources */,
 				058BFBE11E20CAC900B274E3 /* BatchRunStepParameterInfoViewController.swift in Sources */,
 				0536FF141E06EFA70013E732 /* CollectionViewStackCell.swift in Sources */,
 				0536FF051E06E31B0013E732 /* EZAlertController.swift in Sources */,
+				057845011E3445F70053EF14 /* AdminPageViewController.swift in Sources */,
 				05EE6BA41E090FB800616AC4 /* ShowJobViewController.swift in Sources */,
 				0569480D1E04E9B000BECB7C /* DataController.swift in Sources */,
 				05EAD91C1E0BBAE500FB6BC0 /* BatchRunStatusViewController.swift in Sources */,
