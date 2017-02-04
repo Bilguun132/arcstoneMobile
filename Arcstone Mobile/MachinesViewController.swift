@@ -1,39 +1,34 @@
 //
-//  PersonnelViewController.swift
+//  MachinesViewController.swift
 //  Arcstone Mobile
 //
-//  Created by Bilguun Batbold on 22/1/17.
+//  Created by Bilguun Batbold on 30/1/17.
 //  Copyright © 2017 Bilguun. All rights reserved.
 //
 
 import UIKit
-import SwiftyJSON
 import SVProgressHUD
+import SwiftyJSON
 
-class personCell: UITableViewCell {
-    
+class machineCell: UITableViewCell {
     @IBOutlet weak var name: UILabel!
-    @IBOutlet weak var batch_run_name: UILabel!
-    @IBOutlet weak var work_status: UILabel!
-    
+    @IBOutlet weak var status: UILabel!
+    @IBOutlet weak var step_name: UILabel!
 }
 
-
-class PersonnelViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchResultsUpdating {
+class MachinesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchResultsUpdating {
     
-    var personnelList:JSON = ""
+    var machine_list:JSON = ""
     var searchController: UISearchController!
     var filteredData: JSON = ""
     
-    
-    @IBOutlet weak var batch_run_name: UILabel!
     @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         SVProgressHUD.dismiss()
         setup_search_bar()
-        print(personnelList)
+        print(machine_list)
         
         // Do any additional setup after loading the view.
     }
@@ -48,12 +43,22 @@ class PersonnelViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! personCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! machineCell
         var dict = filteredData[indexPath.row]
-        cell.name.text = dict["First_name"].stringValue
-        cell.batch_run_name.text = dict["batch_run"].stringValue
-        if cell.batch_run_name.text == "" {
-            cell.work_status.text = "Idle"
+        cell.name.text = dict["Name"].stringValue
+        cell.step_name.text = dict["BatchStep"].stringValue
+        if dict["Is_busy"].stringValue == "true" {
+            //            cell.backgroundColor = UIColor.init(red: 0.97, green: 0.71, blue: 0.71, alpha: 1)
+            if cell.step_name.text == "" {
+                cell.status.text = "In Use"
+            }
+            else {
+                cell.status.text = "Used on"
+            }
+        }
+        else {
+            cell.status.text = "Idle"
+            //            cell.backgroundColor = UIColor.green
         }
         return cell
     }
@@ -72,9 +77,9 @@ class PersonnelViewController: UIViewController, UITableViewDelegate, UITableVie
             if searchText.isEmpty == false {
                 filteredData = ""
                 print(searchText)
-                for (_,subJson):(String, JSON) in personnelList {
-                    if subJson["First_name"].stringValue.lowercased().contains(searchText.lowercased()){
-                        print(subJson["First_name"])
+                for (_,subJson):(String, JSON) in machine_list {
+                    if subJson["Name"].stringValue.lowercased().contains(searchText.lowercased()){
+                        print(subJson["Name"])
                         print("Contains")
                         temp.append(subJson.dictionaryObject!)
                     }
@@ -82,7 +87,7 @@ class PersonnelViewController: UIViewController, UITableViewDelegate, UITableVie
                 filteredData = JSON(temp)
             }
             else {
-                filteredData = personnelList
+                filteredData = machine_list
             }
             tableView.reloadData()
         }
@@ -96,8 +101,10 @@ class PersonnelViewController: UIViewController, UITableViewDelegate, UITableVie
         tableView.tableHeaderView = searchController.searchBar
         // Sets this view controller as presenting view controller for the search interface
         definesPresentationContext = true
-        filteredData = personnelList
+        filteredData = machine_list
     }
+    
+    
     
     
     /*

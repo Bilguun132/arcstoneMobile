@@ -8,7 +8,6 @@
 
 import UIKit
 import SwiftyJSON
-import DropDown
 import Alamofire
 import SVProgressHUD
 
@@ -47,22 +46,7 @@ class BatchRunStatusViewController: UIViewController, UIImagePickerControllerDel
     @IBOutlet weak var choose_status_button: UIButton!
     @IBOutlet weak var report_issue_button: UIButton!
     @IBOutlet weak var image_picked: UIImageView!
-    
-    //MARK: - DropDowns
-    
-    let chooseStatusDropDown = DropDown()
-    
-    
-    func setupDropDowns() {
-        chooseStatusDropDown.anchorView = choose_status_button
-        chooseStatusDropDown.bottomOffset = CGPoint(x: 0, y: choose_status_button.bounds.height)
-        chooseStatusDropDown.dataSource = DataController.Constants.status_names
-        chooseStatusDropDown.selectionAction = { [unowned self] (index, item) in
-            self.choose_status_button.setTitle(item, for: .normal)
-        }
-        chooseStatusDropDown.selectRowAtIndex(3)
-    }
-    
+
     
     //MARK: - Buttons
     
@@ -74,7 +58,15 @@ class BatchRunStatusViewController: UIViewController, UIImagePickerControllerDel
         }
     }
     
-    
+    @IBAction func pause_button_pressed(_ sender: Any) {
+        let message:Parameters = form_message(start: false)
+        DataController.postData(api_string: "api/Batchrunstep/PauseBatchrunstep", post_message : message) {response in
+            if response["ResponseCode"] != "0" {
+                print("Paused")
+                _ = self.navigationController?.popViewController(animated: true)
+            }
+        }
+    }
     @IBAction func print_image_string_pressed(_ sender: Any) {
         print(image_string.getBytes)
         let size = image_string.characters.count
@@ -84,7 +76,7 @@ class BatchRunStatusViewController: UIViewController, UIImagePickerControllerDel
     @IBAction func stop_button_pressed(_ sender: Any) {
         let message:Parameters = form_message(start: false)
         DataController.postData(api_string: "api/Batchrunstep/StopBatchrunstep", post_message : message) {response in
-            if response != "0" {
+            if response["ResponseCode"] != "0" {
                 print("Stopped")
                 _ = self.navigationController?.popViewController(animated: true)
             }
@@ -94,17 +86,13 @@ class BatchRunStatusViewController: UIViewController, UIImagePickerControllerDel
     @IBAction func start_button_pressed(_ sender: Any) {
         let message:Parameters = form_message(start: true)
         DataController.postData(api_string: "api/Batchrunstep/StartBatchrunstep", post_message : message) {response in
-            if response != "0" {
+            if response["ResponseCode"] != "0" {
                 print("Started")
                 _ = self.navigationController?.popViewController(animated: true)
             }
         }
     }
     
-    
-    @IBAction func status_button_pressed(_ sender: AnyObject) {
-        _ = chooseStatusDropDown.show()
-    }
     
     @IBAction func report_issue_button_pressed(_ sender: Any) {
         if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.camera) {

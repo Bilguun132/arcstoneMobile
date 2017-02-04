@@ -17,7 +17,6 @@ class ViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var username: UITextField!
     @IBOutlet weak var password: UITextField!
-    @IBOutlet weak var log_in_button: UIButton!
     @IBOutlet weak var server_text: UITextField!
     @IBOutlet weak var set_server_button: UIButton!
     var personnel_info_id = ""
@@ -30,7 +29,6 @@ class ViewController: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()        // Do any additional setup after loading the view, typically from a nib.
         self.username.delegate = self
         self.password.delegate = self
-        navigationController!.interactivePopGestureRecognizer?.delegate = self
         self.view.drawHierarchy(in: view.bounds, afterScreenUpdates: true)
         SVProgressHUD.dismiss()
         print(UserDefaults.standard.string(forKey: "Server") ?? "not set" )
@@ -77,6 +75,13 @@ class ViewController: UIViewController, UITextFieldDelegate {
     
     //MARK: - User Functions
     
+    func form_login_message()->[String:Any]{
+        let username = self.username.text
+        let password = self.password.text
+        let message = ["User_name" : username, "First_name" : password]
+        return message
+    }
+    
     func clear_fields() {
         username.text = ""
         password.text = ""
@@ -103,7 +108,6 @@ class ViewController: UIViewController, UITextFieldDelegate {
     func show_login_info() {
         username.alpha = 1
         password.alpha = 1
-        log_in_button.alpha = 1
         server_text.alpha = 0
         set_server_button.alpha = 0
     }
@@ -111,7 +115,6 @@ class ViewController: UIViewController, UITextFieldDelegate {
     func show_server_info() {
         username.alpha = 0
         password.alpha = 0
-        log_in_button.alpha = 0
         server_text.alpha = 1
         set_server_button.alpha = 1
     }
@@ -130,7 +133,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         else {
             UserDefaults.standard.setValue(server_text.text, forKey: "Server")
             let mainStoryBoard = UIStoryboard(name: "Main", bundle: nil)
-            let RootViewController = mainStoryBoard.instantiateViewController(withIdentifier: "root") as! NavigationStack
+            let RootViewController = mainStoryBoard.instantiateViewController(withIdentifier: "root") as! UINavigationController
             let appDelegate = UIApplication.shared.delegate as! AppDelegate
             appDelegate.window?.rootViewController = RootViewController
         }
@@ -139,22 +142,22 @@ class ViewController: UIViewController, UITextFieldDelegate {
     @IBAction func log_in_button_pressed(_ sender: Any) {
         if username.text == "" || password.text == "" {
             SVProgressHUD.dismiss()
-            EZAlertController.alert(UserDefaults.standard.string(forKey: "Alert_localization")!, message: "Authentication fail. Please try again")
+            EZAlertController.alert(UserDefaults.standard.string(forKey: "Alert_localization")!, message: "Username or password field is empty")
             return
         }
         SVProgressHUD.show()
-        DataController.getData(api_string: "api/Personnel/AuthenticateUser?username="+(username.text)!+"&lastname="+(password.text)!) {response in
+        //        DataController.getData(api_string: "api/Personnel/AuthenticateUser?username="+(username.text)!+"&lastname="+(password.text)!) {response in
+        DataController.postData(api_string: "api/Personnel/Validate_Personnel_Login", post_message: form_login_message()) {response in
             print(response)
-            if response["ResponseCode"].stringValue == "0" {
+            if response["PersonnelHeaderList"].count == 0 {
                 SVProgressHUD.dismiss()
-                EZAlertController.alert("No such user", message: "Please chech your username or password")
+                EZAlertController.alert("No such user", message: "Please check your username or password")
                 self.clear_fields()
                 return
             }
-            if response["ResponseCode"].stringValue == "1" {
+            if response["PersonnelHeaderList"].count != 0 {
                 self.view.endEditing(true)
                 SVProgressHUD.dismiss()
-                print(response["PersonnelHeaderList"]["Id"])
                 self.personnel_info_id = response["PersonnelHeaderList"][0]["Id"].stringValue
                 print(self.personnel_info_id)
                 UserDefaults.standard.setValue(self.personnel_info_id, forKey: "PersonnelID")
@@ -172,23 +175,6 @@ class ViewController: UIViewController, UITextFieldDelegate {
                 })
             }
         }
-    }
-}
-
-//MARK: - Navigation Controller Extension
-
-extension ViewController: UIGestureRecognizerDelegate {
-    func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
-        
-        if navigationController?.viewControllers.count == 2 {
-            return true
-        }
-        
-        if let navigationController = self.navigationController as? NavigationStack {
-            navigationController.showControllers()
-        }
-        
-        return false
     }
 }
 

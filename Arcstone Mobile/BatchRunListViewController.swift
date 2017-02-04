@@ -15,7 +15,7 @@ class BatchRunListViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         //        table.register(UINib(nibName: "BatchRunTableViewCell", bundle: nil), forCellReuseIdentifier: "cell")
-//        self.navigationItem.setHidesBackButton(true, animated: false)
+        //        self.navigationItem.setHidesBackButton(true, animated: false)
         SVProgressHUD.dismiss()
         check_if_empty()
         
@@ -38,7 +38,7 @@ class BatchRunListViewController: UITableViewController {
     var personnel_id = ""
     var job_json_data:JSON = ""
     
-
+    
     
     // MARK: - Table view functions
     
@@ -51,14 +51,26 @@ class BatchRunListViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! BatchRunCell
         var dict = batch_run_list_json_by_personnelID["BatchrunHeaderList"][indexPath.row]
-        cell.textLabel?.attributedText = makeAttributedString(title: dict["Name"].stringValue)
-        let status = DataController.convert_batch_run_step_status(number: dict["Status"].stringValue)
-        cell.detailTextLabel?.text = status.0
-        cell.backgroundColor = status.1
-        
+        cell.name.text = dict["Name"].stringValue
+        if dict["Start_date_time"].stringValue != "" {
+            cell.start_time.text = dict["Start_date_time"].stringValue
+        }
+        else {
+            cell.start_time.text = "Have not started yet"
+            cell.end_time.text = ""
+        }
+        if cell.start_time.text != "Have not started yet" {
+            if dict["End_date_time"].stringValue != "" {
+                cell.end_time.text = dict["End_date_time"].stringValue
+            }
+            else {
+                cell.end_time.text = "Still running"
+            }
+        }
         return cell
+        
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

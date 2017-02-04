@@ -1,12 +1,21 @@
 PODS:
-  - DropDown (1.0.1)
+  - Alamofire (4.3.0)
+  - SideMenu (2.2.0)
+  - SVProgressHUD (2.1.2)
+  - SwiftyJSON (3.1.4)
 
 DEPENDENCIES:
-  - DropDown
+  - Alamofire (~> 4.3)
+  - SideMenu
+  - SVProgressHUD
+  - SwiftyJSON
 
 SPEC CHECKSUMS:
-  DropDown: 335df9e9547e97a861a60aed8448821e239d3513
+  Alamofire: 856a113053a7bc9cbe5d6367a555d773fc5cfef7
+  SideMenu: eeff6b85456c5c6e14165655691d2033f6b24969
+  SVProgressHUD: c404a55d78acbeb7ebb78b76d3faf986475a6994
+  SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
 
-PODFILE CHECKSUM: cc570dc92ad038737e4c0a77cbfcfef6c30faf82
+PODFILE CHECKSUM: 50a2ae2fa52b1f134ff7a0277d77d8860dde0dc5
 
-COCOAPODS: 1.0.1
+COCOAPODS: 1.2.0

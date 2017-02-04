@@ -8,26 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		053031F31E13B65C003D9659 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 053031F51E13B65C003D9659 /* Main.storyboard */; };
-		0530617C1E053394000F0D1F /* SVProgressHUD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0530617B1E053394000F0D1F /* SVProgressHUD.framework */; };
-		0530617E1E053416000F0D1F /* SVProgressHUD.framework in Copy Files */ = {isa = PBXBuildFile; fileRef = 0530617B1E053394000F0D1F /* SVProgressHUD.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0536FF051E06E31B0013E732 /* EZAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0536FF041E06E31B0013E732 /* EZAlertController.swift */; };
-		0536FF141E06EFA70013E732 /* CollectionViewStackCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0536FF0B1E06EFA70013E732 /* CollectionViewStackCell.swift */; };
-		0536FF151E06EFA70013E732 /* CollectionStackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0536FF0C1E06EFA70013E732 /* CollectionStackViewController.swift */; };
-		0536FF161E06EFA70013E732 /* CollectionViewStackFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0536FF0E1E06EFA70013E732 /* CollectionViewStackFlowLayout.swift */; };
-		0536FF171E06EFA70013E732 /* OpenSans-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0536FF101E06EFA70013E732 /* OpenSans-Light.ttf */; };
-		0536FF181E06EFA70013E732 /* OpenSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0536FF111E06EFA70013E732 /* OpenSans-Regular.ttf */; };
-		0536FF191E06EFA70013E732 /* OpenSans-Semibold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0536FF121E06EFA70013E732 /* OpenSans-Semibold.ttf */; };
-		0536FF1A1E06EFA70013E732 /* NavigationStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0536FF131E06EFA70013E732 /* NavigationStack.swift */; };
+		0561B8FD1E3F0F87008CA2BF /* MachinesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0561B8FC1E3F0F87008CA2BF /* MachinesViewController.swift */; };
 		056947E21E04DD7300BECB7C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056947E11E04DD7300BECB7C /* AppDelegate.swift */; };
 		056947E41E04DD7300BECB7C /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056947E31E04DD7300BECB7C /* LoginViewController.swift */; };
 		056947EA1E04DD7300BECB7C /* Arcstone_Mobile.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 056947E81E04DD7300BECB7C /* Arcstone_Mobile.xcdatamodeld */; };
 		056947EC1E04DD7300BECB7C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 056947EB1E04DD7300BECB7C /* Assets.xcassets */; };
 		056947EF1E04DD7300BECB7C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 056947ED1E04DD7300BECB7C /* LaunchScreen.storyboard */; };
 		056947FA1E04DD7300BECB7C /* Arcstone_MobileTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056947F91E04DD7300BECB7C /* Arcstone_MobileTests.swift */; };
-		056948071E04E8EF00BECB7C /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 056948051E04E8EF00BECB7C /* Alamofire.framework */; };
-		056948081E04E8EF00BECB7C /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 056948061E04E8EF00BECB7C /* SwiftyJSON.framework */; };
-		0569480A1E04E91300BECB7C /* Alamofire.framework in Copy Files */ = {isa = PBXBuildFile; fileRef = 056948051E04E8EF00BECB7C /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		0569480B1E04E91300BECB7C /* SwiftyJSON.framework in Copy Files */ = {isa = PBXBuildFile; fileRef = 056948061E04E8EF00BECB7C /* SwiftyJSON.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0569480D1E04E9B000BECB7C /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0569480C1E04E9B000BECB7C /* DataController.swift */; };
 		05736A311E0BC35A008125AF /* NiceButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05736A301E0BC35A008125AF /* NiceButton.swift */; };
 		057845011E3445F70053EF14 /* AdminPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057845001E3445F70053EF14 /* AdminPageViewController.swift */; };
@@ -41,9 +29,8 @@
 		05EE6B9E1E08D99E00616AC4 /* BatchRunTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05EE6B9C1E08D99E00616AC4 /* BatchRunTableViewCell.swift */; };
 		05EE6BA41E090FB800616AC4 /* ShowJobViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05EE6BA31E090FB800616AC4 /* ShowJobViewController.swift */; };
 		05EE6BA61E0A1F7400616AC4 /* AvailableJobsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05EE6BA51E0A1F7400616AC4 /* AvailableJobsViewController.swift */; };
-		05FB90811E081C3B0096E69A /* Eight One.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 05FB90801E081B880096E69A /* Eight One.ttf */; };
 		7421312BF8AB6ACC76FB17A3 /* Pods_Arcstone_MobileTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07B21813E848BF38CD4B8FB1 /* Pods_Arcstone_MobileTests.framework */; };
-		95F59A1FB34A354024C4FA78 /* Pods_Arcstone_Mobile.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD879C9403DD2BE447BC1B75 /* Pods_Arcstone_Mobile.framework */; };
+		E33F5BED84EC9E71B7E04998 /* Pods_Arcstone_Mobile.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD879C9403DD2BE447BC1B75 /* Pods_Arcstone_Mobile.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,13 +48,20 @@
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
-			dstSubfolderSpec = 10;
+			dstSubfolderSpec = 16;
 			files = (
-				0530617E1E053416000F0D1F /* SVProgressHUD.framework in Copy Files */,
-				0569480A1E04E91300BECB7C /* Alamofire.framework in Copy Files */,
-				0569480B1E04E91300BECB7C /* SwiftyJSON.framework in Copy Files */,
 			);
 			name = "Copy Files";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0580C64E1E45835E00826758 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+			);
+			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
@@ -77,15 +71,8 @@
 		053031F71E13B65E003D9659 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
 		053031F91E13B6E6003D9659 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		053031FB1E13BA77003D9659 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
-		0530617B1E053394000F0D1F /* SVProgressHUD.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SVProgressHUD.framework; path = Carthage/Build/iOS/SVProgressHUD.framework; sourceTree = "<group>"; };
 		0536FF041E06E31B0013E732 /* EZAlertController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EZAlertController.swift; sourceTree = "<group>"; };
-		0536FF0B1E06EFA70013E732 /* CollectionViewStackCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewStackCell.swift; sourceTree = "<group>"; };
-		0536FF0C1E06EFA70013E732 /* CollectionStackViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionStackViewController.swift; sourceTree = "<group>"; };
-		0536FF0E1E06EFA70013E732 /* CollectionViewStackFlowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewStackFlowLayout.swift; sourceTree = "<group>"; };
-		0536FF101E06EFA70013E732 /* OpenSans-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Light.ttf"; sourceTree = "<group>"; };
-		0536FF111E06EFA70013E732 /* OpenSans-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Regular.ttf"; sourceTree = "<group>"; };
-		0536FF121E06EFA70013E732 /* OpenSans-Semibold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Semibold.ttf"; sourceTree = "<group>"; };
-		0536FF131E06EFA70013E732 /* NavigationStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationStack.swift; sourceTree = "<group>"; };
+		0561B8FC1E3F0F87008CA2BF /* MachinesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MachinesViewController.swift; sourceTree = "<group>"; };
 		056947DE1E04DD7300BECB7C /* Arcstone Mobile.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Arcstone Mobile.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		056947E11E04DD7300BECB7C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		056947E31E04DD7300BECB7C /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -96,8 +83,6 @@
 		056947F51E04DD7300BECB7C /* Arcstone MobileTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Arcstone MobileTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		056947F91E04DD7300BECB7C /* Arcstone_MobileTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Arcstone_MobileTests.swift; sourceTree = "<group>"; };
 		056947FB1E04DD7300BECB7C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		056948051E04E8EF00BECB7C /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
-		056948061E04E8EF00BECB7C /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = Carthage/Build/iOS/SwiftyJSON.framework; sourceTree = "<group>"; };
 		0569480C1E04E9B000BECB7C /* DataController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
 		05736A301E0BC35A008125AF /* NiceButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NiceButton.swift; sourceTree = "<group>"; };
 		057845001E3445F70053EF14 /* AdminPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdminPageViewController.swift; sourceTree = "<group>"; };
@@ -111,7 +96,6 @@
 		05EE6B9C1E08D99E00616AC4 /* BatchRunTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BatchRunTableViewCell.swift; sourceTree = "<group>"; };
 		05EE6BA31E090FB800616AC4 /* ShowJobViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowJobViewController.swift; sourceTree = "<group>"; };
 		05EE6BA51E0A1F7400616AC4 /* AvailableJobsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AvailableJobsViewController.swift; sourceTree = "<group>"; };
-		05FB90801E081B880096E69A /* Eight One.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Eight One.ttf"; sourceTree = "<group>"; };
 		07B21813E848BF38CD4B8FB1 /* Pods_Arcstone_MobileTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Arcstone_MobileTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0C84C097E807948EBCE13EFC /* Pods-Arcstone Mobile.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Arcstone Mobile.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Arcstone Mobile/Pods-Arcstone Mobile.debug.xcconfig"; sourceTree = "<group>"; };
 		86182E7150583A80A105FFAD /* Pods-Arcstone Mobile.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Arcstone Mobile.release.xcconfig"; path = "Pods/Target Support Files/Pods-Arcstone Mobile/Pods-Arcstone Mobile.release.xcconfig"; sourceTree = "<group>"; };
@@ -125,10 +109,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				056948071E04E8EF00BECB7C /* Alamofire.framework in Frameworks */,
-				056948081E04E8EF00BECB7C /* SwiftyJSON.framework in Frameworks */,
-				0530617C1E053394000F0D1F /* SVProgressHUD.framework in Frameworks */,
-				95F59A1FB34A354024C4FA78 /* Pods_Arcstone_Mobile.framework in Frameworks */,
+				E33F5BED84EC9E71B7E04998 /* Pods_Arcstone_Mobile.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -143,53 +124,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		0536FF081E06EFA70013E732 /* Source */ = {
-			isa = PBXGroup;
-			children = (
-				0536FF091E06EFA70013E732 /* CollectionView */,
-				0536FF0F1E06EFA70013E732 /* Fonts */,
-				0536FF131E06EFA70013E732 /* NavigationStack.swift */,
-			);
-			path = Source;
-			sourceTree = "<group>";
-		};
-		0536FF091E06EFA70013E732 /* CollectionView */ = {
-			isa = PBXGroup;
-			children = (
-				0536FF0A1E06EFA70013E732 /* Cell */,
-				0536FF0C1E06EFA70013E732 /* CollectionStackViewController.swift */,
-				0536FF0D1E06EFA70013E732 /* FlowLayout */,
-			);
-			path = CollectionView;
-			sourceTree = "<group>";
-		};
-		0536FF0A1E06EFA70013E732 /* Cell */ = {
-			isa = PBXGroup;
-			children = (
-				0536FF0B1E06EFA70013E732 /* CollectionViewStackCell.swift */,
-			);
-			path = Cell;
-			sourceTree = "<group>";
-		};
-		0536FF0D1E06EFA70013E732 /* FlowLayout */ = {
-			isa = PBXGroup;
-			children = (
-				0536FF0E1E06EFA70013E732 /* CollectionViewStackFlowLayout.swift */,
-			);
-			path = FlowLayout;
-			sourceTree = "<group>";
-		};
-		0536FF0F1E06EFA70013E732 /* Fonts */ = {
-			isa = PBXGroup;
-			children = (
-				0536FF101E06EFA70013E732 /* OpenSans-Light.ttf */,
-				0536FF111E06EFA70013E732 /* OpenSans-Regular.ttf */,
-				05FB90801E081B880096E69A /* Eight One.ttf */,
-				0536FF121E06EFA70013E732 /* OpenSans-Semibold.ttf */,
-			);
-			path = Fonts;
-			sourceTree = "<group>";
-		};
 		056947D51E04DD7300BECB7C = {
 			isa = PBXGroup;
 			children = (
@@ -235,11 +169,7 @@
 		056948041E04E8EF00BECB7C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				0536FF081E06EFA70013E732 /* Source */,
 				0536FF041E06E31B0013E732 /* EZAlertController.swift */,
-				0530617B1E053394000F0D1F /* SVProgressHUD.framework */,
-				056948051E04E8EF00BECB7C /* Alamofire.framework */,
-				056948061E04E8EF00BECB7C /* SwiftyJSON.framework */,
 				FD879C9403DD2BE447BC1B75 /* Pods_Arcstone_Mobile.framework */,
 				07B21813E848BF38CD4B8FB1 /* Pods_Arcstone_MobileTests.framework */,
 			);
@@ -253,6 +183,7 @@
 				0586DDA21E32FA2F006491DF /* AdminViewController.swift */,
 				057845001E3445F70053EF14 /* AdminPageViewController.swift */,
 				057845071E348CD60053EF14 /* PersonnelViewController.swift */,
+				0561B8FC1E3F0F87008CA2BF /* MachinesViewController.swift */,
 			);
 			name = Admin;
 			sourceTree = "<group>";
@@ -309,6 +240,7 @@
 				056948091E04E90400BECB7C /* Copy Files */,
 				5B6A36F39C262C86051FDE47 /* [CP] Embed Pods Frameworks */,
 				F2E6DCDF7353A7FB5A3302D7 /* [CP] Copy Pods Resources */,
+				0580C64E1E45835E00826758 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -389,12 +321,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0536FF191E06EFA70013E732 /* OpenSans-Semibold.ttf in Resources */,
-				0536FF181E06EFA70013E732 /* OpenSans-Regular.ttf in Resources */,
 				056947EF1E04DD7300BECB7C /* LaunchScreen.storyboard in Resources */,
 				053031F31E13B65C003D9659 /* Main.storyboard in Resources */,
-				05FB90811E081C3B0096E69A /* Eight One.ttf in Resources */,
-				0536FF171E06EFA70013E732 /* OpenSans-Light.ttf in Resources */,
 				056947EC1E04DD7300BECB7C /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -421,7 +349,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		4E02AEB580DC2B63D59D3A22 /* [CP] Copy Pods Resources */ = {
@@ -451,7 +379,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		5B6A36F39C262C86051FDE47 /* [CP] Embed Pods Frameworks */ = {
@@ -508,16 +436,14 @@
 			files = (
 				0586DDA31E32FA2F006491DF /* AdminViewController.swift in Sources */,
 				05736A311E0BC35A008125AF /* NiceButton.swift in Sources */,
-				0536FF1A1E06EFA70013E732 /* NavigationStack.swift in Sources */,
-				0536FF161E06EFA70013E732 /* CollectionViewStackFlowLayout.swift in Sources */,
 				05EE6B9E1E08D99E00616AC4 /* BatchRunTableViewCell.swift in Sources */,
+				0561B8FD1E3F0F87008CA2BF /* MachinesViewController.swift in Sources */,
 				057845081E348CD60053EF14 /* PersonnelViewController.swift in Sources */,
 				058BFBDF1E20BA4000B274E3 /* BatchRunStepParameterTableViewController.swift in Sources */,
 				056947E41E04DD7300BECB7C /* LoginViewController.swift in Sources */,
 				05EE6BA61E0A1F7400616AC4 /* AvailableJobsViewController.swift in Sources */,
 				057845051E34742A0053EF14 /* AdminBatchRunTableViewController.swift in Sources */,
 				058BFBE11E20CAC900B274E3 /* BatchRunStepParameterInfoViewController.swift in Sources */,
-				0536FF141E06EFA70013E732 /* CollectionViewStackCell.swift in Sources */,
 				0536FF051E06E31B0013E732 /* EZAlertController.swift in Sources */,
 				057845011E3445F70053EF14 /* AdminPageViewController.swift in Sources */,
 				05EE6BA41E090FB800616AC4 /* ShowJobViewController.swift in Sources */,
@@ -526,7 +452,6 @@
 				056947EA1E04DD7300BECB7C /* Arcstone_Mobile.xcdatamodeld in Sources */,
 				059D16B21E0544DD0067581E /* BatchRunListViewController.swift in Sources */,
 				056947E21E04DD7300BECB7C /* AppDelegate.swift in Sources */,
-				0536FF151E06EFA70013E732 /* CollectionStackViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -674,10 +599,6 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = CN924VFVRA;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Carthage/Build/iOS",
-				);
 				INFOPLIST_FILE = "Arcstone Mobile/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -696,10 +617,6 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = CN924VFVRA;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Carthage/Build/iOS",
-				);
 				INFOPLIST_FILE = "Arcstone Mobile/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

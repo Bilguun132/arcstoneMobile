@@ -45,8 +45,9 @@ class DataController {
         let url = "http://" + "\(UserDefaults.standard.string(forKey: "Server")!)" + api_string
         Alamofire.request(url, method:.post, parameters:post_message, encoding:JSONEncoding.prettyPrinted).responseJSON { response in
             switch response.result {
-            case .success( _):
-                completion("1")
+            case .success(let json_value):
+                let value = JSON(json_value)
+                completion(value)
             case .failure(let error):
                 print(error)
                 completion("0")

@@ -20,6 +20,7 @@ class AdminPageViewController: UIViewController {
     
     var batch_run_list:JSON = ""
     var personnel_list:JSON = ""
+    var machine_list:JSON = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,6 +50,10 @@ class AdminPageViewController: UIViewController {
             let display_controller = segue.destination as! PersonnelViewController
             display_controller.personnelList = self.personnel_list["PersonnelHeaderList"]
         }
+        if segue.identifier == "show_machines_segue" {
+            let display_controller = segue.destination as! MachinesViewController
+            display_controller.machine_list = self.machine_list["FacilityHeaderList"]
+        }
     }
     
     
@@ -66,16 +71,24 @@ class AdminPageViewController: UIViewController {
             self.performSegue(withIdentifier: "show_personnel_segue", sender: self)
             return
         }
-        
-        
-        /*
-         // MARK: - Navigation
-         
-         // In a storyboard-based application, you will often want to do a little preparation before navigation
-         override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-         // Get the new view controller using segue.destinationViewController.
-         // Pass the selected object to the new view controller.
-         }
-         */
     }
+    @IBAction func machines_button(_sender:Any) {
+        SVProgressHUD.show()
+        DataController.getData(api_string: "api/Facility/FacilityList") {response in
+            self.machine_list = response
+            self.performSegue(withIdentifier: "show_machines_segue", sender: self)
+            return
+        }
+    }
+    
+    
+    /*
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destinationViewController.
+     // Pass the selected object to the new view controller.
+     }
+     */
 }

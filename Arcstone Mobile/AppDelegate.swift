@@ -8,7 +8,6 @@
 
 import UIKit
 import CoreData
-import DropDown
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -17,8 +16,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        DropDown.startListeningToKeyboard()
         UserDefaults.standard.setValue("nil", forKey: "PersonnelID")
+        UserDefaults.standard.setValue("52.77.103.197/newmobileapitest/", forKey: "Server")
         // Override point for customization after application launch.
         return true
     }

@@ -1,10 +1,13 @@
 # Uncomment this line to define a global platform for your project
-# platform :ios, '9.0'
+platform :ios, '9.0'
 
 target 'Arcstone Mobile' do
   # Comment this line if you're not using Swift and don't want to use dynamic frameworks
   use_frameworks!
-pod 'DropDown'
+pod 'SVProgressHUD'
+pod 'SideMenu'
+pod 'SwiftyJSON'
+pod 'Alamofire', '~> 4.3'
 
   # Pods for Arcstone Mobile
 
