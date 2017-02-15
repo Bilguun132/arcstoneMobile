@@ -25,6 +25,7 @@ class AdminBatchRunViewController: UIViewController, UITableViewDelegate, UITabl
     var batch_info:[[String:Any]] = [[:]]
     var filteredData: JSON = ""
     var searchController: UISearchController!
+    var job_json_data:JSON = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -80,41 +81,61 @@ class AdminBatchRunViewController: UIViewController, UITableViewDelegate, UITabl
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.performSegue(withIdentifier: "quick_view_segue", sender: self)
+        self.job_json_data = filteredData[indexPath.row]
+        self.performSegue(withIdentifier: "show_jobs_detail", sender: self)
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "show_jobs_detail" {
+            let display_controller = segue.destination as! ShowJobViewController
+            display_controller.index_json_data = job_json_data
+        }
+    }
+    
     
     func updateSearchResults(for searchController: UISearchController) {
         var temp = [[String:Any]]()
         if let searchText = searchController.searchBar.text {
             if searchText.isEmpty == false {
                 filteredData = ""
-                print(searchText)
-                for (_,subJson):(String, JSON) in batch_run_list["BatchrunHeaderList"] {
+                for (_,subJson):(String, JSON) in batch_run_list {
                     if subJson["Name"].stringValue.lowercased().contains(searchText.lowercased()){
-                        print(subJson["Name"])
-                        print("Contains")
                         temp.append(subJson.dictionaryObject!)
                     }
                 }
                 filteredData = JSON(temp)
             }
             else {
-                filteredData = batch_run_list["BatchrunHeaderList"]
+                filteredData = batch_run_list
             }
             tableView.reloadData()
         }
     }
     
     func setup(){
+        
+        if batch_run_list.count == 0 {
+            EZAlertController.alert("Alert", message: "Job type is empty")
+            return
+        }
+        
         searchController = UISearchController(searchResultsController: nil)
         searchController.searchResultsUpdater = self
-        searchController.dimsBackgroundDuringPresentation = false
+        searchController.dimsBackgroundDuringPresentation = true
         searchController.searchBar.sizeToFit()
+        searchController.searchBar.searchBarStyle = UISearchBarStyle.prominent
+        searchController.hidesNavigationBarDuringPresentation = false
         tableView.tableHeaderView = searchController.searchBar
         // Sets this view controller as presenting view controller for the search interface
         definesPresentationContext = true
-        filteredData = batch_run_list["BatchrunHeaderList"]
+        filteredData = batch_run_list
+        
     }
+    
+    deinit {
+        self.searchController?.view.removeFromSuperview()
+    }
+    
 }
 
 /*

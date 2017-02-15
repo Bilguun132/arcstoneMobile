@@ -21,6 +21,8 @@ class MachinesViewController: UIViewController, UITableViewDelegate, UITableView
     var machine_list:JSON = ""
     var searchController: UISearchController!
     var filteredData: JSON = ""
+    var machine_id = ""
+    var machine_history:JSON = ""
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -28,7 +30,6 @@ class MachinesViewController: UIViewController, UITableViewDelegate, UITableView
         super.viewDidLoad()
         SVProgressHUD.dismiss()
         setup_search_bar()
-        print(machine_list)
         
         // Do any additional setup after loading the view.
     }
@@ -71,16 +72,28 @@ class MachinesViewController: UIViewController, UITableViewDelegate, UITableView
         return UITableViewAutomaticDimension
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        machine_id = filteredData[indexPath.row]["Id"].stringValue
+        DataController.getData(api_string: "api/Facility/FacilityJobsList?param_id=" + self.machine_id) {response in
+            self.machine_history = response["FacilityHeaderList"]
+            self.performSegue(withIdentifier: "show_machine_jobs", sender: self)
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "show_machine_jobs" {
+            let display_controller = segue.destination as! MachineJobsTableViewController
+            display_controller.machineHistory = self.machine_history
+        }
+    }
+    
     func updateSearchResults(for searchController: UISearchController) {
         var temp = [[String:Any]]()
         if let searchText = searchController.searchBar.text {
             if searchText.isEmpty == false {
                 filteredData = ""
-                print(searchText)
                 for (_,subJson):(String, JSON) in machine_list {
                     if subJson["Name"].stringValue.lowercased().contains(searchText.lowercased()){
-                        print(subJson["Name"])
-                        print("Contains")
                         temp.append(subJson.dictionaryObject!)
                     }
                 }

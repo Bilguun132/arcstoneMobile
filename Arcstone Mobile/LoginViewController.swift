@@ -10,6 +10,7 @@ import UIKit
 import Alamofire
 import SwiftyJSON
 import SVProgressHUD
+import SideMenu
 
 class ViewController: UIViewController, UITextFieldDelegate {
     
@@ -31,14 +32,8 @@ class ViewController: UIViewController, UITextFieldDelegate {
         self.password.delegate = self
         self.view.drawHierarchy(in: view.bounds, afterScreenUpdates: true)
         SVProgressHUD.dismiss()
-        print(UserDefaults.standard.string(forKey: "Server") ?? "not set" )
-        if UserDefaults.standard.string(forKey: "Server") != nil {
-            show_login_info()
-        }
-        else {
-            show_server_info()
-        }
         set_alert_strings()
+        setupSideMenu()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -70,6 +65,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         if segue.identifier == "admin_login_segue" {
             let display_controller = segue.destination as! AdminViewController
             display_controller.personnel_info_id = self.personnel_info_id
+            display_controller.self.navigationItem.setHidesBackButton(true, animated: false)
         }
     }
     
@@ -105,18 +101,13 @@ class ViewController: UIViewController, UITextFieldDelegate {
         return false;
     }
     
-    func show_login_info() {
-        username.alpha = 1
-        password.alpha = 1
-        server_text.alpha = 0
-        set_server_button.alpha = 0
-    }
-    
-    func show_server_info() {
-        username.alpha = 0
-        password.alpha = 0
-        server_text.alpha = 1
-        set_server_button.alpha = 1
+    func setupSideMenu() {
+        // Define the menus
+        SideMenuManager.menuLeftNavigationController = storyboard!.instantiateViewController(withIdentifier: "LeftMenuNavigationController") as? UISideMenuNavigationController
+        SideMenuManager.menuPresentMode = .menuSlideIn
+        SideMenuManager.menuAnimationTransformScaleFactor = 1
+        SideMenuManager.menuAnimationFadeStrength = 0.77
+        SideMenuManager.menuFadeStatusBar = false
     }
     
     //MARK: - Buttons
@@ -139,6 +130,11 @@ class ViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
+    
+    @IBAction func open_link_button(_ sender: Any) {
+        UIApplication.shared.openURL(URL(string: "http://arcstoneincorporated.com")!)
+    }
+    
     @IBAction func log_in_button_pressed(_ sender: Any) {
         if username.text == "" || password.text == "" {
             SVProgressHUD.dismiss()
@@ -148,7 +144,6 @@ class ViewController: UIViewController, UITextFieldDelegate {
         SVProgressHUD.show()
         //        DataController.getData(api_string: "api/Personnel/AuthenticateUser?username="+(username.text)!+"&lastname="+(password.text)!) {response in
         DataController.postData(api_string: "api/Personnel/Validate_Personnel_Login", post_message: form_login_message()) {response in
-            print(response)
             if response["PersonnelHeaderList"].count == 0 {
                 SVProgressHUD.dismiss()
                 EZAlertController.alert("No such user", message: "Please check your username or password")
@@ -159,20 +154,18 @@ class ViewController: UIViewController, UITextFieldDelegate {
                 self.view.endEditing(true)
                 SVProgressHUD.dismiss()
                 self.personnel_info_id = response["PersonnelHeaderList"][0]["Id"].stringValue
-                print(self.personnel_info_id)
                 UserDefaults.standard.setValue(self.personnel_info_id, forKey: "PersonnelID")
-                EZAlertController.alert(UserDefaults.standard.string(forKey: "Success_localization")!, message: self.authenticated_string, acceptMessage: "Ok", acceptBlock: {
-                    SVProgressHUD.show()
-                    if self.username.text == "admin" {
-                        self.performSegue(withIdentifier: "admin_login_segue", sender: self)
-                        return
-                    }
-                    DataController.getData(api_string: "api/Batchrun/BatchrunListByPersonnelID?personnelID="+(self.personnel_info_id)) {response in
-                        self.batch_run_list_json_by_personnelID = response
-                        self.performSegue(withIdentifier: "login_segue", sender: self)
-                        return
-                    }
-                })
+                SVProgressHUD.show()
+                DataController.Variables.personnel_name = response["PersonnelHeaderList"][0]["First_name"].stringValue
+                if response["PersonnelHeaderList"][0]["position"].stringValue == "admin" {
+                    self.performSegue(withIdentifier: "admin_login_segue", sender: self)
+                    return
+                }
+                DataController.getData(api_string: "api/Batchrun/BatchrunListByPersonnelID?personnelID="+(self.personnel_info_id)) {response in
+                    self.batch_run_list_json_by_personnelID = response["BatchrunHeaderList"]
+                    self.performSegue(withIdentifier: "login_segue", sender: self)
+                    return
+                }
             }
         }
     }

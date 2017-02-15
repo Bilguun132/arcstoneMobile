@@ -17,9 +17,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         UserDefaults.standard.setValue("nil", forKey: "PersonnelID")
-        UserDefaults.standard.setValue("52.77.103.197/newmobileapitest/", forKey: "Server")
+        print(DataController.Variables.personnel_name)
+        registerForPushNotifications(application: application)
+        UIApplication.shared.applicationIconBadgeNumber = 0
         // Override point for customization after application launch.
         return true
+    }
+    
+    func application(_ application: UIApplication, didRegister notificationSettings: UIUserNotificationSettings) {
+        if notificationSettings.types != .none {
+            application.registerForRemoteNotifications()
+        }
+    }
+    
+    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+        let token = deviceToken.map { String(format: "%02.2hhx", $0) }.joined()
+        print(token)
+    }
+    
+    func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
+        print("Failed to register:", error)
     }
     
     func applicationWillResignActive(_ application: UIApplication) {
@@ -106,6 +123,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 abort()
             }
         }
+    }
+    
+    func registerForPushNotifications(application: UIApplication) {
+        let notificationSettings = UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil)
+        application.registerUserNotificationSettings(notificationSettings)
     }
     
     

@@ -1,8 +1,8 @@
 //
-//  BatchRunStepParameterTableViewController.swift
+//  MachineJobsTableViewController.swift
 //  Arcstone Mobile
 //
-//  Created by Bilguun Batbold on 7/1/17.
+//  Created by Bilguun Batbold on 12/2/17.
 //  Copyright © 2017 Bilguun. All rights reserved.
 //
 
@@ -10,16 +10,13 @@ import UIKit
 import SwiftyJSON
 import SVProgressHUD
 
-class BatchRunStepParameterTableViewController: UITableViewController {
-    var batch_run_step_parameter:JSON = ""
-    var individual_batch_run_step_parameter:JSON = ""
-    var batch_run_step_id = ""
+class MachineJobsTableViewController: UITableViewController {
+    
+    var machineHistory:JSON = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.title = "Parameter list"
-        SVProgressHUD.dismiss()
-        batch_run_step_id = batch_run_step_parameter[0]["Batch_run_step_id"].stringValue
+        print(machineHistory)
         
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -35,43 +32,24 @@ class BatchRunStepParameterTableViewController: UITableViewController {
     
     // MARK: - Table view data source
     
-    override func viewDidAppear(_ animated: Bool) {
-        DataController.getData(api_string: "api/Batchrunstepparameter/BatchrunstepparameterListByBatchRunStepID?param_id="+(self.batch_run_step_id)) {response in
-            self.batch_run_step_parameter = response["BatchrunstepparameterHeaderList"]
-            self.tableView.reloadData()
-        }
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        // #warning Incomplete implementation, return the number of sections
+        return 1
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return batch_run_step_parameter.count
+        return machineHistory.count
     }
     
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        var dict = batch_run_step_parameter[indexPath.row]
+        let dict = machineHistory[indexPath.row]
         cell.textLabel?.text = dict["Name"].stringValue
-        cell.detailTextLabel?.text = dict["Actual_value"].stringValue
-        if dict["Actual_value"].stringValue != "" {
-            cell.backgroundColor = UIColor.green
-        }
-        else {
-            cell.backgroundColor = UIColor.init(red: 0.97, green: 0.71, blue: 0.71, alpha: 1)
-        }
+        cell.detailTextLabel?.text = dict["BatchStep"].stringValue
         return cell
-    }
+     }
     
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.individual_batch_run_step_parameter = batch_run_step_parameter[indexPath.row]
-        self.performSegue(withIdentifier: "show_para", sender: self)
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "show_para" {
-            let display_controller = segue.destination as! BatchRunStepParameterInfoViewController
-            display_controller.batch_step_parameter_info = individual_batch_run_step_parameter
-        }
-    }
     
     /*
      // Override to support conditional editing of the table view.

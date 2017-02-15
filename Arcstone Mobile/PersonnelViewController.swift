@@ -24,6 +24,8 @@ class PersonnelViewController: UIViewController, UITableViewDelegate, UITableVie
     var personnelList:JSON = ""
     var searchController: UISearchController!
     var filteredData: JSON = ""
+    var personnel_id = ""
+    var personnelHistory:JSON = ""
     
     
     @IBOutlet weak var batch_run_name: UILabel!
@@ -33,7 +35,6 @@ class PersonnelViewController: UIViewController, UITableViewDelegate, UITableVie
         super.viewDidLoad()
         SVProgressHUD.dismiss()
         setup_search_bar()
-        print(personnelList)
         
         // Do any additional setup after loading the view.
     }
@@ -66,16 +67,28 @@ class PersonnelViewController: UIViewController, UITableViewDelegate, UITableVie
         return UITableViewAutomaticDimension
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        personnel_id = filteredData[indexPath.row]["Id"].stringValue
+        DataController.getData(api_string: "api/Personnel/PersonnelJobById?param_id=" + self.personnel_id) {response in
+            self.personnelHistory = response["PersonnelHeaderList"]
+            self.performSegue(withIdentifier: "show_personnel_jobs", sender: self)
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "show_personnel_jobs" {
+            let display_controller = segue.destination as! PersonnelJobsTableViewController
+            display_controller.personnelHistory = self.personnelHistory
+        }
+    }
+    
     func updateSearchResults(for searchController: UISearchController) {
         var temp = [[String:Any]]()
         if let searchText = searchController.searchBar.text {
             if searchText.isEmpty == false {
                 filteredData = ""
-                print(searchText)
                 for (_,subJson):(String, JSON) in personnelList {
                     if subJson["First_name"].stringValue.lowercased().contains(searchText.lowercased()){
-                        print(subJson["First_name"])
-                        print("Contains")
                         temp.append(subJson.dictionaryObject!)
                     }
                 }

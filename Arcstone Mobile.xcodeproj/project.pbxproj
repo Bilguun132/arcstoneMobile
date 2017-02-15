@@ -7,9 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0504C0781E45A3DC00AD5338 /* SideMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0504C0771E45A3DC00AD5338 /* SideMenuViewController.swift */; };
+		0504C07A1E45AB8B00AD5338 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0504C0791E45AB8B00AD5338 /* SettingsViewController.swift */; };
 		053031F31E13B65C003D9659 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 053031F51E13B65C003D9659 /* Main.storyboard */; };
 		0536FF051E06E31B0013E732 /* EZAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0536FF041E06E31B0013E732 /* EZAlertController.swift */; };
 		0561B8FD1E3F0F87008CA2BF /* MachinesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0561B8FC1E3F0F87008CA2BF /* MachinesViewController.swift */; };
+		05641B0F1E502AD300B2B277 /* PersonnelJobsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05641B0E1E502AD300B2B277 /* PersonnelJobsTableViewController.swift */; };
+		05641B111E503EDF00B2B277 /* MachineJobsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05641B101E503EDF00B2B277 /* MachineJobsTableViewController.swift */; };
 		056947E21E04DD7300BECB7C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056947E11E04DD7300BECB7C /* AppDelegate.swift */; };
 		056947E41E04DD7300BECB7C /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056947E31E04DD7300BECB7C /* LoginViewController.swift */; };
 		056947EA1E04DD7300BECB7C /* Arcstone_Mobile.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 056947E81E04DD7300BECB7C /* Arcstone_Mobile.xcdatamodeld */; };
@@ -67,12 +71,14 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0504C0771E45A3DC00AD5338 /* SideMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SideMenuViewController.swift; sourceTree = "<group>"; };
+		0504C0791E45AB8B00AD5338 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		05186A321E4EACF0008A176D /* Arcstone Mobile.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Arcstone Mobile.entitlements"; sourceTree = "<group>"; };
 		053031F41E13B65C003D9659 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		053031F71E13B65E003D9659 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
-		053031F91E13B6E6003D9659 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
-		053031FB1E13BA77003D9659 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
 		0536FF041E06E31B0013E732 /* EZAlertController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EZAlertController.swift; sourceTree = "<group>"; };
 		0561B8FC1E3F0F87008CA2BF /* MachinesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MachinesViewController.swift; sourceTree = "<group>"; };
+		05641B0E1E502AD300B2B277 /* PersonnelJobsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonnelJobsTableViewController.swift; sourceTree = "<group>"; };
+		05641B101E503EDF00B2B277 /* MachineJobsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MachineJobsTableViewController.swift; sourceTree = "<group>"; };
 		056947DE1E04DD7300BECB7C /* Arcstone Mobile.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Arcstone Mobile.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		056947E11E04DD7300BECB7C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		056947E31E04DD7300BECB7C /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -147,6 +153,7 @@
 		056947E01E04DD7300BECB7C /* Arcstone Mobile */ = {
 			isa = PBXGroup;
 			children = (
+				05186A321E4EACF0008A176D /* Arcstone Mobile.entitlements */,
 				0586DDA41E32FA38006491DF /* Storyboard */,
 				0586DDA11E32FA14006491DF /* View Controlllers */,
 				056947EB1E04DD7300BECB7C /* Assets.xcassets */,
@@ -184,6 +191,8 @@
 				057845001E3445F70053EF14 /* AdminPageViewController.swift */,
 				057845071E348CD60053EF14 /* PersonnelViewController.swift */,
 				0561B8FC1E3F0F87008CA2BF /* MachinesViewController.swift */,
+				05641B0E1E502AD300B2B277 /* PersonnelJobsTableViewController.swift */,
+				05641B101E503EDF00B2B277 /* MachineJobsTableViewController.swift */,
 			);
 			name = Admin;
 			sourceTree = "<group>";
@@ -191,6 +200,7 @@
 		0586DDA11E32FA14006491DF /* View Controlllers */ = {
 			isa = PBXGroup;
 			children = (
+				0504C0771E45A3DC00AD5338 /* SideMenuViewController.swift */,
 				056947E11E04DD7300BECB7C /* AppDelegate.swift */,
 				057845061E347D3E0053EF14 /* Admin */,
 				05736A301E0BC35A008125AF /* NiceButton.swift */,
@@ -202,6 +212,7 @@
 				058BFBDE1E20BA4000B274E3 /* BatchRunStepParameterTableViewController.swift */,
 				05EAD91B1E0BBAE500FB6BC0 /* BatchRunStatusViewController.swift */,
 				05EE6B9C1E08D99E00616AC4 /* BatchRunTableViewCell.swift */,
+				0504C0791E45AB8B00AD5338 /* SettingsViewController.swift */,
 			);
 			name = "View Controlllers";
 			sourceTree = "<group>";
@@ -284,9 +295,14 @@
 				TargetAttributes = {
 					056947DD1E04DD7300BECB7C = {
 						CreatedOnToolsVersion = 8.2;
-						DevelopmentTeam = CN924VFVRA;
+						DevelopmentTeam = MWXEKJ6TJ5;
 						LastSwiftMigration = 0820;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 					056947F41E04DD7300BECB7C = {
 						CreatedOnToolsVersion = 8.2;
@@ -302,7 +318,6 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
-				en,
 				Base,
 			);
 			mainGroup = 056947D51E04DD7300BECB7C;
@@ -437,12 +452,15 @@
 				0586DDA31E32FA2F006491DF /* AdminViewController.swift in Sources */,
 				05736A311E0BC35A008125AF /* NiceButton.swift in Sources */,
 				05EE6B9E1E08D99E00616AC4 /* BatchRunTableViewCell.swift in Sources */,
+				0504C07A1E45AB8B00AD5338 /* SettingsViewController.swift in Sources */,
 				0561B8FD1E3F0F87008CA2BF /* MachinesViewController.swift in Sources */,
 				057845081E348CD60053EF14 /* PersonnelViewController.swift in Sources */,
 				058BFBDF1E20BA4000B274E3 /* BatchRunStepParameterTableViewController.swift in Sources */,
 				056947E41E04DD7300BECB7C /* LoginViewController.swift in Sources */,
 				05EE6BA61E0A1F7400616AC4 /* AvailableJobsViewController.swift in Sources */,
 				057845051E34742A0053EF14 /* AdminBatchRunTableViewController.swift in Sources */,
+				05641B0F1E502AD300B2B277 /* PersonnelJobsTableViewController.swift in Sources */,
+				05641B111E503EDF00B2B277 /* MachineJobsTableViewController.swift in Sources */,
 				058BFBE11E20CAC900B274E3 /* BatchRunStepParameterInfoViewController.swift in Sources */,
 				0536FF051E06E31B0013E732 /* EZAlertController.swift in Sources */,
 				057845011E3445F70053EF14 /* AdminPageViewController.swift in Sources */,
@@ -451,6 +469,7 @@
 				05EAD91C1E0BBAE500FB6BC0 /* BatchRunStatusViewController.swift in Sources */,
 				056947EA1E04DD7300BECB7C /* Arcstone_Mobile.xcdatamodeld in Sources */,
 				059D16B21E0544DD0067581E /* BatchRunListViewController.swift in Sources */,
+				0504C0781E45A3DC00AD5338 /* SideMenuViewController.swift in Sources */,
 				056947E21E04DD7300BECB7C /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -478,8 +497,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				053031F41E13B65C003D9659 /* Base */,
-				053031F71E13B65E003D9659 /* en */,
-				053031FB1E13BA77003D9659 /* zh-Hans */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -488,7 +505,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				056947EE1E04DD7300BECB7C /* Base */,
-				053031F91E13B6E6003D9659 /* zh-Hans */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -598,14 +614,16 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				DEVELOPMENT_TEAM = CN924VFVRA;
+				CODE_SIGN_ENTITLEMENTS = "Arcstone Mobile/Arcstone Mobile.entitlements";
+				DEVELOPMENT_TEAM = MWXEKJ6TJ5;
 				INFOPLIST_FILE = "Arcstone Mobile/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.Arcstone.Arcstone-Mobile";
+				PRODUCT_BUNDLE_IDENTIFIER = com.Arcstone.arcmobile;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -616,13 +634,15 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				DEVELOPMENT_TEAM = CN924VFVRA;
+				CODE_SIGN_ENTITLEMENTS = "Arcstone Mobile/Arcstone Mobile.entitlements";
+				DEVELOPMENT_TEAM = MWXEKJ6TJ5;
 				INFOPLIST_FILE = "Arcstone Mobile/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.Arcstone.Arcstone-Mobile";
+				PRODUCT_BUNDLE_IDENTIFIER = com.Arcstone.arcmobile;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};

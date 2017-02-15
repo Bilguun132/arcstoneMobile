@@ -72,11 +72,16 @@ class AvailableJobsViewController: UIViewController, UITableViewDataSource, UITa
         return UITableViewAutomaticDimension
     }
     
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableViewAutomaticDimension
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "run_status_segue"  {
             let display_controller = segue.destination as! BatchRunStatusViewController
             display_controller.run_step_info = batch_run_step_json[selected_table_index]
             display_controller.current_status = self.status
+            display_controller.navigationItem.title = self.status
         }
     }
 }

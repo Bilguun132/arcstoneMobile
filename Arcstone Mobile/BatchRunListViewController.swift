@@ -45,14 +45,13 @@ class BatchRunListViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return batch_run_list_json_by_personnelID["BatchrunHeaderList"].count
+        return batch_run_list_json_by_personnelID.count
     }
-    
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! BatchRunCell
-        var dict = batch_run_list_json_by_personnelID["BatchrunHeaderList"][indexPath.row]
+        var dict = batch_run_list_json_by_personnelID[indexPath.row]
         cell.name.text = dict["Name"].stringValue
         if dict["Start_date_time"].stringValue != "" {
             cell.start_time.text = dict["Start_date_time"].stringValue
@@ -82,7 +81,7 @@ class BatchRunListViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.job_json_data = batch_run_list_json_by_personnelID["BatchrunHeaderList"][indexPath.row]
+        self.job_json_data = batch_run_list_json_by_personnelID[indexPath.row]
         self.performSegue(withIdentifier: "show_jobs_detail", sender: self)
     }
     
@@ -102,10 +101,8 @@ class BatchRunListViewController: UITableViewController {
     }
     
     func check_if_empty(){
-        print(batch_run_list_json_by_personnelID)
-        print(batch_run_list_json_by_personnelID["BatchrunHeaderList"].count)
-        if batch_run_list_json_by_personnelID["BatchrunHeaderList"].count == 0 {
-            EZAlertController.alert("Alert", message: "No jobs created by current user")
+        if batch_run_list_json_by_personnelID.count == 0 {
+            EZAlertController.alert("Alert", message: "No jobs are available")
         }
     }
     

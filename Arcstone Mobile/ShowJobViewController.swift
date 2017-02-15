@@ -15,6 +15,7 @@ class ShowJobViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         populate_view()
+        print(index_json_data)
         
         // Do any additional setup after loading the view.
     }

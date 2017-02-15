@@ -16,9 +16,9 @@ class BatchRunStatusViewController: UIViewController, UIImagePickerControllerDel
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.title = "Status"
-//        setupDropDowns()
-        print(run_step_info)
-        batch_run_step_id = run_step_info["Id"].stringValue
+        adjust_buttons()
+        
+        //        setupDropDowns()
         // Do any additional setup after loading the view.
     }
     
@@ -42,11 +42,13 @@ class BatchRunStatusViewController: UIViewController, UIImagePickerControllerDel
     var batch_run_step_id = ""
     
     
-    @IBOutlet weak var confirm_button: UIButton!
     @IBOutlet weak var choose_status_button: UIButton!
     @IBOutlet weak var report_issue_button: UIButton!
     @IBOutlet weak var image_picked: UIImageView!
-
+    @IBOutlet weak var start_button: UIButton!
+    @IBOutlet weak var pause_button: UIButton!
+    @IBOutlet weak var stop_button: UIButton!
+    @IBOutlet weak var checklist_button: UIButton!
     
     //MARK: - Buttons
     
@@ -133,7 +135,6 @@ class BatchRunStatusViewController: UIViewController, UIImagePickerControllerDel
             let message = ["Id" : run_step_id, "End_date_time" : current_time, "Batch_run_id" : batch_run_id, "Personnel_id" : personnel_id]
             return message
         }
-        
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
@@ -150,6 +151,24 @@ class BatchRunStatusViewController: UIViewController, UIImagePickerControllerDel
         if segue.identifier == "show_parameter_segue" {
             let display_controller = segue.destination as! BatchRunStepParameterTableViewController
             display_controller.batch_run_step_parameter = run_step_parameters
+        }
+    }
+    
+    func adjust_buttons() {
+        if current_status == "Running" {
+            start_button.isEnabled = false
+            pause_button.isEnabled = true
+            stop_button.isEnabled = true
+        }
+        else if current_status == "Done" {
+            start_button.isEnabled = false
+            pause_button.isEnabled = false
+            stop_button.isEnabled = false
+        }
+        else if current_status == "Paused" {
+            start_button.isEnabled = true
+            pause_button.isEnabled = false
+            stop_button.isEnabled = true
         }
     }
 }
