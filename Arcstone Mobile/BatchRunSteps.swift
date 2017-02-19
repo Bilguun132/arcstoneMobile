@@ -13,9 +13,11 @@ import SideMenu
 
 class AvailableJobsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
+    //MARK: - Lifecycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.title = "Open Jobs"
+        navigationItem.title = batch_run_name
         SVProgressHUD.dismiss()
         batch_run_id = batch_run_step_json[0]["Batch_run_id"].stringValue
         print(batch_run_step_json)
@@ -29,6 +31,7 @@ class AvailableJobsViewController: UIViewController, UITableViewDataSource, UITa
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        self.navigationController?.navigationBar.barTintColor = UIColor(colorLiteralRed: (247/255), green: (247/255), blue: (247/255), alpha: 1)
         DataController.getData(api_string: "api/Batchrunstep/BatchrunstepListByBatchRunID?batchrunID="+(self.batch_run_id)) {response in
             self.batch_run_step_json = response["BatchrunstepHeaderList"]
             self.table.reloadData()
@@ -82,8 +85,7 @@ class AvailableJobsViewController: UIViewController, UITableViewDataSource, UITa
         if segue.identifier == "run_status_segue"  {
             let display_controller = segue.destination as! BatchRunStatusViewController
             display_controller.run_step_info = batch_run_step_json[selected_table_index]
-            display_controller.current_status = self.status
-            display_controller.navigationItem.title = self.status
+            display_controller.current_status = self.batch_run_step_json[selected_table_index]["Status"].stringValue
             display_controller.batch_step_name = self.batch_run_step_json[selected_table_index]["Name"].stringValue
             display_controller.batch_run_name = self.batch_run_name
         }

@@ -82,25 +82,25 @@ class DataController {
         case "0" :
             return ("Nothing Set", nil)
         case "1":
-            return ("Queued", UIColor.yellow)
+            return ("Queued", UIColor.init(red: 230/255, green: 230/255, blue: 230/255, alpha: 1))
         case "2":
-            return ("Ready", UIColor.green)
+            return ("Ready", UIColor.init(red: 240/255, green: 234/255, blue: 249/255, alpha: 1))
         case "3":
-            return ("Running", UIColor.init(red: 243/255, green: 208/255, blue: 204/255, alpha: 1))
+            return ("Running", UIColor.init(red: 222/255, green: 246/255, blue: 226/255, alpha: 1))
         case "4":
             return ("Next in line", UIColor.yellow)
         case "5":
-            return ("Done", UIColor.init(red: 222/255, green: 246/255, blue: 226/255, alpha: 1))
+            return ("Done", UIColor.init(red: 191/255, green: 230/255, blue: 245/255, alpha: 1))
         case "6":
             return ("Paused", UIColor.init(red: 245/255, green: 243/255, blue: 215/255, alpha: 1))
         case "7":
-            return ("Delayed", UIColor.red)
+            return ("Delayed", UIColor.init(red: 243/255, green: 208/255, blue: 204/255, alpha: 1))
         case "8":
             return ("Unassigned", UIColor.yellow)
         case "9":
             return ("No Template", UIColor.gray)
         case "10":
-            return ("Cancelled", UIColor.red)
+            return ("Cancelled", UIColor.init(red: 250/255, green: 244/255, blue: 240/255, alpha: 1))
         case "11":
             return ("Pending Raw Material", UIColor.yellow)
         case "12":

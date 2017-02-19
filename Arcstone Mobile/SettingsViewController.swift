@@ -40,20 +40,7 @@ class SettingsViewController: UIViewController {
             })
         }
     }
-    
-    //    func setupSideMenu(){
-    //        // Define the menus
-    //        SideMenuManager.menuLeftNavigationController = storyboard!.instantiateViewController(withIdentifier: "LeftMenuNavigationController") as? UISideMenuNavigationController
-    //        SideMenuManager.menuPresentMode = .menuSlideIn
-    //        SideMenuManager.menuAnimationTransformScaleFactor = 1
-    //        SideMenuManager.menuAnimationFadeStrength = 0.77
-    //        SideMenuManager.menuFadeStatusBar = false
-    //        // Enable gestures. The left and/or right menus must be set up above for these to work.
-    //        // Note that these continue to work on the Navigation Controller independent of the view controller it displays!
-    //        SideMenuManager.menuAddPanGestureToPresent(toView: self.navigationController!.navigationBar)
-    //        SideMenuManager.menuAddScreenEdgePanGesturesToPresent(toView: self.navigationController!.view)
-    //    }
-    
+
     /*
      // MARK: - Navigation
      

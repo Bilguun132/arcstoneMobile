@@ -33,7 +33,7 @@ class AdminBatchRunViewController: UIViewController, UITableViewDelegate, UITabl
         SVProgressHUD.dismiss()
         setup()
         setupSideMenu()
-        
+        print(batch_run_list)
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
         
@@ -71,6 +71,24 @@ class AdminBatchRunViewController: UIViewController, UITableViewDelegate, UITabl
                 cell.end_time.text = "Still running"
             }
         }
+        
+        switch dict["Status"].intValue {
+        case 5:
+            cell.statusImage.image = #imageLiteral(resourceName: "Checked Checkbox 2_100")
+        case 10:
+            cell.statusImage.image = #imageLiteral(resourceName: "Shutdown_100")
+        case 6:
+            cell.statusImage.image = #imageLiteral(resourceName: "Pause_100")
+        case 1:
+            cell.statusImage.image = #imageLiteral(resourceName: "Restart_100")
+        case 7:
+            cell.statusImage.image = #imageLiteral(resourceName: "High Priority_100")
+        case 3:
+            cell.statusImage.image = #imageLiteral(resourceName: "In Progress_100")
+        default:
+            print("Normal")
+        }
+        
         return cell
     }
     
@@ -125,17 +143,13 @@ class AdminBatchRunViewController: UIViewController, UITableViewDelegate, UITabl
     
     func setup(){
         
-        if batch_run_list.count == 0 {
-            EZAlertController.alert("Alert", message: "Job type is empty")
-            return
-        }
-        
         searchController = UISearchController(searchResultsController: nil)
         searchController.searchResultsUpdater = self
         searchController.dimsBackgroundDuringPresentation = true
         searchController.searchBar.sizeToFit()
         searchController.searchBar.searchBarStyle = UISearchBarStyle.prominent
         searchController.hidesNavigationBarDuringPresentation = false
+        //        self.navigationItem.titleView = searchController.searchBar
         tableView.tableHeaderView = searchController.searchBar
         // Sets this view controller as presenting view controller for the search interface
         definesPresentationContext = true

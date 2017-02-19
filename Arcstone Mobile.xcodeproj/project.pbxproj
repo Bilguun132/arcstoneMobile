@@ -32,7 +32,7 @@
 		05EAD91C1E0BBAE500FB6BC0 /* BatchRunStatusViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05EAD91B1E0BBAE500FB6BC0 /* BatchRunStatusViewController.swift */; };
 		05EE6B9E1E08D99E00616AC4 /* BatchRunTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05EE6B9C1E08D99E00616AC4 /* BatchRunTableViewCell.swift */; };
 		05EE6BA41E090FB800616AC4 /* ShowJobViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05EE6BA31E090FB800616AC4 /* ShowJobViewController.swift */; };
-		05EE6BA61E0A1F7400616AC4 /* AvailableJobsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05EE6BA51E0A1F7400616AC4 /* AvailableJobsViewController.swift */; };
+		05EE6BA61E0A1F7400616AC4 /* BatchRunSteps.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05EE6BA51E0A1F7400616AC4 /* BatchRunSteps.swift */; };
 		7421312BF8AB6ACC76FB17A3 /* Pods_Arcstone_MobileTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07B21813E848BF38CD4B8FB1 /* Pods_Arcstone_MobileTests.framework */; };
 		E33F5BED84EC9E71B7E04998 /* Pods_Arcstone_Mobile.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD879C9403DD2BE447BC1B75 /* Pods_Arcstone_Mobile.framework */; };
 /* End PBXBuildFile section */
@@ -101,7 +101,7 @@
 		05EAD91B1E0BBAE500FB6BC0 /* BatchRunStatusViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BatchRunStatusViewController.swift; sourceTree = "<group>"; };
 		05EE6B9C1E08D99E00616AC4 /* BatchRunTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BatchRunTableViewCell.swift; sourceTree = "<group>"; };
 		05EE6BA31E090FB800616AC4 /* ShowJobViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowJobViewController.swift; sourceTree = "<group>"; };
-		05EE6BA51E0A1F7400616AC4 /* AvailableJobsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AvailableJobsViewController.swift; sourceTree = "<group>"; };
+		05EE6BA51E0A1F7400616AC4 /* BatchRunSteps.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BatchRunSteps.swift; sourceTree = "<group>"; };
 		07B21813E848BF38CD4B8FB1 /* Pods_Arcstone_MobileTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Arcstone_MobileTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0C84C097E807948EBCE13EFC /* Pods-Arcstone Mobile.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Arcstone Mobile.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Arcstone Mobile/Pods-Arcstone Mobile.debug.xcconfig"; sourceTree = "<group>"; };
 		86182E7150583A80A105FFAD /* Pods-Arcstone Mobile.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Arcstone Mobile.release.xcconfig"; path = "Pods/Target Support Files/Pods-Arcstone Mobile/Pods-Arcstone Mobile.release.xcconfig"; sourceTree = "<group>"; };
@@ -204,7 +204,7 @@
 				056947E11E04DD7300BECB7C /* AppDelegate.swift */,
 				057845061E347D3E0053EF14 /* Admin */,
 				05736A301E0BC35A008125AF /* NiceButton.swift */,
-				05EE6BA51E0A1F7400616AC4 /* AvailableJobsViewController.swift */,
+				05EE6BA51E0A1F7400616AC4 /* BatchRunSteps.swift */,
 				05EE6BA31E090FB800616AC4 /* ShowJobViewController.swift */,
 				056947E31E04DD7300BECB7C /* LoginViewController.swift */,
 				059D16B11E0544DD0067581E /* BatchRunListViewController.swift */,
@@ -457,7 +457,7 @@
 				057845081E348CD60053EF14 /* PersonnelViewController.swift in Sources */,
 				058BFBDF1E20BA4000B274E3 /* BatchRunStepParameterTableViewController.swift in Sources */,
 				056947E41E04DD7300BECB7C /* LoginViewController.swift in Sources */,
-				05EE6BA61E0A1F7400616AC4 /* AvailableJobsViewController.swift in Sources */,
+				05EE6BA61E0A1F7400616AC4 /* BatchRunSteps.swift in Sources */,
 				057845051E34742A0053EF14 /* AdminBatchRunTableViewController.swift in Sources */,
 				05641B0F1E502AD300B2B277 /* PersonnelJobsTableViewController.swift in Sources */,
 				05641B111E503EDF00B2B277 /* MachineJobsTableViewController.swift in Sources */,

@@ -14,6 +14,8 @@ import SideMenu
 
 class BatchRunStatusViewController: UIViewController, UIImagePickerControllerDelegate,UINavigationControllerDelegate {
     
+    //MARK:- Lifecycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         adjust_buttons()
@@ -28,6 +30,13 @@ class BatchRunStatusViewController: UIViewController, UIImagePickerControllerDel
         super.didReceiveMemoryWarning()
         self.dismiss(animated: true, completion: nil)
         // Dispose of any resources that can be recreated.
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        print(self.current_status)
+        let status = DataController.convert_batch_run_step_status(number: self.current_status)
+        self.navigationController?.navigationBar.barTintColor = status.1
+        self.navigationItem.title = status.0
     }
     
     //MARK: - Variables
@@ -128,6 +137,9 @@ class BatchRunStatusViewController: UIViewController, UIImagePickerControllerDel
     //MARK: - Support Functions
     
     func setup() {
+        let status = DataController.convert_batch_run_step_status(number: self.current_status)
+        self.navigationController?.navigationBar.barTintColor = status.1
+        self.navigationItem.title = status.0
         batch_step_text_name.text = self.batch_step_name
         batch_run_text_name.text = self.batch_run_name
         let dateFormatter = DateFormatter()
@@ -150,7 +162,7 @@ class BatchRunStatusViewController: UIViewController, UIImagePickerControllerDel
     }
     
     func countdown() {
-        if current_status == ("Done") || current_status == ("Paused") {
+        if current_status == "5" || current_status == "6" {
             return
         }
         secondSince = secondSince + 1

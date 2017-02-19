@@ -24,7 +24,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
     var batch_run_list_json_by_personnelID : JSON = ""
     var authenticated_string = ""
     
-    //MARK: - Override Functions
+    //MARK: - LifeCycle
     
     override func viewDidLoad() {
         super.viewDidLoad()        // Do any additional setup after loading the view, typically from a nib.
@@ -51,6 +51,8 @@ class ViewController: UIViewController, UITextFieldDelegate {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    //MARK:
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
@@ -125,7 +127,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         SideMenuManager.menuFadeStatusBar = false
     }
     
-    //MARK: - Buttons
+    //MARK: - Action Buttons
     
     @IBAction func switch_lang_button(_ sender: Any) {
         

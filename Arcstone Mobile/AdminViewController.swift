@@ -27,6 +27,7 @@ class AdminViewController: UIViewController {
         //        self.navigationItem.backBarButtonItem?.isEnabled = false
         setupSideMenu()
         setupBorders()
+        print(batch_run_list)
         // Do any additional setup after loading the view.
     }
     
@@ -51,9 +52,8 @@ class AdminViewController: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "view_work_segue" {
-            let display_controller = segue.destination as! BatchRunListViewController
-            display_controller.batch_run_list_json_by_personnelID = self.batch_run_list_json_by_personnelID["RunningBatchRunList"]
-            display_controller.personnel_id = self.personnel_info_id
+            let display_controller = segue.destination as! AdminBatchRunViewController
+            display_controller.batch_run_list = self.batch_run_list_json_by_personnelID["RunningBatchRunList"]
         }
         if segue.identifier == "admin_page_segue" {
             let display_controller = segue.destination as! AdminPageViewController

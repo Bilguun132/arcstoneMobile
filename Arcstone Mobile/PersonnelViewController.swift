@@ -71,16 +71,16 @@ class PersonnelViewController: UIViewController, UITableViewDelegate, UITableVie
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         personnel_id = filteredData[indexPath.row]["Id"].stringValue
-        DataController.getData(api_string: "api/Personnel/PersonnelJobById?param_id=" + self.personnel_id) {response in
-            self.personnelHistory = response["PersonnelHeaderList"]
-            self.performSegue(withIdentifier: "show_personnel_jobs", sender: self)
+        DataController.getData(api_string: "api/Batchrun/BatchrunListHistoryByPersonnelID?personnelID=" + self.personnel_id) {response in
+            self.personnelHistory = response["BatchrunHeaderList"]
+            self.performSegue(withIdentifier: "show_personnel_jobs_history", sender: self)
         }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "show_personnel_jobs" {
-            let display_controller = segue.destination as! PersonnelJobsTableViewController
-            display_controller.personnelHistory = self.personnelHistory
+        if segue.identifier == "show_personnel_jobs_history" {
+            let display_controller = segue.destination as! AdminBatchRunViewController
+            display_controller.batch_run_list = self.personnelHistory
         }
     }
     

@@ -76,16 +76,16 @@ class MachinesViewController: UIViewController, UITableViewDelegate, UITableView
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         machine_id = filteredData[indexPath.row]["Id"].stringValue
-        DataController.getData(api_string: "api/Facility/FacilityJobsList?param_id=" + self.machine_id) {response in
-            self.machine_history = response["FacilityHeaderList"]
-            self.performSegue(withIdentifier: "show_machine_jobs", sender: self)
+        DataController.getData(api_string: "api/Batchrun/BatchrunListHistoryByEquipmentID?facilityID=" + self.machine_id) {response in
+            self.machine_history = response["BatchrunHeaderList"]
+            self.performSegue(withIdentifier: "show_machine_jobs_history", sender: self)
         }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "show_machine_jobs" {
-            let display_controller = segue.destination as! MachineJobsTableViewController
-            display_controller.machineHistory = self.machine_history
+        if segue.identifier == "show_machine_jobs_history" {
+            let display_controller = segue.destination as! AdminBatchRunViewController
+            display_controller.batch_run_list = self.machine_history
         }
     }
     

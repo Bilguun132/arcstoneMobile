@@ -70,6 +70,24 @@ class BatchRunListViewController: UITableViewController {
                 cell.end_time.text = "Still running"
             }
         }
+        
+        switch dict["Status"].intValue {
+        case 5:
+            cell.statusImage.image = #imageLiteral(resourceName: "Checked Checkbox 2_100")
+        case 10:
+            cell.statusImage.image = #imageLiteral(resourceName: "Shutdown_100")
+        case 6:
+            cell.statusImage.image = #imageLiteral(resourceName: "Pause_100")
+        case 1:
+            cell.statusImage.image = #imageLiteral(resourceName: "Restart_100")
+        case 7:
+            cell.statusImage.image = #imageLiteral(resourceName: "High Priority_100")
+        case 3:
+            cell.statusImage.image = #imageLiteral(resourceName: "In Progress_100")
+        default:
+            print("Normal")
+        }
+        
         return cell
         
     }
