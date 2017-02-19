@@ -26,7 +26,7 @@ class DataController {
             return
         }
         var value : JSON = ""
-        let server = ("https://" + "\(UserDefaults.standard.string(forKey: "Server")!)" + "/ArcstoneMobileApi/")
+        let server = ("https://" + "\(UserDefaults.standard.string(forKey: "Server")!)" + "/\(UserDefaults.standard.string(forKey: "Route")!)/")
         print(server+api_string)
         Alamofire.request(server + api_string).validate().responseJSON { response in
             switch response.result {
@@ -54,7 +54,7 @@ class DataController {
             SVProgressHUD.dismiss()
             return
         }
-        let url = "https://" + "\(UserDefaults.standard.string(forKey: "Server")!)" + "/ArcstoneMobileApi/" + api_string
+        let url = "https://" + "\(UserDefaults.standard.string(forKey: "Server")!)" + "/\(UserDefaults.standard.string(forKey: "Route")!)/" + api_string
         Alamofire.request(url, method:.post, parameters:post_message, encoding:JSONEncoding.prettyPrinted).responseJSON { response in
             switch response.result {
             case .success(let json_value):

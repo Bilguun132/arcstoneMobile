@@ -22,6 +22,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if UserDefaults.standard.string(forKey: "Server") == nil {
             UserDefaults.standard.setValue("arcstonesolution.com", forKey: "Server")
         }
+        if UserDefaults.standard.string(forKey: "Route") == nil {
+            UserDefaults.standard.set("ArcstoneMobileApi", forKey: "Route")
+        }
         // Override point for customization after application launch.
         return true
     }

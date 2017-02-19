@@ -13,6 +13,8 @@ class SettingsViewController: UIViewController {
     
     @IBOutlet weak var server_address: UITextField!
     @IBOutlet weak var current_server: UITextField!
+    @IBOutlet weak var route_address: UITextField!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,18 +31,27 @@ class SettingsViewController: UIViewController {
     }
     
     
+    @IBAction func showDefaultRoute(_ sender: Any) {
+        EZAlertController.alert("Route", message: UserDefaults.standard.string(forKey: "Route")!)
+    }
+    
     @IBAction func submitButton(_ sender: Any) {
-        if server_address.text == "" {
+        if server_address.text == "" && route_address.text == "" {
             EZAlertController.alert("Alert", message: "Server Address cannot be empty")
         }
         else {
-            UserDefaults.standard.setValue(server_address.text!, forKey: "Server")
+            if route_address.text != "" {
+                UserDefaults.standard.setValue(route_address.text, forKey: "Route")
+            }
+            if server_address.text != "" {
+                UserDefaults.standard.setValue(server_address.text!, forKey: "Server")
+            }
             EZAlertController.alert("Success", message: "New Server Address is set", acceptMessage: "Ok", acceptBlock: {
                 _ = self.navigationController?.popViewController(animated: true)
             })
         }
     }
-
+    
     /*
      // MARK: - Navigation
      

@@ -179,8 +179,8 @@ class AdminPageViewController: UIViewController {
         view2.layer.borderWidth = 1
         view2.layer.borderColor = UIColor.darkGray.cgColor
         view2.layer.cornerRadius = 10
-        view3.roundCorners(corners: .bottomLeft, radius: 10)
-        view4.roundCorners(corners: .bottomRight, radius: 10)
+//        view3.roundCorners(corners: .bottomLeft, radius: 10)
+//        view4.roundCorners(corners: .bottomRight, radius: 10)
     }
     
     func setupSideMenu() {
