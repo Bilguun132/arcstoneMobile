@@ -10,14 +10,16 @@ import UIKit
 import SwiftyJSON
 import Alamofire
 import SVProgressHUD
+import SideMenu
 
 class BatchRunStatusViewController: UIViewController, UIImagePickerControllerDelegate,UINavigationControllerDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.title = "Status"
         adjust_buttons()
-        
+        print(run_step_info)
+        setup()
+        setupSideMenu()
         //        setupDropDowns()
         // Do any additional setup after loading the view.
     }
@@ -28,7 +30,6 @@ class BatchRunStatusViewController: UIViewController, UIImagePickerControllerDel
         // Dispose of any resources that can be recreated.
     }
     
-    
     //MARK: - Variables
     
     var run_step_info:JSON = ""
@@ -37,11 +38,18 @@ class BatchRunStatusViewController: UIViewController, UIImagePickerControllerDel
     var run_step_id = ""
     var current_time = ""
     var batch_run_id = ""
+    var batch_step_name = ""
+    var batch_run_name = ""
     var personnel_id = ""
     var run_step_parameters:JSON = ""
     var batch_run_step_id = ""
+    var secondSince = 0
+    var hours = 0
+    var minutes = 0
+    var second = 0
     
-    
+    @IBOutlet weak var batch_step_text_name: UILabel!
+    @IBOutlet weak var batch_run_text_name: UILabel!
     @IBOutlet weak var choose_status_button: UIButton!
     @IBOutlet weak var report_issue_button: UIButton!
     @IBOutlet weak var image_picked: UIImageView!
@@ -49,6 +57,7 @@ class BatchRunStatusViewController: UIViewController, UIImagePickerControllerDel
     @IBOutlet weak var pause_button: UIButton!
     @IBOutlet weak var stop_button: UIButton!
     @IBOutlet weak var checklist_button: UIButton!
+    @IBOutlet weak var timer_label:UILabel!
     
     //MARK: - Buttons
     
@@ -118,12 +127,51 @@ class BatchRunStatusViewController: UIViewController, UIImagePickerControllerDel
     
     //MARK: - Support Functions
     
+    func setup() {
+        batch_step_text_name.text = self.batch_step_name
+        batch_run_text_name.text = self.batch_run_name
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
+        let start_string = run_step_info["Start_date_time"].stringValue
+        print(start_string)
+        if start_string == "" {
+            timer_label.text = "00:00:00"
+            return
+        }
+        else {
+            let start_date = dateFormatter.date(from: start_string.substring(to: 19))
+            secondSince = Int(Date.init().timeIntervalSince(start_date!))
+            hours = secondSince / 3600
+            minutes = ( secondSince % 3600 ) / 60
+            second = (secondSince % 3600) % 60
+            timer_label.text = String(format: "%02d:%02d:%02d", arguments: [hours, minutes, second])
+            _ = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(countdown), userInfo: nil, repeats: true)
+        }
+    }
+    
+    func countdown() {
+        if current_status == ("Done") || current_status == ("Paused") {
+            return
+        }
+        secondSince = secondSince + 1
+        hours = secondSince / 3600
+        minutes = ( secondSince % 3600 ) / 60
+        second = (secondSince % 3600) % 60
+        timer_label.text = String(format: "%02d:%02d:%02d", arguments: [hours, minutes, second])
+        
+    }
+    
     func form_message(start:Bool) -> [String:Any] {
         run_step_id = run_step_info["Id"].stringValue
         let date = Date()
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
         let start_date = dateFormatter.string(from: date as Date)
+        var original_time = run_step_info["Start_date_time"].stringValue
+        if original_time == "" {
+            original_time = start_date
+        }
+        original_time = original_time.substring(to: 19)
         current_time = start_date
         batch_run_id = run_step_info["Batch_run_id"].stringValue
         personnel_id = UserDefaults.standard.string(forKey: "PersonnelID")!
@@ -170,6 +218,15 @@ class BatchRunStatusViewController: UIViewController, UIImagePickerControllerDel
             pause_button.isEnabled = false
             stop_button.isEnabled = true
         }
+    }
+    
+    func setupSideMenu() {
+        // Define the menus
+        SideMenuManager.menuRightNavigationController = storyboard!.instantiateViewController(withIdentifier: "rightMenuNavigationController") as? UISideMenuNavigationController
+        SideMenuManager.menuPresentMode = .menuSlideIn
+        SideMenuManager.menuAnimationTransformScaleFactor = 1
+        SideMenuManager.menuAnimationFadeStrength = 0.77
+        SideMenuManager.menuFadeStatusBar = false
     }
 }
 

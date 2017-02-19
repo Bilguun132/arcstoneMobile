@@ -10,6 +10,7 @@ import UIKit
 import SwiftyJSON
 import SVProgressHUD
 import Alamofire
+import SideMenu
 
 class BatchRunStepParameterInfoViewController: UIViewController, UITextViewDelegate {
     
@@ -29,6 +30,7 @@ class BatchRunStepParameterInfoViewController: UIViewController, UITextViewDeleg
         populate()
         print(batch_step_parameter_info)
         batch_run_para_id = batch_step_parameter_info["Id"].stringValue
+        setupSideMenu()
         
         // Do any additional setup after loading the view.
     }
@@ -63,6 +65,15 @@ class BatchRunStepParameterInfoViewController: UIViewController, UITextViewDeleg
         expected_value.text = batch_step_parameter_info["Expected_value"].stringValue
         actual_value.text = batch_step_parameter_info["Actual_value"].stringValue
         notes_textview.text = batch_step_parameter_info["Template_notes"].stringValue
+    }
+    
+    func setupSideMenu() {
+        // Define the menus
+        SideMenuManager.menuRightNavigationController = storyboard!.instantiateViewController(withIdentifier: "rightMenuNavigationController") as? UISideMenuNavigationController
+        SideMenuManager.menuPresentMode = .menuSlideIn
+        SideMenuManager.menuAnimationTransformScaleFactor = 1
+        SideMenuManager.menuAnimationFadeStrength = 0.77
+        SideMenuManager.menuFadeStatusBar = false
     }
     /*
      // MARK: - Navigation

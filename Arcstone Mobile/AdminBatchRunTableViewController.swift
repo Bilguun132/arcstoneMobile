@@ -9,6 +9,7 @@
 import UIKit
 import SVProgressHUD
 import SwiftyJSON
+import SideMenu
 
 class BatchRunCell: UITableViewCell {
     @IBOutlet weak var name: UILabel!
@@ -31,6 +32,7 @@ class AdminBatchRunViewController: UIViewController, UITableViewDelegate, UITabl
         super.viewDidLoad()
         SVProgressHUD.dismiss()
         setup()
+        setupSideMenu()
         
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -110,6 +112,15 @@ class AdminBatchRunViewController: UIViewController, UITableViewDelegate, UITabl
             }
             tableView.reloadData()
         }
+    }
+    
+    func setupSideMenu() {
+        // Define the menus
+        SideMenuManager.menuRightNavigationController = storyboard!.instantiateViewController(withIdentifier: "rightMenuNavigationController") as? UISideMenuNavigationController
+        SideMenuManager.menuPresentMode = .menuSlideIn
+        SideMenuManager.menuAnimationTransformScaleFactor = 1
+        SideMenuManager.menuAnimationFadeStrength = 0.77
+        SideMenuManager.menuFadeStatusBar = false
     }
     
     func setup(){

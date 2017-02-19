@@ -9,6 +9,7 @@
 import UIKit
 import SwiftyJSON
 import SVProgressHUD
+import SideMenu
 
 class ShowJobViewController: UIViewController {
     
@@ -16,7 +17,7 @@ class ShowJobViewController: UIViewController {
         super.viewDidLoad()
         populate_view()
         print(index_json_data)
-        
+        setupSideMenu()
         // Do any additional setup after loading the view.
     }
     
@@ -28,11 +29,13 @@ class ShowJobViewController: UIViewController {
     //MARK: - Variables
     
     @IBOutlet weak var job_text: UILabel!
-    @IBOutlet weak var batch_template_id_text: UITextField!
-    @IBOutlet weak var batch_id_text: UITextField!
+    @IBOutlet weak var batch_template: UITextField!
+    @IBOutlet weak var sales_name: UITextField!
     @IBOutlet weak var scheduled_date_text: UITextField!
     @IBOutlet weak var completion_date_text: UITextField!
     @IBOutlet weak var image_view: UIImageView!
+    @IBOutlet weak var notes: UITextView!
+    
     
     var index_json_data:JSON = ""
     var batch_template_id = ""
@@ -44,12 +47,23 @@ class ShowJobViewController: UIViewController {
     
     func populate_view(){
         job_text.text = index_json_data["Name"].stringValue
-        batch_template_id_text.text = index_json_data["Batch_template_id"].stringValue
-        batch_id_text.text = index_json_data["Id"].stringValue
+        batch_template.text = index_json_data["Template_name"].stringValue
+        sales_name.text = index_json_data["Sales_name"].stringValue
         scheduled_date_text.text =  (index_json_data["Scheduled_start_date_time"].stringValue).substring(to: 10)
         completion_date_text.text = index_json_data["Last_update"].stringValue.substring(to: 10)
         batch_template_id = index_json_data["Batch_template_id"].stringValue
         batch_run_id = index_json_data["Id"].stringValue
+        if index_json_data["Note"].stringValue != "" {
+            notes.text = index_json_data["Note"].stringValue
+        }
+    }
+    func setupSideMenu() {
+        // Define the menus
+        SideMenuManager.menuRightNavigationController = storyboard!.instantiateViewController(withIdentifier: "rightMenuNavigationController") as? UISideMenuNavigationController
+        SideMenuManager.menuPresentMode = .menuSlideIn
+        SideMenuManager.menuAnimationTransformScaleFactor = 1
+        SideMenuManager.menuAnimationFadeStrength = 0.77
+        SideMenuManager.menuFadeStatusBar = false
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -57,6 +71,7 @@ class ShowJobViewController: UIViewController {
             let display_controller = segue.destination as! AvailableJobsViewController
             display_controller.batch_template_step_json = self.batch_template_step_json
             display_controller.batch_run_step_json = self.batch_run_step_json
+            display_controller.batch_run_name = index_json_data["Name"].stringValue
         }
     }
     

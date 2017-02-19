@@ -9,6 +9,7 @@
 import UIKit
 import SwiftyJSON
 import SVProgressHUD
+import SideMenu
 
 class personCell: UITableViewCell {
     
@@ -35,6 +36,7 @@ class PersonnelViewController: UIViewController, UITableViewDelegate, UITableVie
         super.viewDidLoad()
         SVProgressHUD.dismiss()
         setup_search_bar()
+        setupSideMenu()
         
         // Do any additional setup after loading the view.
     }
@@ -110,6 +112,15 @@ class PersonnelViewController: UIViewController, UITableViewDelegate, UITableVie
         // Sets this view controller as presenting view controller for the search interface
         definesPresentationContext = true
         filteredData = personnelList
+    }
+    
+    func setupSideMenu() {
+        // Define the menus
+        SideMenuManager.menuRightNavigationController = storyboard!.instantiateViewController(withIdentifier: "rightMenuNavigationController") as? UISideMenuNavigationController
+        SideMenuManager.menuPresentMode = .menuSlideIn
+        SideMenuManager.menuAnimationTransformScaleFactor = 1
+        SideMenuManager.menuAnimationFadeStrength = 0.77
+        SideMenuManager.menuFadeStatusBar = false
     }
     
     

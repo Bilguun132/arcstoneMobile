@@ -17,9 +17,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         UserDefaults.standard.setValue("nil", forKey: "PersonnelID")
-        print(DataController.Variables.personnel_name)
         registerForPushNotifications(application: application)
         UIApplication.shared.applicationIconBadgeNumber = 0
+        if UserDefaults.standard.string(forKey: "Server") == nil {
+            UserDefaults.standard.setValue("arcstonesolution.com", forKey: "Server")
+        }
         // Override point for customization after application launch.
         return true
     }

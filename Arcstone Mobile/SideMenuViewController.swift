@@ -45,6 +45,10 @@ class SideMenuViewController: UIViewController {
         }
     }
     
+    @IBAction func logoutButtonPressed(_ sender: Any) {
+        UserDefaults.standard.setValue("nil", forKey: "PersonnelID")
+//        self.dismiss(animated: true, completion: nil)
+    }
     /*
      // MARK: - Navigation
      

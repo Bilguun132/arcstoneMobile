@@ -41,8 +41,10 @@ class ViewController: UIViewController, UITextFieldDelegate {
         if (UserDefaults.standard.string(forKey: "PersonnelID")) != "nil" {
             performSegue(withIdentifier: "login_segue", sender: self)
         }
+        clear_fields()
         let langStr = Locale.current.languageCode
         print(langStr!)
+        self.navigationItem.setHidesBackButton(true, animated: false)
     }
     
     override func didReceiveMemoryWarning() {
@@ -56,6 +58,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        self.clear_fields()
         if segue.identifier == "login_segue" {
             let display_controller = segue.destination as! BatchRunListViewController
             display_controller.batch_run_list_json_by_personnelID = self.batch_run_list_json_by_personnelID
@@ -71,6 +74,9 @@ class ViewController: UIViewController, UITextFieldDelegate {
     
     //MARK: - User Functions
     
+    @IBAction func unwindToLogin(segue: UIStoryboardSegue) {
+    }
+    
     func form_login_message()->[String:Any]{
         let username = self.username.text
         let password = self.password.text
@@ -81,6 +87,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
     func clear_fields() {
         username.text = ""
         password.text = ""
+        username.becomeFirstResponder()
     }
     
     func set_alert_strings(){
@@ -97,13 +104,21 @@ class ViewController: UIViewController, UITextFieldDelegate {
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        self.view.endEditing(true);
-        return false;
+        print(password.isFirstResponder)
+        if password.isFirstResponder {
+            log_in_button_pressed(self)
+            
+        }
+        if username.isFirstResponder {
+            self.view.endEditing(true)
+            password.becomeFirstResponder()
+        }
+        return true
     }
     
     func setupSideMenu() {
         // Define the menus
-        SideMenuManager.menuLeftNavigationController = storyboard!.instantiateViewController(withIdentifier: "LeftMenuNavigationController") as? UISideMenuNavigationController
+        SideMenuManager.menuRightNavigationController = storyboard!.instantiateViewController(withIdentifier: "rightMenuNavigationController") as? UISideMenuNavigationController
         SideMenuManager.menuPresentMode = .menuSlideIn
         SideMenuManager.menuAnimationTransformScaleFactor = 1
         SideMenuManager.menuAnimationFadeStrength = 0.77
@@ -142,11 +157,10 @@ class ViewController: UIViewController, UITextFieldDelegate {
             return
         }
         SVProgressHUD.show()
-        //        DataController.getData(api_string: "api/Personnel/AuthenticateUser?username="+(username.text)!+"&lastname="+(password.text)!) {response in
         DataController.postData(api_string: "api/Personnel/Validate_Personnel_Login", post_message: form_login_message()) {response in
             if response["PersonnelHeaderList"].count == 0 {
                 SVProgressHUD.dismiss()
-                EZAlertController.alert("No such user", message: "Please check your username or password")
+                self.handleErrors(Error: response["Error"].intValue)
                 self.clear_fields()
                 return
             }
@@ -167,6 +181,15 @@ class ViewController: UIViewController, UITextFieldDelegate {
                     return
                 }
             }
+        }
+    }
+    
+    func handleErrors(Error:Int){
+        switch Error {
+        case -1009:
+            EZAlertController.alert("Alert", message: "Please check your connection")
+        default:
+            EZAlertController.alert("No such user", message: "Please check your username or password")
         }
     }
 }

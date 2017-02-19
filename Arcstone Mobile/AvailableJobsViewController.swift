@@ -9,7 +9,7 @@
 import UIKit
 import SwiftyJSON
 import SVProgressHUD
-
+import SideMenu
 
 class AvailableJobsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
@@ -18,7 +18,8 @@ class AvailableJobsViewController: UIViewController, UITableViewDataSource, UITa
         navigationItem.title = "Open Jobs"
         SVProgressHUD.dismiss()
         batch_run_id = batch_run_step_json[0]["Batch_run_id"].stringValue
-        
+        print(batch_run_step_json)
+        setupSideMenu()
         // Do any additional setup after loading the view.
     }
     
@@ -42,6 +43,7 @@ class AvailableJobsViewController: UIViewController, UITableViewDataSource, UITa
     var selected_table_index = 0
     var status = ""
     var batch_run_id = ""
+    var batch_run_name = ""
     
     // MARK: - Table view functions
     
@@ -82,6 +84,17 @@ class AvailableJobsViewController: UIViewController, UITableViewDataSource, UITa
             display_controller.run_step_info = batch_run_step_json[selected_table_index]
             display_controller.current_status = self.status
             display_controller.navigationItem.title = self.status
+            display_controller.batch_step_name = self.batch_run_step_json[selected_table_index]["Name"].stringValue
+            display_controller.batch_run_name = self.batch_run_name
         }
+    }
+    
+    func setupSideMenu() {
+        // Define the menus
+        SideMenuManager.menuRightNavigationController = storyboard!.instantiateViewController(withIdentifier: "rightMenuNavigationController") as? UISideMenuNavigationController
+        SideMenuManager.menuPresentMode = .menuSlideIn
+        SideMenuManager.menuAnimationTransformScaleFactor = 1
+        SideMenuManager.menuAnimationFadeStrength = 0.77
+        SideMenuManager.menuFadeStatusBar = false
     }
 }

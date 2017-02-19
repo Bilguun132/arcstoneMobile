@@ -12,11 +12,12 @@ import SideMenu
 class SettingsViewController: UIViewController {
     
     @IBOutlet weak var server_address: UITextField!
+    @IBOutlet weak var current_server: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         if   UserDefaults.standard.string(forKey: "Server") != nil {
-            server_address.text = UserDefaults.standard.string(forKey: "Server")
+            current_server.text = UserDefaults.standard.string(forKey: "Server")
         }
         //        setupSideMenu()
         // Do any additional setup after loading the view.
@@ -33,7 +34,7 @@ class SettingsViewController: UIViewController {
             EZAlertController.alert("Alert", message: "Server Address cannot be empty")
         }
         else {
-            UserDefaults.standard.setValue(server_address.text, forKey: "Server")
+            UserDefaults.standard.setValue(server_address.text!, forKey: "Server")
             EZAlertController.alert("Success", message: "New Server Address is set", acceptMessage: "Ok", acceptBlock: {
                 _ = self.navigationController?.popViewController(animated: true)
             })

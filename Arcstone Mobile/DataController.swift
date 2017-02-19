@@ -26,7 +26,7 @@ class DataController {
             return
         }
         var value : JSON = ""
-        let server = "https://" + "\(UserDefaults.standard.string(forKey: "Server")!)"
+        let server = ("https://" + "\(UserDefaults.standard.string(forKey: "Server")!)" + "/ArcstoneMobileApi/")
         print(server+api_string)
         Alamofire.request(server + api_string).validate().responseJSON { response in
             switch response.result {
@@ -35,18 +35,13 @@ class DataController {
                 completion(value)
             case.failure (let error):
                 SVProgressHUD.dismiss()
-                print(error)
-                //                EZAlertController.alert("Alert", message: "Failed to get/post data. Please check your credentials or database", buttons: ["Copy error to clipboard?", "Close"], tapBlock: { (UIAlertAction, Int) in
-                //                    if Int == 0 {
-                //                        let pasteboard = UIPasteboard.general
-                //                        pasteboard.string = error.localizedDescription
-                //                    }
-                //                })
-                //                EZAlertController.alert("Alert", message: "Incorrect input")
-                //                let mainStoryBoard = UIStoryboard(name: "Main", bundle: nil)
-                //                let RootViewController = mainStoryBoard.instantiateViewController(withIdentifier: "root") as! NavigationStack
-                //                let appDelegate = UIApplication.shared.delegate as! AppDelegate
-                //                appDelegate.window?.rootViewController = RootViewController
+                switch error._code {
+                case Error.Internet_is_offline.rawValue:
+                    print("Time out")
+                default:
+                    print(error)
+                    
+                }
             }
         }
     }
@@ -59,15 +54,23 @@ class DataController {
             SVProgressHUD.dismiss()
             return
         }
-        let url = "https://" + "\(UserDefaults.standard.string(forKey: "Server")!)" + api_string
+        let url = "https://" + "\(UserDefaults.standard.string(forKey: "Server")!)" + "/ArcstoneMobileApi/" + api_string
         Alamofire.request(url, method:.post, parameters:post_message, encoding:JSONEncoding.prettyPrinted).responseJSON { response in
             switch response.result {
             case .success(let json_value):
                 let value = JSON(json_value)
                 completion(value)
             case .failure(let error):
+                print(error._code)
+                switch error._code {
+                case Error.Internet_is_offline.rawValue:
+                    print("Time out")
+                default:
+                    print(error)
+                }
                 print(error)
-                completion("0")
+                let value:JSON = ["Error": error._code]
+                completion(value)
             }
         }
     }
@@ -137,11 +140,16 @@ class DataController {
         }
     }
     
+    enum Error:Int {
+        case Internet_is_offline = -1009
+    }
+    
     struct Variables {
         static var personnel_name = "Test Personnel"
     }
     
-    struct Constants {
-        static let status_names:[String] = ["Queued", "Ready", "Running", "Next in line", "Done", "Paused", "Delayed", "Unassigned", "Cancelled", "Item Scrapped"]
+    enum Constants {
+        case Queued, Ready, Running, Next_in_line, Done, Paused, Delayed, Unassigned, Cancelled, Item_Scrapped
     }
+    
 }

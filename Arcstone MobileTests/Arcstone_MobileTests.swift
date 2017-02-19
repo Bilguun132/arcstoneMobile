@@ -14,10 +14,6 @@ class Arcstone_MobileTests: XCTestCase {
     override func setUp() {
         super.setUp()
         // Put setup code here. This method is called before the invocation of each test method in the class.
-        let mainStoryBoard = UIStoryboard(name: "Main", bundle: nil)
-        let RootViewController = mainStoryBoard.instantiateViewController(withIdentifier: "root") as! NavigationStack
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        appDelegate.window?.rootViewController = RootViewController
         
     }
     

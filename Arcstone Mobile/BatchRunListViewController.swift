@@ -9,6 +9,7 @@
 import UIKit
 import SwiftyJSON
 import SVProgressHUD
+import SideMenu
 
 class BatchRunListViewController: UITableViewController {
     
@@ -18,6 +19,7 @@ class BatchRunListViewController: UITableViewController {
         //        self.navigationItem.setHidesBackButton(true, animated: false)
         SVProgressHUD.dismiss()
         check_if_empty()
+        setupSideMenu()
         
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -110,5 +112,14 @@ class BatchRunListViewController: UITableViewController {
         let titleAttributes = [NSFontAttributeName: UIFont.preferredFont(forTextStyle: .title1), NSForegroundColorAttributeName: UIColor.darkGray]
         let titleString = NSMutableAttributedString(string: "\(title)\n", attributes: titleAttributes)
         return titleString
+    }
+    
+    func setupSideMenu() {
+        // Define the menus
+        SideMenuManager.menuRightNavigationController = storyboard!.instantiateViewController(withIdentifier: "rightMenuNavigationController") as? UISideMenuNavigationController
+        SideMenuManager.menuPresentMode = .menuSlideIn
+        SideMenuManager.menuAnimationTransformScaleFactor = 1
+        SideMenuManager.menuAnimationFadeStrength = 0.77
+        SideMenuManager.menuFadeStatusBar = false
     }
 }

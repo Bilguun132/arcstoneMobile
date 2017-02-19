@@ -52,7 +52,7 @@ class AdminViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "view_work_segue" {
             let display_controller = segue.destination as! BatchRunListViewController
-            display_controller.batch_run_list_json_by_personnelID = self.batch_run_list_json_by_personnelID["ActiveBatchRunList"]
+            display_controller.batch_run_list_json_by_personnelID = self.batch_run_list_json_by_personnelID["RunningBatchRunList"]
             display_controller.personnel_id = self.personnel_info_id
         }
         if segue.identifier == "admin_page_segue" {
@@ -70,9 +70,13 @@ class AdminViewController: UIViewController {
         }
     }
     
+    @IBAction func unwindToAdminHome(segue: UIStoryboardSegue){
+        
+    }
+    
     func setupSideMenu() {
         // Define the menus
-        SideMenuManager.menuLeftNavigationController = storyboard!.instantiateViewController(withIdentifier: "LeftMenuNavigationController") as? UISideMenuNavigationController
+        SideMenuManager.menuRightNavigationController = storyboard!.instantiateViewController(withIdentifier: "rightMenuNavigationController") as? UISideMenuNavigationController
         SideMenuManager.menuPresentMode = .menuSlideIn
         SideMenuManager.menuAnimationTransformScaleFactor = 1
         SideMenuManager.menuAnimationFadeStrength = 0.77

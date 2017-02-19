@@ -9,6 +9,7 @@
 import UIKit
 import SVProgressHUD
 import SwiftyJSON
+import SideMenu
 
 class machineCell: UITableViewCell {
     @IBOutlet weak var name: UILabel!
@@ -30,6 +31,7 @@ class MachinesViewController: UIViewController, UITableViewDelegate, UITableView
         super.viewDidLoad()
         SVProgressHUD.dismiss()
         setup_search_bar()
+        setupSideMenu()
         
         // Do any additional setup after loading the view.
     }
@@ -115,6 +117,15 @@ class MachinesViewController: UIViewController, UITableViewDelegate, UITableView
         // Sets this view controller as presenting view controller for the search interface
         definesPresentationContext = true
         filteredData = machine_list
+    }
+    
+    func setupSideMenu() {
+        // Define the menus
+        SideMenuManager.menuRightNavigationController = storyboard!.instantiateViewController(withIdentifier: "rightMenuNavigationController") as? UISideMenuNavigationController
+        SideMenuManager.menuPresentMode = .menuSlideIn
+        SideMenuManager.menuAnimationTransformScaleFactor = 1
+        SideMenuManager.menuAnimationFadeStrength = 0.77
+        SideMenuManager.menuFadeStatusBar = false
     }
     
     
