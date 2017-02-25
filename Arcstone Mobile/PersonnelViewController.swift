@@ -22,6 +22,8 @@ class personCell: UITableViewCell {
 
 class PersonnelViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchResultsUpdating {
     
+    //MARK: - Variables
+    
     var personnelList:JSON = ""
     var searchController: UISearchController!
     var filteredData: JSON = ""
@@ -32,11 +34,13 @@ class PersonnelViewController: UIViewController, UITableViewDelegate, UITableVie
     @IBOutlet weak var batch_run_name: UILabel!
     @IBOutlet weak var tableView: UITableView!
     
+    //MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         SVProgressHUD.dismiss()
         setup_search_bar()
         setupSideMenu()
+        print(filteredData[0])
         
         // Do any additional setup after loading the view.
     }
@@ -46,6 +50,7 @@ class PersonnelViewController: UIViewController, UITableViewDelegate, UITableVie
         // Dispose of any resources that can be recreated.
     }
     
+    //MARK - Table View
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return filteredData.count
     }
@@ -76,7 +81,7 @@ class PersonnelViewController: UIViewController, UITableViewDelegate, UITableVie
             self.performSegue(withIdentifier: "show_personnel_jobs_history", sender: self)
         }
     }
-    
+    //MARK:
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "show_personnel_jobs_history" {
             let display_controller = segue.destination as! AdminBatchRunViewController
@@ -103,6 +108,7 @@ class PersonnelViewController: UIViewController, UITableViewDelegate, UITableVie
         }
     }
     
+    //MARK: - User Functions
     func setup_search_bar(){
         searchController = UISearchController(searchResultsController: nil)
         searchController.searchResultsUpdater = self

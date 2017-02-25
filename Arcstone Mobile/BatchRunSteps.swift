@@ -86,6 +86,7 @@ class AvailableJobsViewController: UIViewController, UITableViewDataSource, UITa
             let display_controller = segue.destination as! BatchRunStatusViewController
             display_controller.run_step_info = batch_run_step_json[selected_table_index]
             display_controller.current_status = self.batch_run_step_json[selected_table_index]["Status"].stringValue
+            display_controller.batch_run_id = self.batch_run_id
             display_controller.batch_step_name = self.batch_run_step_json[selected_table_index]["Name"].stringValue
             display_controller.batch_run_name = self.batch_run_name
         }

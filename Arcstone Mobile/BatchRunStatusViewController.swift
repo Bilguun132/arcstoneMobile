@@ -56,6 +56,7 @@ class BatchRunStatusViewController: UIViewController, UIImagePickerControllerDel
     var hours = 0
     var minutes = 0
     var second = 0
+    var timer = Timer()
     
     @IBOutlet weak var batch_step_text_name: UILabel!
     @IBOutlet weak var batch_run_text_name: UILabel!
@@ -83,7 +84,10 @@ class BatchRunStatusViewController: UIViewController, UIImagePickerControllerDel
         DataController.postData(api_string: "api/Batchrunstep/PauseBatchrunstep", post_message : message) {response in
             if response["ResponseCode"] != "0" {
                 print("Paused")
-                _ = self.navigationController?.popViewController(animated: true)
+                self.current_status = "6"
+                self.viewDidAppear(false)
+                self.adjust_buttons()
+                self.timer.invalidate()
             }
         }
     }
@@ -98,7 +102,10 @@ class BatchRunStatusViewController: UIViewController, UIImagePickerControllerDel
         DataController.postData(api_string: "api/Batchrunstep/StopBatchrunstep", post_message : message) {response in
             if response["ResponseCode"] != "0" {
                 print("Stopped")
-                _ = self.navigationController?.popViewController(animated: true)
+                self.current_status = "5"
+                self.viewDidAppear(false)
+                self.adjust_buttons()
+                self.timer.invalidate()
             }
         }
     }
@@ -108,7 +115,10 @@ class BatchRunStatusViewController: UIViewController, UIImagePickerControllerDel
         DataController.postData(api_string: "api/Batchrunstep/StartBatchrunstep", post_message : message) {response in
             if response["ResponseCode"] != "0" {
                 print("Started")
-                _ = self.navigationController?.popViewController(animated: true)
+                self.current_status = "3"
+                self.viewDidAppear(false)
+                self.adjust_buttons()
+                self.timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(self.countdown), userInfo: nil, repeats: true)
             }
         }
     }
@@ -157,7 +167,7 @@ class BatchRunStatusViewController: UIViewController, UIImagePickerControllerDel
             minutes = ( secondSince % 3600 ) / 60
             second = (secondSince % 3600) % 60
             timer_label.text = String(format: "%02d:%02d:%02d", arguments: [hours, minutes, second])
-            _ = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(countdown), userInfo: nil, repeats: true)
+            timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(countdown), userInfo: nil, repeats: true)
         }
     }
     
@@ -188,7 +198,7 @@ class BatchRunStatusViewController: UIViewController, UIImagePickerControllerDel
         batch_run_id = run_step_info["Batch_run_id"].stringValue
         personnel_id = UserDefaults.standard.string(forKey: "PersonnelID")!
         if start {
-            let message = ["Id" : run_step_id, "Start_date_time" : current_time, "Batch_run_id" : batch_run_id, "Personnel_id" : personnel_id]
+            let message = ["Id" : run_step_id, "Start_date_time" : original_time, "Batch_run_id" : batch_run_id, "Personnel_id" : personnel_id]
             return message
         }
         else {
@@ -215,17 +225,17 @@ class BatchRunStatusViewController: UIViewController, UIImagePickerControllerDel
     }
     
     func adjust_buttons() {
-        if current_status == "Running" {
+        if current_status == "3" {
             start_button.isEnabled = false
             pause_button.isEnabled = true
             stop_button.isEnabled = true
         }
-        else if current_status == "Done" {
+        else if current_status == "5" {
             start_button.isEnabled = false
             pause_button.isEnabled = false
             stop_button.isEnabled = false
         }
-        else if current_status == "Paused" {
+        else if current_status == "6" {
             start_button.isEnabled = true
             pause_button.isEnabled = false
             stop_button.isEnabled = true

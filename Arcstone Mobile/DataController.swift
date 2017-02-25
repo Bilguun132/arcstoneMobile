@@ -14,8 +14,6 @@ import SVProgressHUD
 
 class DataController {
     var server_dict = UserDefaults.standard
-    //52.77.103.197/UEIOSTestMobileApi/ current server address
-    //52.77.103.197/NewMobileApiTest/
     
     //MARK: - HTTP GET
     
@@ -75,12 +73,22 @@ class DataController {
         }
     }
     
+    //MARK: - Support functions
+    
+    static func getQRImage(qrString:String) -> (CIImage) {
+        let data = qrString.data(using: String.Encoding.isoLatin1, allowLossyConversion: false)
+        let filter = CIFilter(name: "CIQRCodeGenerator")
+        filter?.setValue(data, forKey: "inputMessage")
+        filter?.setValue("Q", forKey: "inputCorrectionLevel")
+        return (filter?.outputImage)!
+    }
+    
     //MARK: - Enums, Constants
     
     static func convert_batch_run_step_status(number:String) -> (String, UIColor?) {
         switch number {
         case "0" :
-            return ("Nothing Set", nil)
+            return ("Nothing Set", UIColor.init(red: 230/255, green: 230/255, blue: 230/255, alpha: 1))
         case "1":
             return ("Queued", UIColor.init(red: 230/255, green: 230/255, blue: 230/255, alpha: 1))
         case "2":

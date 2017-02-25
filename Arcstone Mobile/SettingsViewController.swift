@@ -21,6 +21,9 @@ class SettingsViewController: UIViewController {
         if   UserDefaults.standard.string(forKey: "Server") != nil {
             current_server.text = UserDefaults.standard.string(forKey: "Server")
         }
+        if UserDefaults.standard.string(forKey: "Route") != nil {
+            route_address.placeholder = UserDefaults.standard.string(forKey: "Route")
+        }
         //        setupSideMenu()
         // Do any additional setup after loading the view.
     }
@@ -47,7 +50,8 @@ class SettingsViewController: UIViewController {
                 UserDefaults.standard.setValue(server_address.text!, forKey: "Server")
             }
             EZAlertController.alert("Success", message: "New Server Address is set", acceptMessage: "Ok", acceptBlock: {
-                _ = self.navigationController?.popViewController(animated: true)
+                UserDefaults.standard.set("nil", forKey: "PersonnelID")
+                _ = self.navigationController?.popToRootViewController(animated: true)
             })
         }
     }

@@ -20,13 +20,15 @@ class BatchRunCell: UITableViewCell {
 
 class AdminBatchRunViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchResultsUpdating {
     
-    
+    //MARK: - Variables
     @IBOutlet weak var tableView: UITableView!
     var batch_run_list:JSON = ""
     var batch_info:[[String:Any]] = [[:]]
     var filteredData: JSON = ""
     var searchController: UISearchController!
     var job_json_data:JSON = ""
+    
+    //MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -71,7 +73,7 @@ class AdminBatchRunViewController: UIViewController, UITableViewDelegate, UITabl
                 cell.end_time.text = "Still running"
             }
         }
-        
+        //gets the status and assigns an appropriate image
         switch dict["Status"].intValue {
         case 5:
             cell.statusImage.image = #imageLiteral(resourceName: "Checked Checkbox 2_100")
@@ -105,14 +107,15 @@ class AdminBatchRunViewController: UIViewController, UITableViewDelegate, UITabl
         self.performSegue(withIdentifier: "show_jobs_detail", sender: self)
     }
     
+    //MARK:
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "show_jobs_detail" {
             let display_controller = segue.destination as! ShowJobViewController
             display_controller.index_json_data = job_json_data
         }
     }
-    
-    
+    //populates the table view with search criteria
     func updateSearchResults(for searchController: UISearchController) {
         var temp = [[String:Any]]()
         if let searchText = searchController.searchBar.text {
@@ -131,6 +134,8 @@ class AdminBatchRunViewController: UIViewController, UITableViewDelegate, UITabl
             tableView.reloadData()
         }
     }
+    
+    //MARL: - User Functions
     
     func setupSideMenu() {
         // Define the menus

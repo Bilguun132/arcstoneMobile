@@ -13,6 +13,8 @@ import SideMenu
 
 class AdminPageViewController: UIViewController {
     
+    //MARK: - Variables
+    
     
     @IBOutlet weak var active_batch_number: UILabel!
     @IBOutlet weak var delayed_batch_number: UILabel!
@@ -26,9 +28,8 @@ class AdminPageViewController: UIViewController {
     @IBOutlet weak var view4: UIView!
     @IBOutlet weak var personnel_onduty: UILabel!
     @IBOutlet weak var personnel_idle: UILabel!
-    
-    
-    
+    @IBOutlet weak var machineInUse: UILabel!
+    @IBOutlet weak var machineIdle: UILabel!
     
     
     var batch_run_list:JSON = ""
@@ -41,6 +42,8 @@ class AdminPageViewController: UIViewController {
     var paused_batch_run_list:JSON = ""
     var done_batch_run_list:JSON = ""
     
+    
+    //MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         SVProgressHUD.dismiss()
@@ -58,6 +61,9 @@ class AdminPageViewController: UIViewController {
     }
     
     
+    //MARK: - User Functions
+    
+    //populates the different batch run views
     func show_numbers() {
         active_batch_number.text = String(batch_run_list["RunningBatchRunList"].count)
         delayed_batch_number.text = String(batch_run_list["DelayedBatchRunList"].count)
@@ -65,7 +71,63 @@ class AdminPageViewController: UIViewController {
         paused_batch_number.text = String(batch_run_list["PausedBatchRunList"].count)
         cancelled_batch_number.text = String(batch_run_list["CancelledBatchRunList"].count)
         done_batch_number.text = String(batch_run_list["DoneBatchRunList"].count)
+        DataController.getData(api_string: "api/Facility/FacilityList") {response in
+            var idle = 0
+            var busy = 0
+            self.machine_list = response["FacilityHeaderList"]
+            for int in 0...self.machine_list.count-1 {
+                if self.machine_list[int]["Is_busy"].stringValue == "true" {
+                    busy += 1
+                }
+                else {
+                    idle += 1
+                }
+            }
+            self.machineIdle.text?.append(String(idle))
+            self.machineInUse.text?.append(String(busy))
+        }
+        DataController.getData(api_string: "api/Personnel/PersonnelList") {response in
+            var idle = 0
+            var busy = 0
+            self.personnel_list = response["PersonnelHeaderList"]
+            print(self.personnel_list.count)
+            for int in 0...self.personnel_list.count-1 {
+                if self.personnel_list[int]["batch_run"].stringValue == "" {
+                    idle += 1
+                }
+                else {
+                    busy += 1
+                }
+            }
+            self.personnel_idle.text?.append(String(idle))
+            self.personnel_onduty.text?.append(String(busy))
+        }
     }
+    
+    
+    
+    
+    func setupBorders() {
+        view1.layer.borderWidth = 1
+        view1.layer.borderColor = UIColor.darkGray.cgColor
+        view1.layer.cornerRadius = 10
+        view2.layer.borderWidth = 1
+        view2.layer.borderColor = UIColor.darkGray.cgColor
+        view2.layer.cornerRadius = 10
+        //        view3.roundCorners(corners: .bottomLeft, radius: 10)
+        //        view4.roundCorners(corners: .bottomRight, radius: 10)
+    }
+    
+    func setupSideMenu() {
+        // Define the menus
+        SideMenuManager.menuRightNavigationController = storyboard!.instantiateViewController(withIdentifier: "rightMenuNavigationController") as? UISideMenuNavigationController
+        SideMenuManager.menuPresentMode = .menuSlideIn
+        SideMenuManager.menuAnimationTransformScaleFactor = 1
+        SideMenuManager.menuAnimationFadeStrength = 0.77
+        SideMenuManager.menuFadeStatusBar = false
+    }
+    
+    //MARK:
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "show_active_runs" {
@@ -170,26 +232,6 @@ class AdminPageViewController: UIViewController {
             self.performSegue(withIdentifier: "show_machines_segue", sender: self)
             return
         }
-    }
-    
-    func setupBorders() {
-        view1.layer.borderWidth = 1
-        view1.layer.borderColor = UIColor.darkGray.cgColor
-        view1.layer.cornerRadius = 10
-        view2.layer.borderWidth = 1
-        view2.layer.borderColor = UIColor.darkGray.cgColor
-        view2.layer.cornerRadius = 10
-//        view3.roundCorners(corners: .bottomLeft, radius: 10)
-//        view4.roundCorners(corners: .bottomRight, radius: 10)
-    }
-    
-    func setupSideMenu() {
-        // Define the menus
-        SideMenuManager.menuRightNavigationController = storyboard!.instantiateViewController(withIdentifier: "rightMenuNavigationController") as? UISideMenuNavigationController
-        SideMenuManager.menuPresentMode = .menuSlideIn
-        SideMenuManager.menuAnimationTransformScaleFactor = 1
-        SideMenuManager.menuAnimationFadeStrength = 0.77
-        SideMenuManager.menuFadeStatusBar = false
     }
     
     

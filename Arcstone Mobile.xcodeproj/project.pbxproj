@@ -9,16 +9,16 @@
 /* Begin PBXBuildFile section */
 		0504C0781E45A3DC00AD5338 /* SideMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0504C0771E45A3DC00AD5338 /* SideMenuViewController.swift */; };
 		0504C07A1E45AB8B00AD5338 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0504C0791E45AB8B00AD5338 /* SettingsViewController.swift */; };
-		053031F31E13B65C003D9659 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 053031F51E13B65C003D9659 /* Main.storyboard */; };
 		0536FF051E06E31B0013E732 /* EZAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0536FF041E06E31B0013E732 /* EZAlertController.swift */; };
+		05541CB81E59B927006D3F5C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 053031F51E13B65C003D9659 /* Main.storyboard */; };
+		05541CB91E59B927006D3F5C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 056947ED1E04DD7300BECB7C /* LaunchScreen.storyboard */; };
+		05541CBA1E59B927006D3F5C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 056947EB1E04DD7300BECB7C /* Assets.xcassets */; };
 		0561B8FD1E3F0F87008CA2BF /* MachinesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0561B8FC1E3F0F87008CA2BF /* MachinesViewController.swift */; };
 		05641B0F1E502AD300B2B277 /* PersonnelJobsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05641B0E1E502AD300B2B277 /* PersonnelJobsTableViewController.swift */; };
 		05641B111E503EDF00B2B277 /* MachineJobsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05641B101E503EDF00B2B277 /* MachineJobsTableViewController.swift */; };
 		056947E21E04DD7300BECB7C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056947E11E04DD7300BECB7C /* AppDelegate.swift */; };
 		056947E41E04DD7300BECB7C /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056947E31E04DD7300BECB7C /* LoginViewController.swift */; };
 		056947EA1E04DD7300BECB7C /* Arcstone_Mobile.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 056947E81E04DD7300BECB7C /* Arcstone_Mobile.xcdatamodeld */; };
-		056947EC1E04DD7300BECB7C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 056947EB1E04DD7300BECB7C /* Assets.xcassets */; };
-		056947EF1E04DD7300BECB7C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 056947ED1E04DD7300BECB7C /* LaunchScreen.storyboard */; };
 		056947FA1E04DD7300BECB7C /* Arcstone_MobileTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056947F91E04DD7300BECB7C /* Arcstone_MobileTests.swift */; };
 		0569480D1E04E9B000BECB7C /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0569480C1E04E9B000BECB7C /* DataController.swift */; };
 		05736A311E0BC35A008125AF /* NiceButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05736A301E0BC35A008125AF /* NiceButton.swift */; };
@@ -28,6 +28,7 @@
 		0586DDA31E32FA2F006491DF /* AdminViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0586DDA21E32FA2F006491DF /* AdminViewController.swift */; };
 		058BFBDF1E20BA4000B274E3 /* BatchRunStepParameterTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058BFBDE1E20BA4000B274E3 /* BatchRunStepParameterTableViewController.swift */; };
 		058BFBE11E20CAC900B274E3 /* BatchRunStepParameterInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058BFBE01E20CAC900B274E3 /* BatchRunStepParameterInfoViewController.swift */; };
+		0598B07B1E612A8100F36B98 /* QRReaderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0598B07A1E612A8100F36B98 /* QRReaderViewController.swift */; };
 		059D16B21E0544DD0067581E /* BatchRunListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 059D16B11E0544DD0067581E /* BatchRunListViewController.swift */; };
 		05EAD91C1E0BBAE500FB6BC0 /* BatchRunStatusViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05EAD91B1E0BBAE500FB6BC0 /* BatchRunStatusViewController.swift */; };
 		05EE6B9E1E08D99E00616AC4 /* BatchRunTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05EE6B9C1E08D99E00616AC4 /* BatchRunTableViewCell.swift */; };
@@ -97,6 +98,7 @@
 		0586DDA21E32FA2F006491DF /* AdminViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdminViewController.swift; sourceTree = "<group>"; };
 		058BFBDE1E20BA4000B274E3 /* BatchRunStepParameterTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BatchRunStepParameterTableViewController.swift; sourceTree = "<group>"; };
 		058BFBE01E20CAC900B274E3 /* BatchRunStepParameterInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BatchRunStepParameterInfoViewController.swift; sourceTree = "<group>"; };
+		0598B07A1E612A8100F36B98 /* QRReaderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRReaderViewController.swift; sourceTree = "<group>"; };
 		059D16B11E0544DD0067581E /* BatchRunListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BatchRunListViewController.swift; sourceTree = "<group>"; };
 		05EAD91B1E0BBAE500FB6BC0 /* BatchRunStatusViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BatchRunStatusViewController.swift; sourceTree = "<group>"; };
 		05EE6B9C1E08D99E00616AC4 /* BatchRunTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BatchRunTableViewCell.swift; sourceTree = "<group>"; };
@@ -213,6 +215,7 @@
 				05EAD91B1E0BBAE500FB6BC0 /* BatchRunStatusViewController.swift */,
 				05EE6B9C1E08D99E00616AC4 /* BatchRunTableViewCell.swift */,
 				0504C0791E45AB8B00AD5338 /* SettingsViewController.swift */,
+				0598B07A1E612A8100F36B98 /* QRReaderViewController.swift */,
 			);
 			name = "View Controlllers";
 			sourceTree = "<group>";
@@ -336,9 +339,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				056947EF1E04DD7300BECB7C /* LaunchScreen.storyboard in Resources */,
-				053031F31E13B65C003D9659 /* Main.storyboard in Resources */,
-				056947EC1E04DD7300BECB7C /* Assets.xcassets in Resources */,
+				05541CB81E59B927006D3F5C /* Main.storyboard in Resources */,
+				05541CB91E59B927006D3F5C /* LaunchScreen.storyboard in Resources */,
+				05541CBA1E59B927006D3F5C /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -455,6 +458,7 @@
 				0504C07A1E45AB8B00AD5338 /* SettingsViewController.swift in Sources */,
 				0561B8FD1E3F0F87008CA2BF /* MachinesViewController.swift in Sources */,
 				057845081E348CD60053EF14 /* PersonnelViewController.swift in Sources */,
+				0598B07B1E612A8100F36B98 /* QRReaderViewController.swift in Sources */,
 				058BFBDF1E20BA4000B274E3 /* BatchRunStepParameterTableViewController.swift in Sources */,
 				056947E41E04DD7300BECB7C /* LoginViewController.swift in Sources */,
 				05EE6BA61E0A1F7400616AC4 /* BatchRunSteps.swift in Sources */,

@@ -33,7 +33,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         self.view.drawHierarchy(in: view.bounds, afterScreenUpdates: true)
         SVProgressHUD.dismiss()
         set_alert_strings()
-        setupSideMenu()
+  //      setupSideMenu()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -76,6 +76,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
     
     //MARK: - User Functions
     
+    //called when logout button is called from the side bar
     @IBAction func unwindToLogin(segue: UIStoryboardSegue) {
     }
     
@@ -91,7 +92,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         password.text = ""
         username.becomeFirstResponder()
     }
-    
+    //localization alerts
     func set_alert_strings(){
         if Locale.current.languageCode == "en"{
             UserDefaults.standard.setValue("Success", forKey: "Success_localization")
@@ -104,7 +105,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
             authenticated_string = "验证"
         }
     }
-    
+    //handles moving from username field to password and login button
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         print(password.isFirstResponder)
         if password.isFirstResponder {
@@ -117,7 +118,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         }
         return true
     }
-    
+
     func setupSideMenu() {
         // Define the menus
         SideMenuManager.menuRightNavigationController = storyboard!.instantiateViewController(withIdentifier: "rightMenuNavigationController") as? UISideMenuNavigationController
@@ -153,27 +154,27 @@ class ViewController: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func log_in_button_pressed(_ sender: Any) {
-        if username.text == "" || password.text == "" {
+        if username.text == "" || password.text == "" {     //checks if fields are empty
             SVProgressHUD.dismiss()
             EZAlertController.alert(UserDefaults.standard.string(forKey: "Alert_localization")!, message: "Username or password field is empty")
             return
         }
-        SVProgressHUD.show()
+        SVProgressHUD.show() // if not empty do a post to validate personnel
         DataController.postData(api_string: "api/Personnel/Validate_Personnel_Login", post_message: form_login_message()) {response in
-            if response["PersonnelHeaderList"].count == 0 {
+            if response["PersonnelHeaderList"].count == 0 { // if didn't get a proper json response
                 SVProgressHUD.dismiss()
-                self.handleErrors(Error: response["Error"].intValue)
+                self.handleErrors(Error: response["Error"].intValue) //handles the type of response called
                 self.clear_fields()
                 return
             }
-            if response["PersonnelHeaderList"].count != 0 {
+            if response["PersonnelHeaderList"].count != 0 { //if got a proper json response
                 self.view.endEditing(true)
                 SVProgressHUD.dismiss()
                 self.personnel_info_id = response["PersonnelHeaderList"][0]["Id"].stringValue
                 UserDefaults.standard.setValue(self.personnel_info_id, forKey: "PersonnelID")
                 SVProgressHUD.show()
-                DataController.Variables.personnel_name = response["PersonnelHeaderList"][0]["First_name"].stringValue
-                if response["PersonnelHeaderList"][0]["position"].stringValue == "admin" {
+                DataController.Variables.personnel_name = response["PersonnelHeaderList"][0]["First_name"].stringValue //stores the name of the person
+                if response["PersonnelHeaderList"][0]["position"].stringValue == "admin" { // checks if the user has admin rights
                     self.performSegue(withIdentifier: "admin_login_segue", sender: self)
                     return
                 }
@@ -186,6 +187,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
+    //handles the type of errors and returns associtated response string
     func handleErrors(Error:Int){
         switch Error {
         case -1009:

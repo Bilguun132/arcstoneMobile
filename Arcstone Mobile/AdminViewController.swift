@@ -13,6 +13,8 @@ import SideMenu
 
 class AdminViewController: UIViewController {
     
+    //MARK: - Variables
+    
     var personnel_info_id = ""
     var batch_run_list_json_by_personnelID:JSON = ""
     var batch_run_list:JSON = ""
@@ -20,7 +22,7 @@ class AdminViewController: UIViewController {
     @IBOutlet weak var view1: UIView!
     @IBOutlet weak var view2: UIView!
     
-    
+    //MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         SVProgressHUD.dismiss()
@@ -36,6 +38,7 @@ class AdminViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    //MARK: - Buttons
     @IBAction func show_work_button_clicked(_ sender: Any) {
         SVProgressHUD.show()
         DataController.getData(api_string: "api/Batchrun/BatchrunList") {response in
@@ -50,6 +53,17 @@ class AdminViewController: UIViewController {
         self.performSegue(withIdentifier: "back_to_login", sender: self)
     }
     
+    @IBAction func admin_page_button(_ sender: Any) {
+        SVProgressHUD.show()
+        DataController.getData(api_string: "api/Batchrun/BatchrunList") {response in
+            self.batch_run_list = response
+            self.performSegue(withIdentifier: "admin_page_segue", sender: self)
+            return
+        }
+    }
+    
+    
+    //MARK:
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "view_work_segue" {
             let display_controller = segue.destination as! AdminBatchRunViewController
@@ -60,16 +74,6 @@ class AdminViewController: UIViewController {
             display_controller.batch_run_list = self.batch_run_list
         }
     }
-    
-    @IBAction func admin_page_button(_ sender: Any) {
-        SVProgressHUD.show()
-        DataController.getData(api_string: "api/Batchrun/BatchrunList") {response in
-            self.batch_run_list = response
-            self.performSegue(withIdentifier: "admin_page_segue", sender: self)
-            return
-        }
-    }
-    
     @IBAction func unwindToAdminHome(segue: UIStoryboardSegue){
         
     }

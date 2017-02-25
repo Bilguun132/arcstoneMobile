@@ -29,9 +29,12 @@ class MachinesViewController: UIViewController, UITableViewDelegate, UITableView
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = 200
         SVProgressHUD.dismiss()
         setup_search_bar()
         setupSideMenu()
+        print(machine_list)
         
         // Do any additional setup after loading the view.
     }
