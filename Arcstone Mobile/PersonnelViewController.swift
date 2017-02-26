@@ -40,7 +40,7 @@ class PersonnelViewController: UIViewController, UITableViewDelegate, UITableVie
         SVProgressHUD.dismiss()
         setup_search_bar()
         setupSideMenu()
-        print(filteredData[0])
+        print(filteredData)
         
         // Do any additional setup after loading the view.
     }
@@ -59,9 +59,12 @@ class PersonnelViewController: UIViewController, UITableViewDelegate, UITableVie
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! personCell
         var dict = filteredData[indexPath.row]
         cell.name.text = dict["First_name"].stringValue
-        cell.batch_run_name.text = dict["batch_run"].stringValue
-        if cell.batch_run_name.text == "" {
-            cell.work_status.text = "Idle"
+        
+        if (dict["batch_run"].stringValue != "") {
+            cell.batch_run_name.text = "Working on " + dict["batch_run"].stringValue
+        }
+        else {
+            cell.batch_run_name.text = "Idle"
         }
         return cell
     }

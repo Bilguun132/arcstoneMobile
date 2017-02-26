@@ -18,19 +18,25 @@ class QRReaderViewController: UIViewController, AVCaptureMetadataOutputObjectsDe
     var captureSession:AVCaptureSession?
     var videoPreviewLayer:AVCaptureVideoPreviewLayer?
     var qrCodeFrameView:UIView?
+    var batchRunID = ""
+    var batchStepID = ""
+    var JSONData: JSON = ""
     
     @IBOutlet var messageLabel:UILabel!
-    @IBOutlet var topbar: UIView!
     
     //MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationItem.title = "Scan"
         setupVideo()
         
         // Do any additional setup after loading the view.
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        captureSession?.startRunning()
+    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -90,7 +96,6 @@ class QRReaderViewController: UIViewController, AVCaptureMetadataOutputObjectsDe
         
         // Move the message label and top bar to the front
         view.bringSubview(toFront: messageLabel)
-        view.bringSubview(toFront: topbar)
         
         // Start video capture.
         captureSession?.startRunning()
@@ -121,16 +126,17 @@ class QRReaderViewController: UIViewController, AVCaptureMetadataOutputObjectsDe
     }
     
     func captureOutput(_ captureOutput: AVCaptureOutput!, didOutputMetadataObjects metadataObjects: [Any]!, from connection: AVCaptureConnection!) {
+        captureSession?.stopRunning()
         // Check if the metadataObjects array is not nil and it contains at least one object.
         if metadataObjects == nil || metadataObjects.count == 0 {
             qrCodeFrameView?.frame = CGRect.zero
             messageLabel.text = "No QR code is detected"
+            captureSession?.startRunning()
             return
         }
         
         // Get the metadata object.
         let metadataObj = metadataObjects[0] as! AVMetadataMachineReadableCodeObject
-        captureSession?.stopRunning()
         view.bringSubview(toFront: qrCodeFrameView!)
         let barCodeObject = videoPreviewLayer?.transformedMetadataObject(for: metadataObj)
         qrCodeFrameView?.frame = barCodeObject!.bounds
@@ -139,13 +145,71 @@ class QRReaderViewController: UIViewController, AVCaptureMetadataOutputObjectsDe
             SVProgressHUD.show()
             messageLabel.text = metadataObj.stringValue
             print(messageLabel.text!)
-            captureSession?.startRunning()
-            SVProgressHUD.dismiss()
-            
+            let message = metadataObj.stringValue
+            if message!.characters.first == "^" {
+                
+                if (message!.contains("BATCHRUN")) {
+                    self.batchRunID = (message?.slice(from: "[", to: "]"))!
+                    print(self.batchRunID)
+                    DataController.getData(api_string: "api/Batchrun/BatchrunByID?param_id="+(self.batchRunID)) {response in
+                        if response.count == 0 {
+                            EZAlertController.alert("Batch Run does not exist")
+                            _ = self.navigationController?.popToRootViewController(animated: true)
+                        }
+                        self.JSONData = response["BatchrunHeaderList"]
+                        print(self.JSONData)
+                        self.performSegue(withIdentifier: "show_batch_run", sender: self)
+                        SVProgressHUD.dismiss()
+                    }
+                }
+                
+                if (message!.contains("BATCHSTEP")) {
+                    self.batchStepID = (message?.slice(from: "[", to: "]"))!
+                    DataController.getData(api_string: "api/Batchrunstep/BatchrunstepByID?param_id="+(self.batchStepID)) {response in
+                        if response.count == 0 {
+                            EZAlertController.alert("Batch Step does not exist")
+                            _ = self.navigationController?.popToRootViewController(animated: true)
+                        }
+                        self.JSONData = response["BatchrunstepHeaderList"]
+                        print(self.JSONData)
+                        self.performSegue(withIdentifier: "show_batch_step", sender: self)
+                        SVProgressHUD.dismiss()
+                    }
+                }
+            }
         }
     }
     
     @IBAction func backButton(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "show_batch_run" {
+            let display_controller = segue.destination as! ShowJobViewController
+            display_controller.index_json_data = self.JSONData[0]
+            //            self.dismiss(animated: false, completion: nil)
+        }
+        
+        if segue.identifier == "show_batch_step" {
+            let display_controller = segue.destination as! BatchRunStatusViewController
+            display_controller.run_step_info = self.JSONData[0]
+            display_controller.current_status = self.JSONData[0]["Status"].stringValue
+            display_controller.batch_run_id = self.JSONData[0]["Batch_run_id"].stringValue
+            display_controller.batch_step_name = self.JSONData[0]["Name"].stringValue
+            display_controller.batch_run_name = self.JSONData[0]["Batch_run_name"].stringValue
+        }
+    }
+}
+
+extension String {
+    
+    func slice(from: String, to: String) -> String? {
+        
+        return (range(of: from)?.upperBound).flatMap { substringFrom in
+            (range(of: to, range: substringFrom..<endIndex)?.lowerBound).map { substringTo in
+                substring(with: substringFrom..<substringTo)
+            }
+        }
     }
 }

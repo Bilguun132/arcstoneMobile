@@ -16,7 +16,6 @@ class ShowJobViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         populate_view()
-        print(index_json_data)
         setupSideMenu()
         // Do any additional setup after loading the view.
     }
@@ -46,6 +45,9 @@ class ShowJobViewController: UIViewController {
     //MARK: - User Functions
     
     func populate_view(){
+        print(index_json_data)
+        print(index_json_data["Name"].stringValue)
+        print(index_json_data["Scheduled_start_date_time"].stringValue)
         job_text.text = index_json_data["Name"].stringValue
         batch_template.text = index_json_data["Template_name"].stringValue
         sales_name.text = index_json_data["Sales_name"].stringValue
@@ -53,8 +55,6 @@ class ShowJobViewController: UIViewController {
         dateFormatterGet.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-        let start = dateFormatterGet.date(from: index_json_data["Scheduled_start_date_time"].stringValue)
-        print(dateFormatter.string(from: start!))
         scheduled_date_text.text = dateFormatter.string(from: dateFormatterGet.date(from: index_json_data["Scheduled_start_date_time"].stringValue.substring(to: 19))!)
         completion_date_text.text = dateFormatter.string(from: dateFormatterGet.date(from: index_json_data["Last_update"].stringValue.substring(to: 19))!)
         batch_template_id = index_json_data["Batch_template_id"].stringValue

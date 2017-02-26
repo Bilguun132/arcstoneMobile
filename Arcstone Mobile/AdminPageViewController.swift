@@ -55,6 +55,10 @@ class AdminPageViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        self.navigationController?.navigationBar.barTintColor = UIColor(colorLiteralRed: (247/255), green: (247/255), blue: (247/255), alpha: 1)
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -75,12 +79,13 @@ class AdminPageViewController: UIViewController {
             var idle = 0
             var busy = 0
             self.machine_list = response["FacilityHeaderList"]
+            print(self.machine_list)
             for int in 0...self.machine_list.count-1 {
-                if self.machine_list[int]["Is_busy"].stringValue == "true" {
-                    busy += 1
+                if self.machine_list[int]["BatchStep"].stringValue == "" {
+                    idle += 1
                 }
                 else {
-                    idle += 1
+                    busy += 1
                 }
             }
             self.machineIdle.text?.append(String(idle))

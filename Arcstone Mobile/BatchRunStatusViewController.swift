@@ -33,10 +33,7 @@ class BatchRunStatusViewController: UIViewController, UIImagePickerControllerDel
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        print(self.current_status)
-        let status = DataController.convert_batch_run_step_status(number: self.current_status)
-        self.navigationController?.navigationBar.barTintColor = status.1
-        self.navigationItem.title = status.0
+        setColors()
     }
     
     //MARK: - Variables
@@ -68,6 +65,11 @@ class BatchRunStatusViewController: UIViewController, UIImagePickerControllerDel
     @IBOutlet weak var stop_button: UIButton!
     @IBOutlet weak var checklist_button: UIButton!
     @IBOutlet weak var timer_label:UILabel!
+    @IBOutlet weak var timerView: UIView!
+    @IBOutlet weak var startDarkView: UIView!
+    @IBOutlet weak var pauseDarkView: UIView!
+    @IBOutlet weak var stopDarkView: UIView!
+    
     
     //MARK: - Buttons
     
@@ -118,6 +120,7 @@ class BatchRunStatusViewController: UIViewController, UIImagePickerControllerDel
                 self.current_status = "3"
                 self.viewDidAppear(false)
                 self.adjust_buttons()
+                self.timer.invalidate()
                 self.timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(self.countdown), userInfo: nil, repeats: true)
             }
         }
@@ -145,6 +148,14 @@ class BatchRunStatusViewController: UIViewController, UIImagePickerControllerDel
     }
     
     //MARK: - Support Functions
+    
+    func setColors() {
+        print(self.current_status)
+        let status = DataController.convert_batch_run_step_status(number: self.current_status)
+        self.navigationController?.navigationBar.barTintColor = status.1
+        self.navigationItem.title = status.0
+        self.timerView.backgroundColor = status.1
+    }
     
     func setup() {
         let status = DataController.convert_batch_run_step_status(number: self.current_status)
@@ -229,16 +240,30 @@ class BatchRunStatusViewController: UIViewController, UIImagePickerControllerDel
             start_button.isEnabled = false
             pause_button.isEnabled = true
             stop_button.isEnabled = true
+            start_button.setTitle("Running", for: .normal)
+            pause_button.setTitle("Pause", for: .normal)
+            startDarkView.alpha = 1
+            pauseDarkView.alpha = 0
         }
         else if current_status == "5" {
             start_button.isEnabled = false
             pause_button.isEnabled = false
             stop_button.isEnabled = false
+            start_button.setTitle("Completed", for: .normal)
+            pause_button.setTitle("Completed", for: .normal)
+            stop_button.setTitle("Completed", for: .normal)
+            startDarkView.alpha = 1
+            pauseDarkView.alpha = 1
+            stopDarkView.alpha = 1
         }
         else if current_status == "6" {
             start_button.isEnabled = true
             pause_button.isEnabled = false
             stop_button.isEnabled = true
+            pause_button.setTitle("Paused", for: .normal)
+            start_button.setTitle("Start", for: .normal)
+            pauseDarkView.alpha = 1
+            startDarkView.alpha = 0
         }
     }
     
