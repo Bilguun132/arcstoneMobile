@@ -135,6 +135,11 @@ class QRReaderViewController: UIViewController, AVCaptureMetadataOutputObjectsDe
             return
         }
         
+        if (UserDefaults.standard.string(forKey: "QRBatchStepCode")) == nil || UserDefaults.standard.string(forKey: "QRBatchRunCode") == nil || UserDefaults.standard.string(forKey: "QRPrefix") == nil {
+            EZAlertController.alert("Alert", message: "QR Settings have not been made")
+            return
+        }
+        
         // Get the metadata object.
         let metadataObj = metadataObjects[0] as! AVMetadataMachineReadableCodeObject
         view.bringSubview(toFront: qrCodeFrameView!)
@@ -146,38 +151,52 @@ class QRReaderViewController: UIViewController, AVCaptureMetadataOutputObjectsDe
             messageLabel.text = metadataObj.stringValue
             print(messageLabel.text!)
             let message = metadataObj.stringValue
-            if message!.characters.first == "^" {
+            if message!.characters.first ==  UserDefaults.standard.string(forKey: "QRPrefix")?.characters.first {
                 
-                if (message!.contains("BATCHRUN")) {
-                    self.batchRunID = (message?.slice(from: "[", to: "]"))!
-                    print(self.batchRunID)
-                    DataController.getData(api_string: "api/Batchrun/BatchrunByID?param_id="+(self.batchRunID)) {response in
-                        if response.count == 0 {
-                            EZAlertController.alert("Batch Run does not exist")
-                            _ = self.navigationController?.popToRootViewController(animated: true)
+                if message!.contains(UserDefaults.standard.string(forKey: "QRBatchRunCode")!) {
+                    print(message?.substring(from: 1).substring(to: (UserDefaults.standard.string(forKey: "QRBatchRunCode")?.characters.count)!) as Any)
+                    print(UserDefaults.standard.string(forKey: "QRBatchRunCode")!)
+                    if message?.substring(from: 1).substring(to: (UserDefaults.standard.string(forKey: "QRBatchRunCode")?.characters.count)!) == UserDefaults.standard.string(forKey: "QRBatchRunCode")! {
+                        let index = message?.index((message?.startIndex)!, offsetBy: (UserDefaults.standard.string(forKey: "QRBatchRunCode")?.characters.count)! + 1)
+                        self.batchRunID = (message?.substring(from: index!))!
+                        print(self.batchRunID)
+                        DataController.getData(api_string: "api/Batchrun/BatchrunByID?param_id="+(self.batchRunID)) {response in
+                            if response["BatchrunHeaderList"].count == 0 {
+                                EZAlertController.alert("Batch Run does not exist")
+                                _ = self.navigationController?.popToRootViewController(animated: true)
+                            }
+                            self.JSONData = response["BatchrunHeaderList"]
+                            print(self.JSONData)
+                            self.performSegue(withIdentifier: "show_batch_run", sender: self)
+                            SVProgressHUD.dismiss()
                         }
-                        self.JSONData = response["BatchrunHeaderList"]
-                        print(self.JSONData)
-                        self.performSegue(withIdentifier: "show_batch_run", sender: self)
-                        SVProgressHUD.dismiss()
                     }
                 }
                 
-                if (message!.contains("BATCHSTEP")) {
-                    self.batchStepID = (message?.slice(from: "[", to: "]"))!
-                    DataController.getData(api_string: "api/Batchrunstep/BatchrunstepByID?param_id="+(self.batchStepID)) {response in
-                        if response.count == 0 {
-                            EZAlertController.alert("Batch Step does not exist")
-                            _ = self.navigationController?.popToRootViewController(animated: true)
+                if message!.contains(UserDefaults.standard.string(forKey: "QRBatchStepCode")!) {
+                    print(message?.substring(from: 1).substring(to: (UserDefaults.standard.string(forKey: "QRBatchStepCode")?.characters.count)!) as Any)
+                    if message?.substring(from: 1).substring(to: (UserDefaults.standard.string(forKey: "QRBatchStepCode")?.characters.count)!) == UserDefaults.standard.string(forKey: "QRBatchStepCode")! {
+                        let index = message?.index((message?.startIndex)!, offsetBy: (UserDefaults.standard.string(forKey: "QRBatchStepCode")?.characters.count)! + 1)
+                        self.batchStepID = (message?.substring(from: index!))!
+                        print(self.batchStepID)
+                        DataController.getData(api_string: "api/Batchrunstep/BatchrunstepByID?param_id="+(self.batchStepID)) {response in
+                            print(response.count)
+                            print(response)
+                            print(response["BatchrunstepHeaderList"].count)
+                            if response["BatchrunstepHeaderList"].count == 0 {
+                                EZAlertController.alert("Batch Step does not exist")
+                                _ = self.navigationController?.popToRootViewController(animated: true)
+                            }
+                            self.JSONData = response["BatchrunstepHeaderList"]
+                            print(self.JSONData)
+                            self.performSegue(withIdentifier: "show_batch_step", sender: self)
+                            SVProgressHUD.dismiss()
                         }
-                        self.JSONData = response["BatchrunstepHeaderList"]
-                        print(self.JSONData)
-                        self.performSegue(withIdentifier: "show_batch_step", sender: self)
-                        SVProgressHUD.dismiss()
                     }
                 }
             }
         }
+        SVProgressHUD.dismiss()
     }
     
     @IBAction func backButton(_ sender: Any) {

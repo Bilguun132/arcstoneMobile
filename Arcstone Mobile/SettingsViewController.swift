@@ -12,14 +12,13 @@ import SideMenu
 class SettingsViewController: UIViewController {
     
     @IBOutlet weak var server_address: UITextField!
-    @IBOutlet weak var current_server: UITextField!
     @IBOutlet weak var route_address: UITextField!
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         if   UserDefaults.standard.string(forKey: "Server") != nil {
-            current_server.text = UserDefaults.standard.string(forKey: "Server")
+            server_address.placeholder = UserDefaults.standard.string(forKey: "Server")
         }
         if UserDefaults.standard.string(forKey: "Route") != nil {
             route_address.placeholder = UserDefaults.standard.string(forKey: "Route")

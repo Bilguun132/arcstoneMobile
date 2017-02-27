@@ -33,11 +33,13 @@ class ViewController: UIViewController, UITextFieldDelegate {
         self.view.drawHierarchy(in: view.bounds, afterScreenUpdates: true)
         SVProgressHUD.dismiss()
         set_alert_strings()
-  //      setupSideMenu()
+        //      setupSideMenu()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
+        self.navigationController?.navigationBar.barTintColor = UIColor(colorLiteralRed: (247/255), green: (247/255), blue: (247/255), alpha: 1)
+        
         if (UserDefaults.standard.string(forKey: "PersonnelID")) != "nil" {
             performSegue(withIdentifier: "login_segue", sender: self)
         }
@@ -118,7 +120,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         }
         return true
     }
-
+    
     func setupSideMenu() {
         // Define the menus
         SideMenuManager.menuRightNavigationController = storyboard!.instantiateViewController(withIdentifier: "rightMenuNavigationController") as? UISideMenuNavigationController

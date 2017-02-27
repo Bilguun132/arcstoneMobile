@@ -55,8 +55,13 @@ class ShowJobViewController: UIViewController {
         dateFormatterGet.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-        scheduled_date_text.text = dateFormatter.string(from: dateFormatterGet.date(from: index_json_data["Scheduled_start_date_time"].stringValue.substring(to: 19))!)
-        completion_date_text.text = dateFormatter.string(from: dateFormatterGet.date(from: index_json_data["Last_update"].stringValue.substring(to: 19))!)
+        if index_json_data["Scheduled_start_date_time"].stringValue != "" {
+            scheduled_date_text.text = dateFormatter.string(from: dateFormatterGet.date(from: index_json_data["Scheduled_start_date_time"].stringValue.substring(to: 19))!)
+        }
+        print(index_json_data["Last_update"].stringValue)
+        if index_json_data["Last_update"].stringValue != "" {
+            completion_date_text.text = dateFormatter.string(from: dateFormatterGet.date(from: index_json_data["Last_update"].stringValue.substring(to: 19))!)
+        }
         batch_template_id = index_json_data["Batch_template_id"].stringValue
         batch_run_id = index_json_data["Id"].stringValue
         notes.text = index_json_data["Note"].stringValue

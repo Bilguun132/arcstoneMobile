@@ -10,6 +10,7 @@
 		0504C0781E45A3DC00AD5338 /* SideMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0504C0771E45A3DC00AD5338 /* SideMenuViewController.swift */; };
 		0504C07A1E45AB8B00AD5338 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0504C0791E45AB8B00AD5338 /* SettingsViewController.swift */; };
 		0536FF051E06E31B0013E732 /* EZAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0536FF041E06E31B0013E732 /* EZAlertController.swift */; };
+		053F9BE31E62BE2300C5C5AB /* QRSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053F9BE21E62BE2300C5C5AB /* QRSettingsViewController.swift */; };
 		05541CB81E59B927006D3F5C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 053031F51E13B65C003D9659 /* Main.storyboard */; };
 		05541CB91E59B927006D3F5C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 056947ED1E04DD7300BECB7C /* LaunchScreen.storyboard */; };
 		05541CBA1E59B927006D3F5C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 056947EB1E04DD7300BECB7C /* Assets.xcassets */; };
@@ -77,6 +78,7 @@
 		05186A321E4EACF0008A176D /* Arcstone Mobile.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Arcstone Mobile.entitlements"; sourceTree = "<group>"; };
 		053031F41E13B65C003D9659 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		0536FF041E06E31B0013E732 /* EZAlertController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EZAlertController.swift; sourceTree = "<group>"; };
+		053F9BE21E62BE2300C5C5AB /* QRSettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRSettingsViewController.swift; sourceTree = "<group>"; };
 		0561B8FC1E3F0F87008CA2BF /* MachinesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MachinesViewController.swift; sourceTree = "<group>"; };
 		05641B0E1E502AD300B2B277 /* PersonnelJobsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonnelJobsTableViewController.swift; sourceTree = "<group>"; };
 		05641B101E503EDF00B2B277 /* MachineJobsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MachineJobsTableViewController.swift; sourceTree = "<group>"; };
@@ -216,6 +218,7 @@
 				05EE6B9C1E08D99E00616AC4 /* BatchRunTableViewCell.swift */,
 				0504C0791E45AB8B00AD5338 /* SettingsViewController.swift */,
 				0598B07A1E612A8100F36B98 /* QRReaderViewController.swift */,
+				053F9BE21E62BE2300C5C5AB /* QRSettingsViewController.swift */,
 			);
 			name = "View Controlllers";
 			sourceTree = "<group>";
@@ -472,6 +475,7 @@
 				0569480D1E04E9B000BECB7C /* DataController.swift in Sources */,
 				05EAD91C1E0BBAE500FB6BC0 /* BatchRunStatusViewController.swift in Sources */,
 				056947EA1E04DD7300BECB7C /* Arcstone_Mobile.xcdatamodeld in Sources */,
+				053F9BE31E62BE2300C5C5AB /* QRSettingsViewController.swift in Sources */,
 				059D16B21E0544DD0067581E /* BatchRunListViewController.swift in Sources */,
 				0504C0781E45A3DC00AD5338 /* SideMenuViewController.swift in Sources */,
 				056947E21E04DD7300BECB7C /* AppDelegate.swift in Sources */,
