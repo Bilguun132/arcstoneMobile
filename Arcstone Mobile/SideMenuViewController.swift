@@ -8,6 +8,7 @@
 
 import UIKit
 import SideMenu
+import SVProgressHUD
 
 class SideMenuViewController: UIViewController {
     
@@ -49,6 +50,21 @@ class SideMenuViewController: UIViewController {
         UserDefaults.standard.setValue("nil", forKey: "PersonnelID")
 //        self.dismiss(animated: true, completion: nil)
     }
+    
+    @IBAction func showPrivacyPolicyButton(_ sender: Any) {
+        SVProgressHUD.show()
+        SVProgressHUD.dismiss(withDelay: 1)
+        self.performSegue(withIdentifier: "privacy_segue", sender: self)
+        
+    }
+    
+    @IBAction func showEulaButton(_ sender: Any) {
+        SVProgressHUD.show()
+        SVProgressHUD.dismiss(withDelay: 1)
+        self.performSegue(withIdentifier: "eula_segue", sender: self)
+    }
+    
+    
     /*
      // MARK: - Navigation
      

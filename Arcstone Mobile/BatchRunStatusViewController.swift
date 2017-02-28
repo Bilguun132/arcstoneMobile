@@ -82,6 +82,7 @@ class BatchRunStatusViewController: UIViewController, UIImagePickerControllerDel
     }
     
     @IBAction func pause_button_pressed(_ sender: Any) {
+        SVProgressHUD.show()
         let message:Parameters = form_message(start: false)
         DataController.postData(api_string: "api/Batchrunstep/PauseBatchrunstep", post_message : message) {response in
             if response["ResponseCode"] != "0" {
@@ -92,7 +93,9 @@ class BatchRunStatusViewController: UIViewController, UIImagePickerControllerDel
                 self.timer.invalidate()
             }
         }
+        SVProgressHUD.dismiss()
     }
+    
     @IBAction func print_image_string_pressed(_ sender: Any) {
         print(image_string.getBytes)
         let size = image_string.characters.count
@@ -100,6 +103,7 @@ class BatchRunStatusViewController: UIViewController, UIImagePickerControllerDel
     }
     
     @IBAction func stop_button_pressed(_ sender: Any) {
+        SVProgressHUD.show()
         let message:Parameters = form_message(start: false)
         DataController.postData(api_string: "api/Batchrunstep/StopBatchrunstep", post_message : message) {response in
             if response["ResponseCode"] != "0" {
@@ -110,9 +114,11 @@ class BatchRunStatusViewController: UIViewController, UIImagePickerControllerDel
                 self.timer.invalidate()
             }
         }
+        SVProgressHUD.dismiss()
     }
     
     @IBAction func start_button_pressed(_ sender: Any) {
+        SVProgressHUD.show()
         let message:Parameters = form_message(start: true)
         DataController.postData(api_string: "api/Batchrunstep/StartBatchrunstep", post_message : message) {response in
             if response["ResponseCode"] != "0" {
@@ -124,6 +130,7 @@ class BatchRunStatusViewController: UIViewController, UIImagePickerControllerDel
                 self.timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(self.countdown), userInfo: nil, repeats: true)
             }
         }
+        SVProgressHUD.dismiss()
     }
     
     
