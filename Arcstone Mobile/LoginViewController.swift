@@ -11,6 +11,7 @@ import Alamofire
 import SwiftyJSON
 import SVProgressHUD
 import SideMenu
+import FirebaseAuth
 
 class ViewController: UIViewController, UITextFieldDelegate {
     
@@ -26,10 +27,12 @@ class ViewController: UIViewController, UITextFieldDelegate {
     
     //MARK: - LifeCycle
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()        // Do any additional setup after loading the view, typically from a nib.
         self.username.delegate = self
         self.password.delegate = self
+        self.accessibilityLabel = "Login Page"
         self.view.drawHierarchy(in: view.bounds, afterScreenUpdates: true)
         SVProgressHUD.dismiss()
         set_alert_strings()
@@ -158,7 +161,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
     @IBAction func log_in_button_pressed(_ sender: Any) {
         if username.text == "" || password.text == "" {     //checks if fields are empty
             SVProgressHUD.dismiss()
-            EZAlertController.alert(UserDefaults.standard.string(forKey: "Alert_localization")!, message: "Username or password field is empty")
+            EZAlertController.alert(UserDefaults.standard.string(forKey: "Alert_localization")!, message: "Username or password field is empty").accessibilityLabel = "Username or password field is empty"
             return
         }
         SVProgressHUD.show() // if not empty do a post to validate personnel
@@ -177,6 +180,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
                 SVProgressHUD.show()
                 DataController.Variables.personnel_name = response["PersonnelHeaderList"][0]["First_name"].stringValue //stores the name of the person
                 if response["PersonnelHeaderList"][0]["position"].stringValue == "admin" { // checks if the user has admin rights
+                    
                     self.performSegue(withIdentifier: "admin_login_segue", sender: self)
                     return
                 }
@@ -195,7 +199,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         case -1009:
             EZAlertController.alert("Alert", message: "Please check your connection")
         default:
-            EZAlertController.alert("No such user", message: "Please check your username or password")
+            EZAlertController.alert("Alert", message: "Please check your username or password").accessibilityLabel = "Please check your username or password"
         }
     }
 }

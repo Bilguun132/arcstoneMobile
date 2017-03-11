@@ -9,37 +9,37 @@
 import UIKit
 
 open class EZAlertController {
-
+    
     //==========================================================================================================
     // MARK: - Singleton
     //==========================================================================================================
-
+    
     class var instance : EZAlertController {
         struct Static {
             static let inst : EZAlertController = EZAlertController ()
         }
         return Static.inst
     }
-
+    
     //==========================================================================================================
     // MARK: - Private Functions
     //==========================================================================================================
-
+    
     fileprivate func topMostController() -> UIViewController? {
-
+        
         var presentedVC = UIApplication.shared.keyWindow?.rootViewController
         while let pVC = presentedVC?.presentedViewController
         {
             presentedVC = pVC
         }
-
+        
         if presentedVC == nil {
             print("EZAlertController Error: You don't have any views set. You may be calling in viewdidload. Try viewdidappear.")
         }
         return presentedVC
     }
-
-
+    
+    
     //==========================================================================================================
     // MARK: - Class Functions
     //==========================================================================================================
@@ -55,7 +55,7 @@ open class EZAlertController {
             // Do nothing
         })
     }
-
+    
     @discardableResult
     open class func alert(_ title: String, message: String, acceptMessage: String, acceptBlock: @escaping () -> ()) -> UIAlertController {
         let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
@@ -63,18 +63,18 @@ open class EZAlertController {
             acceptBlock()
         })
         alert.addAction(acceptButton)
-
+        
         instance.topMostController()?.present(alert, animated: true, completion: nil)
         return alert
     }
-
+    
     @discardableResult
     open class func alert(_ title: String, message: String, buttons:[String], tapBlock:((UIAlertAction,Int) -> Void)?) -> UIAlertController{
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert, buttons: buttons, tapBlock: tapBlock)
         instance.topMostController()?.present(alert, animated: true, completion: nil)
         return alert
     }
-
+    
     @discardableResult
     open class func actionSheet(_ title: String, message: String, sourceView: UIView, actions: [UIAlertAction]) -> UIAlertController {
         let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.actionSheet)
@@ -86,7 +86,7 @@ open class EZAlertController {
         instance.topMostController()?.present(alert, animated: true, completion: nil)
         return alert
     }
-
+    
     @discardableResult
     open class func actionSheet(_ title: String, message: String, sourceView: UIView, buttons:[String], tapBlock:((UIAlertAction,Int) -> Void)?) -> UIAlertController{
         let alert = UIAlertController(title: title, message: message, preferredStyle: .actionSheet, buttons: buttons, tapBlock: tapBlock)
@@ -95,7 +95,7 @@ open class EZAlertController {
         instance.topMostController()?.present(alert, animated: true, completion: nil)
         return alert
     }
-
+    
 }
 
 

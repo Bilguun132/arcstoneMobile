@@ -46,8 +46,8 @@ class AdminPageViewController: UIViewController {
     //MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        SVProgressHUD.dismiss()
         self.navigationItem.title = "Arcstone"
+        SVProgressHUD.dismiss()
         show_numbers()
         setupBorders()
         setupSideMenu()

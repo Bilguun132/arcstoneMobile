@@ -8,12 +8,17 @@ pod 'SVProgressHUD'
 pod 'SideMenu'
 pod 'SwiftyJSON'
 pod 'Alamofire', '~> 4.3'
-
+pod 'Firebase/Core'
+pod 'Firebase/Messaging'
+pod 'Batch', '~> 1.7'
+pod 'Firebase/Auth'
   # Pods for Arcstone Mobile
 
   target 'Arcstone MobileTests' do
     inherit! :search_paths
     # Pods for testing
+    pod 'KIF'
+    pod 'Nimble'
   end
 
 end

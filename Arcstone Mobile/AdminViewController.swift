@@ -19,8 +19,9 @@ class AdminViewController: UIViewController {
     var batch_run_list_json_by_personnelID:JSON = ""
     var batch_run_list:JSON = ""
     
-    @IBOutlet weak var view1: UIView!
-    @IBOutlet weak var view2: UIView!
+    @IBOutlet weak var realTimeView: UIView!
+    @IBOutlet weak var WorkstationView: UIView!
+    @IBOutlet weak var dashboardView: UIView!
     
     //MARK: - Lifecycle
     override func viewDidLoad() {
@@ -85,6 +86,8 @@ class AdminViewController: UIViewController {
     func setupSideMenu() {
         // Define the menus
         SideMenuManager.menuRightNavigationController = storyboard!.instantiateViewController(withIdentifier: "rightMenuNavigationController") as? UISideMenuNavigationController
+        SideMenuManager.menuAddPanGestureToPresent(toView: self.navigationController!.navigationBar)
+        SideMenuManager.menuAddScreenEdgePanGesturesToPresent(toView: self.navigationController!.view)
         SideMenuManager.menuPresentMode = .menuSlideIn
         SideMenuManager.menuAnimationTransformScaleFactor = 1
         SideMenuManager.menuAnimationFadeStrength = 0.77
@@ -92,11 +95,14 @@ class AdminViewController: UIViewController {
     }
     
     func setupBorders() {
-        view1.layer.borderWidth = 1
-        view1.layer.borderColor = UIColor.darkGray.cgColor
-        view1.layer.cornerRadius = 10
-        view2.layer.borderWidth = 1
-        view2.layer.borderColor = UIColor.darkGray.cgColor
-        view2.layer.cornerRadius = 10
+        realTimeView.layer.borderWidth = 1
+        realTimeView.layer.borderColor = UIColor.darkGray.cgColor
+        realTimeView.layer.cornerRadius = 10
+        WorkstationView.layer.borderWidth = 1
+        WorkstationView.layer.borderColor = UIColor.darkGray.cgColor
+        WorkstationView.layer.cornerRadius = 10
+        dashboardView.layer.borderWidth = 1
+        dashboardView.layer.borderColor = UIColor.darkGray.cgColor
+        dashboardView.layer.cornerRadius = 10
     }
 }

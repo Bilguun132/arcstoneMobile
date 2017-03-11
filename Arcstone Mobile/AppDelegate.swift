@@ -9,26 +9,76 @@
 import UIKit
 import CoreData
 import UserNotifications
+import Firebase
+import Batch
+
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var window: UIWindow?
     
-    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        setUserDefaults()
+                // Start Batch.
+                // TODO : switch to live api key before store release
+                Batch.start(withAPIKey: "DEV58BA45E613327050FCE3EC5931B") // dev
+                // Batch.start(withAPIKey: "58BA45E612F1CE0138831FC1CD4ACE") // live
+                // Register for push notifications
+        FIRApp.configure()
+        FIRAuth.auth()?.signInAnonymously() { (user, error) in
+            _ = user!.isAnonymous  // true
+            _ = user!.uid
+        }
+        if FIRInstanceID.instanceID().token() != nil {
+            UIPasteboard.general.string = FIRInstanceID.instanceID().token()!
+            print(("FCM Instance is " + FIRInstanceID.instanceID().token()! + " end") )
+        }
+        // Override point for customization after application launch.
+        
+        // [START register_for_notifications]
+        if #available(iOS 10.0, *) {
+            // For iOS 10 display notification (sent via APNS)
+            UNUserNotificationCenter.current().delegate = self
+            
+            let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
+            UNUserNotificationCenter.current().requestAuthorization(
+                options: authOptions,
+                completionHandler: {_, _ in })
+            
+            // For iOS 10 data message (sent via FCM)
+            FIRMessaging.messaging().remoteMessageDelegate = self
+            
+        } else {
+            let settings: UIUserNotificationSettings =
+                UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil)
+            application.registerUserNotificationSettings(settings)
+        }
+        
+        application.registerForRemoteNotifications()
+        
+        // [END register_for_notifications]
+        
+        // [START add_token_refresh_observer]
+        // Add observer for InstanceID token refresh callback.
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(self.tokenRefreshNotification),
+                                               name: .firInstanceIDTokenRefresh,
+                                               object: nil)
+        // [END add_token_refresh_observer]
+        
+        return true
+    }
+    
+    func setUserDefaults() {
         UserDefaults.standard.setValue("nil", forKey: "PersonnelID")
-        registerForPushNotifications(application: application)
-        UIApplication.shared.applicationIconBadgeNumber = 0
         if UserDefaults.standard.string(forKey: "Server") == nil {
             UserDefaults.standard.setValue("arcstonesolution.com", forKey: "Server")
         }
         if UserDefaults.standard.string(forKey: "Route") == nil {
             UserDefaults.standard.set("ArcstoneMobileApi", forKey: "Route")
-        }
-        // Override point for customization after application launch.
-        return true
-    }
+        }    }
+    
     
     func application(_ application: UIApplication, didRegister notificationSettings: UIUserNotificationSettings) {
         if notificationSettings.types != .none {
@@ -36,9 +86,61 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
     }
     
+    func tokenRefreshNotification(_ notification: Notification) {
+        if let refreshedToken = FIRInstanceID.instanceID().token() {
+            print("InstanceID token: \(refreshedToken)")
+        }
+        
+        // Connect to FCM since connection may have failed when attempted before having a token.
+        connectToFcm()
+    }
+    
+    // [START connect_to_fcm]
+    func connectToFcm() {
+        // Won't connect since there is no token
+        guard FIRInstanceID.instanceID().token() != nil else {
+            return;
+        }
+        
+        // Disconnect previous FCM connection if it exists.
+        FIRMessaging.messaging().disconnect()
+        
+        FIRMessaging.messaging().connect { (error) in
+            if error != nil {
+                print("Unable to connect with FCM. \(error)")
+            } else {
+                print("Connected to FCM.")
+            }
+        }
+    }
+    // [END connect_to_fcm]
+    
+    
+    // [START receive_message]
+    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any]) {
+        // If you are receiving a notification message while your app is in the background,
+        // this callback will not be fired till the user taps on the notification launching the application.
+        // TODO: Handle data of notification
+        // Print message ID.
+        print ("Received notification")
+        
+    }
+    
+    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any],
+                     fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+        // If you are receiving a notification message while your app is in the background,
+        // this callback will not be fired till the user taps on the notification launching the application.
+        // TODO: Handle data of notification
+        // Print message ID.
+        print ("Received notification")
+        
+    }
+    // [END receive_message]
+    
+    
+    
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
-        let token = deviceToken.map { String(format: "%02.2hhx", $0) }.joined()
-        print(token)
+        print("Registered for Remote Notification")
     }
     
     func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
@@ -61,6 +163,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func applicationDidBecomeActive(_ application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+        UIApplication.shared.applicationIconBadgeNumber = 0
+        
     }
     
     func applicationWillTerminate(_ application: UIApplication) {
@@ -131,11 +235,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
     }
     
-    func registerForPushNotifications(application: UIApplication) {
-        let notificationSettings = UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil)
-        application.registerUserNotificationSettings(notificationSettings)
-    }
-    
     
     
     //    // MARK: - Core Data stack
@@ -185,3 +284,41 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
 }
 
+
+// [START ios_10_message_handling]
+@available(iOS 10, *)
+
+extension AppDelegate : UNUserNotificationCenterDelegate {
+    
+    // Receive displayed notifications for iOS 10 devices.
+    func userNotificationCenter(_ center: UNUserNotificationCenter,
+                                willPresent notification: UNNotification,
+                                withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        print ("Received Notification")
+        
+        completionHandler(
+            [UNNotificationPresentationOptions.alert,
+             UNNotificationPresentationOptions.sound,
+             UNNotificationPresentationOptions.badge])
+    }
+    
+    
+    func userNotificationCenter(_ center: UNUserNotificationCenter,
+                                didReceive response: UNNotificationResponse,
+                                withCompletionHandler completionHandler: @escaping () -> Void) {
+        print("Received Notification")
+        let userInfo = response.notification.request.content.userInfo
+        print(userInfo)
+        completionHandler()
+    }
+}
+// [END ios_10_message_handling]
+// [START ios_10_data_message_handling]
+extension AppDelegate : FIRMessagingDelegate {
+    // Receive data message on iOS 10 devices while app is in the foreground.
+    func applicationReceivedRemoteMessage(_ remoteMessage: FIRMessagingRemoteMessage) {
+        print("Foreground")
+        print(remoteMessage.appData)
+    }
+}
+// [END ios_10_data_message_handling]
