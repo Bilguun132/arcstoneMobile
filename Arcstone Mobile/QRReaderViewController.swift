@@ -212,7 +212,7 @@ class QRReaderViewController: UIViewController, AVCaptureMetadataOutputObjectsDe
         
         if segue.identifier == "show_batch_step" {
             let display_controller = segue.destination as! BatchRunStatusViewController
-            display_controller.run_step_info = self.JSONData[0]
+            display_controller.batchRunStep = (BatchRunStepMap.BatchRunStepMap(BatchStepListJson: self.JSONData[0]))[0]
             display_controller.current_status = self.JSONData[0]["Status"].stringValue
             display_controller.batch_run_id = self.JSONData[0]["Batch_run_id"].stringValue
             display_controller.batch_step_name = self.JSONData[0]["Name"].stringValue

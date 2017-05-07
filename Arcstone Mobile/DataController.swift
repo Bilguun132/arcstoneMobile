@@ -25,8 +25,9 @@ class DataController {
         }
         var value : JSON = ""
         let server = ("https://" + "\(UserDefaults.standard.string(forKey: "Server")!)" + "/\(UserDefaults.standard.string(forKey: "Route")!)/")
+        let headers: HTTPHeaders = ["Authorization" : UserDefaults.standard.string(forKey: "Token")!]
         print(server+api_string)
-        Alamofire.request(server + api_string).validate().responseJSON { response in
+        Alamofire.request(server + api_string, headers: headers).validate().responseJSON { response in
             switch response.result {
             case.success(let json_value):
                 value = JSON(json_value)
@@ -53,7 +54,37 @@ class DataController {
             return
         }
         let url = "https://" + "\(UserDefaults.standard.string(forKey: "Server")!)" + "/\(UserDefaults.standard.string(forKey: "Route")!)/" + api_string
-        Alamofire.request(url, method:.post, parameters:post_message, encoding:JSONEncoding.prettyPrinted).responseJSON { response in
+        let headers: HTTPHeaders = ["Authorization" : UserDefaults.standard.string(forKey: "Token")!]
+        Alamofire.request(url, method:.post, parameters:post_message, encoding:URLEncoding.default, headers: headers).responseJSON { response in
+            print(response)
+            switch response.result {
+            case .success(let json_value):
+                let value = JSON(json_value)
+                completion(value)
+            case .failure(let error):
+                print(error._code)
+                switch error._code {
+                case Error.Internet_is_offline.rawValue:
+                    print("Time out")
+                default:
+                    print(error)
+                }
+                print(error)
+                let value:JSON = ["Error": error._code]
+                completion(value)
+            }
+        }
+    }
+    
+    static func login(api_string:String, post_message: [String:Any], completion: @escaping (JSON) -> ()) {
+        if UserDefaults.standard.string(forKey: "Server") == nil {
+            EZAlertController.alert("Alert", message: "Server address not set")
+            SVProgressHUD.dismiss()
+            return
+        }
+        let url = "https://" + "\(UserDefaults.standard.string(forKey: "Server")!)" + "/\(UserDefaults.standard.string(forKey: "Route")!)/" + api_string
+        Alamofire.request(url, method:.post, parameters:post_message, encoding:URLEncoding.default).responseJSON { response in
+            print(response)
             switch response.result {
             case .success(let json_value):
                 let value = JSON(json_value)
@@ -148,6 +179,7 @@ class DataController {
         }
     }
     
+    
     enum Error:Int {
         case Internet_is_offline = -1009
     }
@@ -158,6 +190,62 @@ class DataController {
     
     enum Constants {
         case Queued, Ready, Running, Next_in_line, Done, Paused, Delayed, Unassigned, Cancelled, Item_Scrapped
+    }
+    
+    enum dashboardType: Int {
+        case Text = 0
+        case Picture = 1
+        case Gauges = 2
+        case Charts = 3
+    }
+    
+    enum GaugeType: Int {
+        case FullCircle = 0
+        case HalfCircle = 1
+        case QuarterLeftCircle = 2
+        case QuarterRightCircle = 3
+        case HorizontalBar = 4
+        case VerticalBar = 5
+        case Digital = 6
+        case StateIndicator = 7
+    }
+    
+    //MARK: - Routes
+    struct Routes {
+        //MARK: - Personnel
+        static let validatePersonnelLogin = "api/login"
+        static let getAllPersonnel = "api/personnels"
+        static let getPersonnelById = "api/personnels/"
+        //MARK: - Batch Run
+        static let getAllBatchRunList = "api/batchRuns"
+        static let getBatchRunListById = "api/batchRuns/"
+        static let getBatchRunListByPersonnelId = "api/batchRuns/personnel/"
+        static let getBatchRunHistoryByPersonnelId = "api/batchRuns/personnelHistory/"
+        static let getBatchRunHistoryByEquipmentId = "api/batchRuns/equipmentHistory/"
+        //MARK: - Batch Run Step
+        static let getAllBatchRunSteps = "api/batchRunSteps"
+        static let getBatchRunStepsById = "api/batchRunSteps/"
+        static let getBatchRunStepByBatchRunId = "api/batchRunSteps/byBatchRunId/"
+        static let getBatchRunStepsByPersonnelId = "api/batchRunSteps/byPersonnelId/"
+        static let getBatchRunStepByFacilityId = "api/batchRunSteps/ByFacilityAssetId/"
+        static let stopBatchRunStep = "api/batchRunSteps/stop"
+        static let pauseBatchRunStep = "api/batchRunSteps/pause"
+        static let startBatchRunStep = "api/batchRunSteps/start"
+        //MARK: - BatchRunStepParamter
+        static let getAllBatchRunStepParameters = "api/batchRunStepParameters"
+        static let getAllBatchRunStepParametersByBatchRunId = "api/batchRunStepParameters/batchRunStepId/"
+        //MARK: - Facility
+        static let getAllFacility = "api/facilities"
+        static let getAllFacilityAsset = "api/facilityAssets"
+        static let getAllFacilityAssetByBatchRunId = "api/facilityAssets/byBatchRunId/"
+        //MARK: - Dashboard
+        static let getAllDashboardElements = "api/dashboardElements"
+        static let getDashboardElementsbyId = "api/dashboardElements/"
+        static let getAllDashboard = "api/dashboard"
+        static let getDashboard = "api/dashboard/"
+        static let getCurrentValue = "api/dashboardElements/currentValue/"
+        
+        
     }
     
 }

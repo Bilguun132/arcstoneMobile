@@ -20,11 +20,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         setUserDefaults()
-                // Start Batch.
-                // TODO : switch to live api key before store release
-                Batch.start(withAPIKey: "DEV58BA45E613327050FCE3EC5931B") // dev
-                // Batch.start(withAPIKey: "58BA45E612F1CE0138831FC1CD4ACE") // live
-                // Register for push notifications
+        // Start Batch.
+        // TODO : switch to live api key before store release
+        Batch.start(withAPIKey: "DEV58BA45E613327050FCE3EC5931B") // dev
+        // Batch.start(withAPIKey: "58BA45E612F1CE0138831FC1CD4ACE") // live
+        // Register for push notifications
         FIRApp.configure()
         FIRAuth.auth()?.signInAnonymously() { (user, error) in
             _ = user!.isAnonymous  // true
@@ -71,13 +71,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func setUserDefaults() {
+        ShinobiGauges.setLicenseKey("NxffAifyRk9o9nPMjAxNzA0MTFiaWxndXVuLmJhdGJvbGRAYXJjc3RvbmUuY28=uL5Lq5EmBdJYRX0SL+ANwBxAvnNzAQsSDNc+dR6kikDcW1Wy+Xey/0XEp/NZ0X8OS/kbIevXOqk6yLxSqSYaeLkwxWJKPQ6vXM5dyfNPiXpXigQE1YrzhfV6e5tr8evX5lp1q/uKajhMHWO6thbI3HtIRzVg=AXR/y+mxbZFM+Bz4HYAHkrZ/ekxdI/4Aa6DClSrE4o73czce7pcia/eHXffSfX9gssIRwBWEPX9e+kKts4mY6zZWsReM+aaVF0BL6G9Vj2249wYEThll6JQdqaKda41AwAbZXwcssavcgnaHc3rxWNBjJDOk6Cd78fr/LwdW8q7gmlj4risUXPJV0h7d21jO1gzaaFCPlp5G8l05UUe2qe7rKbarpjoddMoXrpErC9j8Lm5Oj7XKbmciqAKap+71+9DGNE2sBC+sY4V/arvEthfhk52vzLe3kmSOsvg5q+DQG/W9WbgZTmlMdWHY2B2nbgm3yZB7jFCiXH/KfzyE1A==PFJTQUtleVZhbHVlPjxNb2R1bHVzPnh6YlRrc2dYWWJvQUh5VGR6dkNzQXUrUVAxQnM5b2VrZUxxZVdacnRFbUx3OHZlWStBK3pteXg4NGpJbFkzT2hGdlNYbHZDSjlKVGZQTTF4S2ZweWZBVXBGeXgxRnVBMThOcDNETUxXR1JJbTJ6WXA3a1YyMEdYZGU3RnJyTHZjdGhIbW1BZ21PTTdwMFBsNWlSKzNVMDg5M1N4b2hCZlJ5RHdEeE9vdDNlMD08L01vZHVsdXM+PEV4cG9uZW50PkFRQUI8L0V4cG9uZW50PjwvUlNBS2V5VmFsdWU+") // Trial Users - Set your license key here
         UserDefaults.standard.setValue("nil", forKey: "PersonnelID")
         if UserDefaults.standard.string(forKey: "Server") == nil {
             UserDefaults.standard.setValue("arcstonesolution.com", forKey: "Server")
         }
         if UserDefaults.standard.string(forKey: "Route") == nil {
             UserDefaults.standard.set("ArcstoneMobileApi", forKey: "Route")
-        }    }
+        }
+        if UserDefaults.standard.string(forKey: "DashboardAddress") == nil {
+            UserDefaults.standard.set("52.77.212.205/dashboard", forKey: "DashboardAddress")
+        }
+    }
     
     
     func application(_ application: UIApplication, didRegister notificationSettings: UIUserNotificationSettings) {
@@ -107,7 +112,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         FIRMessaging.messaging().connect { (error) in
             if error != nil {
-                print("Unable to connect with FCM. \(error)")
+                print("Unable to connect with FCM. \(String(describing: error))")
             } else {
                 print("Connected to FCM.")
             }

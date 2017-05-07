@@ -11,8 +11,14 @@
 		0500F1291E66A02100C786F8 /* LoginTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0500F1281E66A02100C786F8 /* LoginTest.swift */; };
 		0504C0781E45A3DC00AD5338 /* SideMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0504C0771E45A3DC00AD5338 /* SideMenuViewController.swift */; };
 		0504C07A1E45AB8B00AD5338 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0504C0791E45AB8B00AD5338 /* SettingsViewController.swift */; };
+		0520985F1E7E1BAE007FA3CE /* Personnel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0520985E1E7E1BAE007FA3CE /* Personnel.swift */; };
+		052098611E7E2AB9007FA3CE /* BatchRun.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052098601E7E2AB9007FA3CE /* BatchRun.swift */; };
+		052098631E7E70C9007FA3CE /* BatchRunStep.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052098621E7E70C9007FA3CE /* BatchRunStep.swift */; };
+		052098651E7E7ABC007FA3CE /* Facility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052098641E7E7ABC007FA3CE /* Facility.swift */; };
+		052098671E7E7D29007FA3CE /* FacilityAsset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052098661E7E7D29007FA3CE /* FacilityAsset.swift */; };
 		0536FF051E06E31B0013E732 /* EZAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0536FF041E06E31B0013E732 /* EZAlertController.swift */; };
 		053F9BE31E62BE2300C5C5AB /* QRSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053F9BE21E62BE2300C5C5AB /* QRSettingsViewController.swift */; };
+		05512ADF1E9A031000E36BE6 /* DashboardElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05512ADE1E9A031000E36BE6 /* DashboardElement.swift */; };
 		05541CB81E59B927006D3F5C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 053031F51E13B65C003D9659 /* Main.storyboard */; };
 		05541CB91E59B927006D3F5C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 056947ED1E04DD7300BECB7C /* LaunchScreen.storyboard */; };
 		05541CBA1E59B927006D3F5C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 056947EB1E04DD7300BECB7C /* Assets.xcassets */; };
@@ -29,16 +35,22 @@
 		057845051E34742A0053EF14 /* AdminBatchRunTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057845041E34742A0053EF14 /* AdminBatchRunTableViewController.swift */; };
 		057845081E348CD60053EF14 /* PersonnelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057845071E348CD60053EF14 /* PersonnelViewController.swift */; };
 		0586DDA31E32FA2F006491DF /* AdminViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0586DDA21E32FA2F006491DF /* AdminViewController.swift */; };
+		058953321EBDC8EF002ACE2B /* DashboardListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058953311EBDC8EF002ACE2B /* DashboardListTableViewController.swift */; };
+		058953341EBDC90B002ACE2B /* Dashboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058953331EBDC90B002ACE2B /* Dashboard.swift */; };
+		058953361EBDCE5B002ACE2B /* DashboardWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058953351EBDCE5B002ACE2B /* DashboardWebViewController.swift */; };
 		058BFBDF1E20BA4000B274E3 /* BatchRunStepParameterTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058BFBDE1E20BA4000B274E3 /* BatchRunStepParameterTableViewController.swift */; };
 		058BFBE11E20CAC900B274E3 /* BatchRunStepParameterInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058BFBE01E20CAC900B274E3 /* BatchRunStepParameterInfoViewController.swift */; };
 		0598B07B1E612A8100F36B98 /* QRReaderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0598B07A1E612A8100F36B98 /* QRReaderViewController.swift */; };
 		059D16B21E0544DD0067581E /* BatchRunListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 059D16B11E0544DD0067581E /* BatchRunListViewController.swift */; };
+		05A49FB11E74E75300FABF0A /* ShinobiGauges.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05A49FB01E74E75300FABF0A /* ShinobiGauges.framework */; };
+		05AC82901EA0AB44009CD907 /* DashboardElementListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05AC828F1EA0AB44009CD907 /* DashboardElementListTableViewController.swift */; };
 		05E1D7FB1E73D68F009987D2 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 05E1D7FA1E73D68F009987D2 /* GoogleService-Info.plist */; };
 		05EAD91C1E0BBAE500FB6BC0 /* BatchRunStatusViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05EAD91B1E0BBAE500FB6BC0 /* BatchRunStatusViewController.swift */; };
 		05EE6B9E1E08D99E00616AC4 /* BatchRunTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05EE6B9C1E08D99E00616AC4 /* BatchRunTableViewCell.swift */; };
 		05EE6BA41E090FB800616AC4 /* ShowJobViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05EE6BA31E090FB800616AC4 /* ShowJobViewController.swift */; };
 		05EE6BA61E0A1F7400616AC4 /* BatchRunSteps.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05EE6BA51E0A1F7400616AC4 /* BatchRunSteps.swift */; };
 		05F0091D1E73BBA30089ACAD /* GaugeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F0091C1E73BBA30089ACAD /* GaugeViewController.swift */; };
+		05FA0ED81E8F8839004B6294 /* BatchRunStepParameter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05FA0ED71E8F8839004B6294 /* BatchRunStepParameter.swift */; };
 		5F25836AAD9FED28E41A7664 /* Pods_Arcstone_Mobile.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD879C9403DD2BE447BC1B75 /* Pods_Arcstone_Mobile.framework */; };
 		7421312BF8AB6ACC76FB17A3 /* Pods_Arcstone_MobileTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07B21813E848BF38CD4B8FB1 /* Pods_Arcstone_MobileTests.framework */; };
 /* End PBXBuildFile section */
@@ -83,9 +95,15 @@
 		0504C0771E45A3DC00AD5338 /* SideMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SideMenuViewController.swift; sourceTree = "<group>"; };
 		0504C0791E45AB8B00AD5338 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		05186A321E4EACF0008A176D /* Arcstone Mobile.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Arcstone Mobile.entitlements"; sourceTree = "<group>"; };
+		0520985E1E7E1BAE007FA3CE /* Personnel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Personnel.swift; sourceTree = "<group>"; };
+		052098601E7E2AB9007FA3CE /* BatchRun.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BatchRun.swift; sourceTree = "<group>"; };
+		052098621E7E70C9007FA3CE /* BatchRunStep.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BatchRunStep.swift; sourceTree = "<group>"; };
+		052098641E7E7ABC007FA3CE /* Facility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Facility.swift; sourceTree = "<group>"; };
+		052098661E7E7D29007FA3CE /* FacilityAsset.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FacilityAsset.swift; sourceTree = "<group>"; };
 		053031F41E13B65C003D9659 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		0536FF041E06E31B0013E732 /* EZAlertController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EZAlertController.swift; sourceTree = "<group>"; };
 		053F9BE21E62BE2300C5C5AB /* QRSettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRSettingsViewController.swift; sourceTree = "<group>"; };
+		05512ADE1E9A031000E36BE6 /* DashboardElement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashboardElement.swift; sourceTree = "<group>"; };
 		0561B8FC1E3F0F87008CA2BF /* MachinesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MachinesViewController.swift; sourceTree = "<group>"; };
 		05641B0E1E502AD300B2B277 /* PersonnelJobsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonnelJobsTableViewController.swift; sourceTree = "<group>"; };
 		05641B101E503EDF00B2B277 /* MachineJobsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MachineJobsTableViewController.swift; sourceTree = "<group>"; };
@@ -105,10 +123,15 @@
 		057845041E34742A0053EF14 /* AdminBatchRunTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdminBatchRunTableViewController.swift; sourceTree = "<group>"; };
 		057845071E348CD60053EF14 /* PersonnelViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonnelViewController.swift; sourceTree = "<group>"; };
 		0586DDA21E32FA2F006491DF /* AdminViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdminViewController.swift; sourceTree = "<group>"; };
+		058953311EBDC8EF002ACE2B /* DashboardListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashboardListTableViewController.swift; sourceTree = "<group>"; };
+		058953331EBDC90B002ACE2B /* Dashboard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dashboard.swift; sourceTree = "<group>"; };
+		058953351EBDCE5B002ACE2B /* DashboardWebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashboardWebViewController.swift; sourceTree = "<group>"; };
 		058BFBDE1E20BA4000B274E3 /* BatchRunStepParameterTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BatchRunStepParameterTableViewController.swift; sourceTree = "<group>"; };
 		058BFBE01E20CAC900B274E3 /* BatchRunStepParameterInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BatchRunStepParameterInfoViewController.swift; sourceTree = "<group>"; };
 		0598B07A1E612A8100F36B98 /* QRReaderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRReaderViewController.swift; sourceTree = "<group>"; };
 		059D16B11E0544DD0067581E /* BatchRunListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BatchRunListViewController.swift; sourceTree = "<group>"; };
+		05A49FB01E74E75300FABF0A /* ShinobiGauges.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ShinobiGauges.framework; sourceTree = "<group>"; };
+		05AC828F1EA0AB44009CD907 /* DashboardElementListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashboardElementListTableViewController.swift; sourceTree = "<group>"; };
 		05E1D7FA1E73D68F009987D2 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		05EAD91B1E0BBAE500FB6BC0 /* BatchRunStatusViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BatchRunStatusViewController.swift; sourceTree = "<group>"; };
 		05EE6B9C1E08D99E00616AC4 /* BatchRunTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BatchRunTableViewCell.swift; sourceTree = "<group>"; };
@@ -117,10 +140,10 @@
 		05F009141E739C730089ACAD /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
 		05F009161E739C940089ACAD /* ShinobiGauges.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ShinobiGauges.framework; path = "../../Downloads/shinobicontrols-ios-trial/shinobitoolkit/shinobigauges/shinobicontrols-ios-gauges-trial-objc-2.8.1-2/ShinobiGauges.framework"; sourceTree = "<group>"; };
 		05F009181E73A1F90089ACAD /* SVProgressHUD.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SVProgressHUD.framework; path = "Pods/../build/Debug-iphoneos/SVProgressHUD/SVProgressHUD.framework"; sourceTree = "<group>"; };
-		05F0091A1E73BB800089ACAD /* ShinobiGauges.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ShinobiGauges.framework; path = "../shinobicontrols-ios-trial/shinobitoolkit/shinobigauges/shinobicontrols-ios-gauges-trial-objc-2.8.1-2/ShinobiGauges.framework"; sourceTree = "<group>"; };
 		05F0091C1E73BBA30089ACAD /* GaugeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GaugeViewController.swift; sourceTree = "<group>"; };
 		05F009211E73BF610089ACAD /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		05F009241E73BF730089ACAD /* libstdc++.6.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.6.tbd"; path = "usr/lib/libstdc++.6.tbd"; sourceTree = SDKROOT; };
+		05FA0ED71E8F8839004B6294 /* BatchRunStepParameter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BatchRunStepParameter.swift; sourceTree = "<group>"; };
 		07B21813E848BF38CD4B8FB1 /* Pods_Arcstone_MobileTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Arcstone_MobileTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0C84C097E807948EBCE13EFC /* Pods-Arcstone Mobile.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Arcstone Mobile.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Arcstone Mobile/Pods-Arcstone Mobile.debug.xcconfig"; sourceTree = "<group>"; };
 		86182E7150583A80A105FFAD /* Pods-Arcstone Mobile.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Arcstone Mobile.release.xcconfig"; path = "Pods/Target Support Files/Pods-Arcstone Mobile/Pods-Arcstone Mobile.release.xcconfig"; sourceTree = "<group>"; };
@@ -135,6 +158,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5F25836AAD9FED28E41A7664 /* Pods_Arcstone_Mobile.framework in Frameworks */,
+				05A49FB11E74E75300FABF0A /* ShinobiGauges.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -149,6 +173,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0520985D1E7E1B9B007FA3CE /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				0520985E1E7E1BAE007FA3CE /* Personnel.swift */,
+				052098601E7E2AB9007FA3CE /* BatchRun.swift */,
+				052098621E7E70C9007FA3CE /* BatchRunStep.swift */,
+				05FA0ED71E8F8839004B6294 /* BatchRunStepParameter.swift */,
+				052098641E7E7ABC007FA3CE /* Facility.swift */,
+				052098661E7E7D29007FA3CE /* FacilityAsset.swift */,
+				05512ADE1E9A031000E36BE6 /* DashboardElement.swift */,
+				058953331EBDC90B002ACE2B /* Dashboard.swift */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
 		056947D51E04DD7300BECB7C = {
 			isa = PBXGroup;
 			children = (
@@ -174,12 +213,13 @@
 			children = (
 				05186A321E4EACF0008A176D /* Arcstone Mobile.entitlements */,
 				05E1D7FA1E73D68F009987D2 /* GoogleService-Info.plist */,
+				0520985D1E7E1B9B007FA3CE /* Models */,
 				0586DDA41E32FA38006491DF /* Storyboard */,
 				0586DDA11E32FA14006491DF /* View Controlllers */,
+				0569480C1E04E9B000BECB7C /* DataController.swift */,
 				056947EB1E04DD7300BECB7C /* Assets.xcassets */,
 				056947F01E04DD7300BECB7C /* Info.plist */,
 				056947E81E04DD7300BECB7C /* Arcstone_Mobile.xcdatamodeld */,
-				0569480C1E04E9B000BECB7C /* DataController.swift */,
 			);
 			path = "Arcstone Mobile";
 			sourceTree = "<group>";
@@ -199,9 +239,9 @@
 		056948041E04E8EF00BECB7C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				05A49FB01E74E75300FABF0A /* ShinobiGauges.framework */,
 				05F009241E73BF730089ACAD /* libstdc++.6.tbd */,
 				05F009211E73BF610089ACAD /* UIKit.framework */,
-				05F0091A1E73BB800089ACAD /* ShinobiGauges.framework */,
 				05F009181E73A1F90089ACAD /* SVProgressHUD.framework */,
 				05F009161E739C940089ACAD /* ShinobiGauges.framework */,
 				05F009141E739C730089ACAD /* libc++.tbd */,
@@ -245,6 +285,9 @@
 				0598B07A1E612A8100F36B98 /* QRReaderViewController.swift */,
 				053F9BE21E62BE2300C5C5AB /* QRSettingsViewController.swift */,
 				05F0091C1E73BBA30089ACAD /* GaugeViewController.swift */,
+				05AC828F1EA0AB44009CD907 /* DashboardElementListTableViewController.swift */,
+				058953311EBDC8EF002ACE2B /* DashboardListTableViewController.swift */,
+				058953351EBDCE5B002ACE2B /* DashboardWebViewController.swift */,
 			);
 			name = "View Controlllers";
 			sourceTree = "<group>";
@@ -488,13 +531,17 @@
 				0586DDA31E32FA2F006491DF /* AdminViewController.swift in Sources */,
 				05736A311E0BC35A008125AF /* NiceButton.swift in Sources */,
 				05EE6B9E1E08D99E00616AC4 /* BatchRunTableViewCell.swift in Sources */,
+				05512ADF1E9A031000E36BE6 /* DashboardElement.swift in Sources */,
 				0504C07A1E45AB8B00AD5338 /* SettingsViewController.swift in Sources */,
 				0561B8FD1E3F0F87008CA2BF /* MachinesViewController.swift in Sources */,
 				057845081E348CD60053EF14 /* PersonnelViewController.swift in Sources */,
 				0598B07B1E612A8100F36B98 /* QRReaderViewController.swift in Sources */,
 				058BFBDF1E20BA4000B274E3 /* BatchRunStepParameterTableViewController.swift in Sources */,
 				056947E41E04DD7300BECB7C /* LoginViewController.swift in Sources */,
+				058953321EBDC8EF002ACE2B /* DashboardListTableViewController.swift in Sources */,
 				05EE6BA61E0A1F7400616AC4 /* BatchRunSteps.swift in Sources */,
+				058953341EBDC90B002ACE2B /* Dashboard.swift in Sources */,
+				0520985F1E7E1BAE007FA3CE /* Personnel.swift in Sources */,
 				057845051E34742A0053EF14 /* AdminBatchRunTableViewController.swift in Sources */,
 				05641B0F1E502AD300B2B277 /* PersonnelJobsTableViewController.swift in Sources */,
 				05641B111E503EDF00B2B277 /* MachineJobsTableViewController.swift in Sources */,
@@ -503,13 +550,20 @@
 				057845011E3445F70053EF14 /* AdminPageViewController.swift in Sources */,
 				05EE6BA41E090FB800616AC4 /* ShowJobViewController.swift in Sources */,
 				05F0091D1E73BBA30089ACAD /* GaugeViewController.swift in Sources */,
+				052098651E7E7ABC007FA3CE /* Facility.swift in Sources */,
 				0569480D1E04E9B000BECB7C /* DataController.swift in Sources */,
+				052098631E7E70C9007FA3CE /* BatchRunStep.swift in Sources */,
+				052098611E7E2AB9007FA3CE /* BatchRun.swift in Sources */,
 				05EAD91C1E0BBAE500FB6BC0 /* BatchRunStatusViewController.swift in Sources */,
 				056947EA1E04DD7300BECB7C /* Arcstone_Mobile.xcdatamodeld in Sources */,
 				053F9BE31E62BE2300C5C5AB /* QRSettingsViewController.swift in Sources */,
 				059D16B21E0544DD0067581E /* BatchRunListViewController.swift in Sources */,
+				05AC82901EA0AB44009CD907 /* DashboardElementListTableViewController.swift in Sources */,
 				0504C0781E45A3DC00AD5338 /* SideMenuViewController.swift in Sources */,
+				058953361EBDCE5B002ACE2B /* DashboardWebViewController.swift in Sources */,
+				05FA0ED81E8F8839004B6294 /* BatchRunStepParameter.swift in Sources */,
 				056947E21E04DD7300BECB7C /* AppDelegate.swift in Sources */,
+				052098671E7E7D29007FA3CE /* FacilityAsset.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -660,12 +714,14 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/build/Debug-iphoneos/SVProgressHUD",
+					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = "Arcstone Mobile/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.Arcstone.arcmobile;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/ShinobiGauges.framework/Headers/ShinobiGauges-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -684,12 +740,14 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/build/Debug-iphoneos/SVProgressHUD",
+					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = "Arcstone Mobile/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.Arcstone.arcmobile;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/ShinobiGauges.framework/Headers/ShinobiGauges-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

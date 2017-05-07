@@ -24,6 +24,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
     var personnel_info_id = ""
     var batch_run_list_json_by_personnelID : JSON = ""
     var authenticated_string = ""
+    var user: Personnel?
     
     //MARK: - LifeCycle
     
@@ -71,11 +72,13 @@ class ViewController: UIViewController, UITextFieldDelegate {
             display_controller.batch_run_list_json_by_personnelID = self.batch_run_list_json_by_personnelID
             display_controller.personnel_id = self.personnel_info_id
             display_controller.self.navigationItem.setHidesBackButton(true, animated: false)
+            display_controller.user = self.user
         }
         if segue.identifier == "admin_login_segue" {
             let display_controller = segue.destination as! AdminViewController
             display_controller.personnel_info_id = self.personnel_info_id
             display_controller.self.navigationItem.setHidesBackButton(true, animated: false)
+            display_controller.user = self.user
         }
     }
     
@@ -88,7 +91,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
     func form_login_message()->[String:Any]{
         let username = self.username.text
         let password = self.password.text
-        let message = ["User_name" : username, "First_name" : password]
+        let message = ["username" : username!, "password" : password!]
         return message
     }
     
@@ -155,7 +158,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
     
     
     @IBAction func open_link_button(_ sender: Any) {
-        UIApplication.shared.openURL(URL(string: "http://arcstoneincorporated.com")!)
+        UIApplication.shared.openURL(URL(string: "https://arcstoneincorporated.com")!)
     }
     
     @IBAction func log_in_button_pressed(_ sender: Any) {
@@ -165,27 +168,30 @@ class ViewController: UIViewController, UITextFieldDelegate {
             return
         }
         SVProgressHUD.show() // if not empty do a post to validate personnel
-        DataController.postData(api_string: "api/Personnel/Validate_Personnel_Login", post_message: form_login_message()) {response in
-            if response["PersonnelHeaderList"].count == 0 { // if didn't get a proper json response
+        DataController.login(api_string: DataController.Routes.validatePersonnelLogin, post_message: form_login_message()) {response in
+            if response["Error"].count != 0 { // if didn't get a proper json response
                 SVProgressHUD.dismiss()
                 self.handleErrors(Error: response["Error"].intValue) //handles the type of response called
                 self.clear_fields()
                 return
             }
-            if response["PersonnelHeaderList"].count != 0 { //if got a proper json response
+            if response["Error"].count == 0 { //if got a proper json response
+                UserDefaults.standard.set(response["ResponseMessage"].stringValue, forKey: "Token")
                 self.view.endEditing(true)
                 SVProgressHUD.dismiss()
-                self.personnel_info_id = response["PersonnelHeaderList"][0]["Id"].stringValue
+                print(response)
+                self.user = PersonnelMap.mapUser(personnelJson: response)
+                self.personnel_info_id = (self.user?.id)!
                 UserDefaults.standard.setValue(self.personnel_info_id, forKey: "PersonnelID")
                 SVProgressHUD.show()
-                DataController.Variables.personnel_name = response["PersonnelHeaderList"][0]["First_name"].stringValue //stores the name of the person
-                if response["PersonnelHeaderList"][0]["position"].stringValue == "admin" { // checks if the user has admin rights
+                DataController.Variables.personnel_name = (self.user?.firstName)! //stores the name of the person
+                if self.user?.position == "admin" { // checks if the user has admin rights
                     
                     self.performSegue(withIdentifier: "admin_login_segue", sender: self)
                     return
                 }
-                DataController.getData(api_string: "api/Batchrun/BatchrunListByPersonnelID?personnelID="+(self.personnel_info_id)) {response in
-                    self.batch_run_list_json_by_personnelID = response["BatchrunHeaderList"]
+                DataController.getData(api_string: DataController.Routes.getBatchRunListByPersonnelId+(self.personnel_info_id)) {response in
+                    self.batch_run_list_json_by_personnelID = response
                     self.performSegue(withIdentifier: "login_segue", sender: self)
                     return
                 }

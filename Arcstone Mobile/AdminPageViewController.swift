@@ -35,23 +35,25 @@ class AdminPageViewController: UIViewController {
     var batch_run_list:JSON = ""
     var personnel_list:JSON = ""
     var machine_list:JSON = ""
-    var active_batch_run_list:JSON = ""
-    var delayed_batch_run_list:JSON = ""
-    var queued_batch_run_list:JSON = ""
-    var cancelled_batch_run_list:JSON = ""
-    var paused_batch_run_list:JSON = ""
-    var done_batch_run_list:JSON = ""
+    var runningBatchRun: [BatchRun] = []
+    var delayedBatchRun: [BatchRun] = []
+    var queuedBatchRun: [BatchRun] = []
+    var cancelledBatchRun: [BatchRun] = []
+    var pausedBatchRun: [BatchRun] = []
+    var doneBatchRun: [BatchRun] = []
+    var personnelList: [Personnel] = []
+    var facilityAssetList: [FacilityAsset] = []
+    
     
     
     //MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.title = "Arcstone"
-        SVProgressHUD.dismiss()
         show_numbers()
         setupBorders()
         setupSideMenu()
-        print(batch_run_list)
+        SVProgressHUD.dismiss()
         // Do any additional setup after loading the view.
     }
     
@@ -69,19 +71,26 @@ class AdminPageViewController: UIViewController {
     
     //populates the different batch run views
     func show_numbers() {
-        active_batch_number.text = String(batch_run_list["RunningBatchRunList"].count)
-        delayed_batch_number.text = String(batch_run_list["DelayedBatchRunList"].count)
-        queued_batch_number.text = String(batch_run_list["QueuedBatchRunList"].count)
-        paused_batch_number.text = String(batch_run_list["PausedBatchRunList"].count)
-        cancelled_batch_number.text = String(batch_run_list["CancelledBatchRunList"].count)
-        done_batch_number.text = String(batch_run_list["DoneBatchRunList"].count)
-        DataController.getData(api_string: "api/Facility/FacilityList") {response in
+        runningBatchRun = BatchRunMap.mapBatchRuns(batchRunListJson: batch_run_list["runningBatchRunList"])
+        delayedBatchRun = BatchRunMap.mapBatchRuns(batchRunListJson: batch_run_list["delayedBatchRunList"])
+        queuedBatchRun = BatchRunMap.mapBatchRuns(batchRunListJson: batch_run_list["queuedBatchRunList"])
+        cancelledBatchRun = BatchRunMap.mapBatchRuns(batchRunListJson: batch_run_list["cancelledBatchRunList"])
+        pausedBatchRun = BatchRunMap.mapBatchRuns(batchRunListJson: batch_run_list["pausedBatchRunList"])
+        doneBatchRun = BatchRunMap.mapBatchRuns(batchRunListJson: batch_run_list["doneBatchRunList"])
+        
+        
+        active_batch_number.text = String(runningBatchRun.count)
+        delayed_batch_number.text = String(delayedBatchRun.count)
+        queued_batch_number.text = String(queuedBatchRun.count)
+        paused_batch_number.text = String(pausedBatchRun.count)
+        cancelled_batch_number.text = String(cancelledBatchRun.count)
+        done_batch_number.text = String(doneBatchRun.count)
+        DataController.getData(api_string: DataController.Routes.getAllFacilityAsset) {response in
             var idle = 0
             var busy = 0
-            self.machine_list = response["FacilityHeaderList"]
-            print(self.machine_list)
-            for int in 0...self.machine_list.count-1 {
-                if self.machine_list[int]["BatchStep"].stringValue == "" {
+            self.facilityAssetList = FacilityAssetMap.mapFacilityAssetList(facilityAssetList: response["facilityAssetList"])
+            for int in 0...self.facilityAssetList.count-1 {
+                if self.facilityAssetList[int].isAvailable == true {
                     idle += 1
                 }
                 else {
@@ -91,13 +100,13 @@ class AdminPageViewController: UIViewController {
             self.machineIdle.text?.append(String(idle))
             self.machineInUse.text?.append(String(busy))
         }
-        DataController.getData(api_string: "api/Personnel/PersonnelList") {response in
+        DataController.getData(api_string: DataController.Routes.getAllPersonnel) {response in
             var idle = 0
             var busy = 0
-            self.personnel_list = response["PersonnelHeaderList"]
-            print(self.personnel_list.count)
-            for int in 0...self.personnel_list.count-1 {
-                if self.personnel_list[int]["batch_run"].stringValue == "" {
+            self.personnelList = PersonnelMap.mapUserList(personnelJsonList: response["personnelList"])
+            print(self.personnelList.count)
+            for int in 0...self.personnelList.count-1 {
+                if self.personnelList[int].isAvailable! == true {
                     idle += 1
                 }
                 else {
@@ -137,47 +146,47 @@ class AdminPageViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "show_active_runs" {
             let display_controller = segue.destination as! AdminBatchRunViewController
-            display_controller.batch_run_list = self.active_batch_run_list
+            display_controller.BatchRunList = self.runningBatchRun
             display_controller.navigationItem.title = "Active"
         }
         if segue.identifier == "show_delayed_runs" {
             let display_controller = segue.destination as! AdminBatchRunViewController
-            display_controller.batch_run_list = self.delayed_batch_run_list
+            display_controller.BatchRunList = self.delayedBatchRun
             display_controller.navigationItem.title = "Delayed"
         }
         
         if segue.identifier == "show_cancelled_runs" {
             let display_controller = segue.destination as! AdminBatchRunViewController
-            display_controller.batch_run_list = self.cancelled_batch_run_list
+            display_controller.BatchRunList = self.cancelledBatchRun
             display_controller.navigationItem.title = "Cancelled"
         }
         
         if segue.identifier == "show_paused_runs" {
             let display_controller = segue.destination as! AdminBatchRunViewController
-            display_controller.batch_run_list = self.paused_batch_run_list
+            display_controller.BatchRunList = self.pausedBatchRun
             display_controller.navigationItem.title = "Paused"
         }
         
         if segue.identifier == "show_queued_runs" {
             let display_controller = segue.destination as! AdminBatchRunViewController
-            display_controller.batch_run_list = self.queued_batch_run_list
+            display_controller.BatchRunList = self.queuedBatchRun
             display_controller.navigationItem.title = "Queued"
         }
         
         if segue.identifier == "show_done_runs" {
             let display_controller = segue.destination as! AdminBatchRunViewController
-            display_controller.batch_run_list = self.done_batch_run_list
+            display_controller.BatchRunList = self.doneBatchRun
             display_controller.navigationItem.title = "Done"
         }
         
         if segue.identifier == "show_personnel_segue" {
             let display_controller = segue.destination as! PersonnelViewController
-            display_controller.personnelList = self.personnel_list["PersonnelHeaderList"]
+            display_controller.personnelList = self.personnelList
             display_controller.navigationItem.title = "Personnel"
         }
         if segue.identifier == "show_machines_segue" {
             let display_controller = segue.destination as! MachinesViewController
-            display_controller.machine_list = self.machine_list["FacilityHeaderList"]
+            display_controller.facilityList = self.facilityAssetList
             display_controller.navigationItem.title = "Machines"
         }
     }
@@ -187,52 +196,46 @@ class AdminPageViewController: UIViewController {
     
     @IBAction func get_active_runs_button(_ sender: Any) {
         SVProgressHUD.show()
-        self.active_batch_run_list = self.batch_run_list["RunningBatchRunList"]
         self.performSegue(withIdentifier: "show_active_runs", sender: self)
     }
     
     @IBAction func get_delayed_runs_button(_ sender: Any) {
         SVProgressHUD.show()
-        self.delayed_batch_run_list = self.batch_run_list["DelayedBatchRunList"]
         self.performSegue(withIdentifier: "show_delayed_runs", sender: self)
     }
     
     @IBAction func get_queued_runs_button(_ sender: Any) {
         SVProgressHUD.show()
-        self.queued_batch_run_list = self.batch_run_list["QueuedBatchRunList"]
         self.performSegue(withIdentifier: "show_queued_runs", sender: self)
     }
     
     @IBAction func get_paused_runs_button(_ sender: Any) {
         SVProgressHUD.show()
-        self.paused_batch_run_list = self.batch_run_list["PausedBatchRunList"]
         self.performSegue(withIdentifier: "show_paused_runs", sender: self)
     }
     
     @IBAction func get_cancelled_runs_button(_ sender: Any) {
         SVProgressHUD.show()
-        self.cancelled_batch_run_list = self.batch_run_list["CancelledBatchRunList"]
         self.performSegue(withIdentifier: "show_cancelled_runs", sender: self)
     }
     
     @IBAction func get_done_runs_button(_ sender: Any) {
         SVProgressHUD.show()
-        self.done_batch_run_list = self.batch_run_list["DoneBatchRunList"]
         self.performSegue(withIdentifier: "show_done_runs", sender: self)
     }
     
     
     @IBAction func personnel_button(_ sender: Any) {
         SVProgressHUD.show()
-        DataController.getData(api_string: "api/Personnel/PersonnelList") {response in
-            self.personnel_list = response
+        DataController.getData(api_string: DataController.Routes.getAllPersonnel) {response in
+            self.personnel_list = response["personnelList"]
             self.performSegue(withIdentifier: "show_personnel_segue", sender: self)
             return
         }
     }
     @IBAction func machines_button(_sender:Any) {
         SVProgressHUD.show()
-        DataController.getData(api_string: "api/Facility/FacilityList") {response in
+        DataController.getData(api_string: DataController.Routes.getAllFacilityAsset) {response in
             self.machine_list = response
             self.performSegue(withIdentifier: "show_machines_segue", sender: self)
             return

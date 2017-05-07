@@ -24,11 +24,11 @@ class PersonnelViewController: UIViewController, UITableViewDelegate, UITableVie
     
     //MARK: - Variables
     
-    var personnelList:JSON = ""
     var searchController: UISearchController!
-    var filteredData: JSON = ""
+    var filteredData: [Personnel]?
     var personnel_id = ""
-    var personnelHistory:JSON = ""
+    var batchRunHistoryByPersonnel: [BatchRun]?
+    var personnelList: [Personnel]?
     
     
     @IBOutlet weak var batch_run_name: UILabel!
@@ -38,9 +38,9 @@ class PersonnelViewController: UIViewController, UITableViewDelegate, UITableVie
     override func viewDidLoad() {
         super.viewDidLoad()
         SVProgressHUD.dismiss()
+        filteredData = personnelList
         setup_search_bar()
         setupSideMenu()
-        print(filteredData)
         
         // Do any additional setup after loading the view.
     }
@@ -52,16 +52,16 @@ class PersonnelViewController: UIViewController, UITableViewDelegate, UITableVie
     
     //MARK - Table View
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return filteredData.count
+        return filteredData!.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! personCell
-        var dict = filteredData[indexPath.row]
-        cell.name.text = dict["First_name"].stringValue
+        let dict = filteredData?[indexPath.row]
+        cell.name.text = dict?.firstName
         
-        if (dict["batch_run"].stringValue != "") {
-            cell.batch_run_name.text = "Working on " + dict["batch_run"].stringValue
+        if (dict?.isAvailable == false) {
+            cell.batch_run_name.text = "Busy"
         }
         else {
             cell.batch_run_name.text = "Idle"
@@ -78,9 +78,9 @@ class PersonnelViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        personnel_id = filteredData[indexPath.row]["Id"].stringValue
-        DataController.getData(api_string: "api/Batchrun/BatchrunListHistoryByPersonnelID?personnelID=" + self.personnel_id) {response in
-            self.personnelHistory = response["BatchrunHeaderList"]
+        personnel_id = String(describing: filteredData![indexPath.row].id)
+        DataController.getData(api_string: DataController.Routes.getBatchRunHistoryByPersonnelId + self.personnel_id) {response in
+            self.batchRunHistoryByPersonnel = BatchRunMap.mapBatchRuns(batchRunListJson: response["batchRunList"])
             self.performSegue(withIdentifier: "show_personnel_jobs_history", sender: self)
         }
     }
@@ -88,21 +88,20 @@ class PersonnelViewController: UIViewController, UITableViewDelegate, UITableVie
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "show_personnel_jobs_history" {
             let display_controller = segue.destination as! AdminBatchRunViewController
-            display_controller.batch_run_list = self.personnelHistory
+            display_controller.BatchRunList = self.batchRunHistoryByPersonnel
         }
     }
     
     func updateSearchResults(for searchController: UISearchController) {
-        var temp = [[String:Any]]()
+        var temp: [Personnel] = []
         if let searchText = searchController.searchBar.text {
             if searchText.isEmpty == false {
-                filteredData = ""
-                for (_,subJson):(String, JSON) in personnelList {
-                    if subJson["First_name"].stringValue.lowercased().contains(searchText.lowercased()){
-                        temp.append(subJson.dictionaryObject!)
+                for personnel: Personnel in personnelList! {
+                    if personnel.firstName.lowercased().contains(searchText.lowercased()){
+                        temp.append(personnel)
                     }
                 }
-                filteredData = JSON(temp)
+                filteredData = temp
             }
             else {
                 filteredData = personnelList

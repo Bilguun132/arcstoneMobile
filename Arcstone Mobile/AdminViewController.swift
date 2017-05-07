@@ -18,6 +18,9 @@ class AdminViewController: UIViewController {
     var personnel_info_id = ""
     var batch_run_list_json_by_personnelID:JSON = ""
     var batch_run_list:JSON = ""
+    var user: Personnel?
+    var runningBatchRun: [BatchRun]?
+    var dashboardList: [Dashboard]?
     
     @IBOutlet weak var realTimeView: UIView!
     @IBOutlet weak var WorkstationView: UIView!
@@ -46,12 +49,13 @@ class AdminViewController: UIViewController {
     //MARK: - Buttons
     @IBAction func show_work_button_clicked(_ sender: Any) {
         SVProgressHUD.show()
-        DataController.getData(api_string: "api/Batchrun/BatchrunList") {response in
-            self.batch_run_list_json_by_personnelID = response
+        DataController.getData(api_string: DataController.Routes.getAllBatchRunList) {response in
+            self.runningBatchRun = BatchRunMap.mapBatchRuns(batchRunListJson: response["runningBatchRunList"])
             self.performSegue(withIdentifier: "view_work_segue", sender: self)
             return
         }
     }
+    
     
     @IBAction func logout(_ sender: Any) {
         UserDefaults.standard.setValue("nil", forKey: "PersonnelID")
@@ -60,7 +64,7 @@ class AdminViewController: UIViewController {
     
     @IBAction func admin_page_button(_ sender: Any) {
         SVProgressHUD.show()
-        DataController.getData(api_string: "api/Batchrun/BatchrunList") {response in
+        DataController.getData(api_string: DataController.Routes.getAllBatchRunList) {response in
             self.batch_run_list = response
             self.performSegue(withIdentifier: "admin_page_segue", sender: self)
             return
@@ -72,7 +76,7 @@ class AdminViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "view_work_segue" {
             let display_controller = segue.destination as! AdminBatchRunViewController
-            display_controller.batch_run_list = self.batch_run_list_json_by_personnelID["RunningBatchRunList"]
+            display_controller.BatchRunList = self.runningBatchRun!
         }
         if segue.identifier == "admin_page_segue" {
             let display_controller = segue.destination as! AdminPageViewController

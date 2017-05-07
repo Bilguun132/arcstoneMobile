@@ -39,6 +39,7 @@ class BatchRunListViewController: UITableViewController {
     var batch_run_list_json_by_personnelID : JSON = ""
     var personnel_id = ""
     var job_json_data:JSON = ""
+    var user: Personnel?
     
     
     

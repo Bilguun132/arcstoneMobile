@@ -19,8 +19,8 @@ class BatchRunStatusViewController: UIViewController, UIImagePickerControllerDel
     override func viewDidLoad() {
         super.viewDidLoad()
         adjust_buttons()
-        print(run_step_info)
         setup()
+        print(batchRunStep!)
         setupSideMenu()
         //        setupDropDowns()
         // Do any additional setup after loading the view.
@@ -38,7 +38,7 @@ class BatchRunStatusViewController: UIViewController, UIImagePickerControllerDel
     
     //MARK: - Variables
     
-    var run_step_info:JSON = ""
+    var batchRunStep: BatchRunStep?
     var current_status = ""
     var image_string = "No image"
     var run_step_id = ""
@@ -82,15 +82,15 @@ class BatchRunStatusViewController: UIViewController, UIImagePickerControllerDel
     }
     
     @IBAction func pause_button_pressed(_ sender: Any) {
+        self.timer.invalidate()
         SVProgressHUD.show()
         let message:Parameters = form_message(start: false)
-        DataController.postData(api_string: "api/Batchrunstep/PauseBatchrunstep", post_message : message) {response in
+        DataController.postData(api_string: DataController.Routes.pauseBatchRunStep, post_message : message) {response in
             if response["ResponseCode"] != "0" {
                 print("Paused")
                 self.current_status = "6"
                 self.viewDidAppear(false)
                 self.adjust_buttons()
-                self.timer.invalidate()
             }
         }
         SVProgressHUD.dismiss()
@@ -103,30 +103,30 @@ class BatchRunStatusViewController: UIViewController, UIImagePickerControllerDel
     }
     
     @IBAction func stop_button_pressed(_ sender: Any) {
+        self.timer.invalidate()
         SVProgressHUD.show()
         let message:Parameters = form_message(start: false)
-        DataController.postData(api_string: "api/Batchrunstep/StopBatchrunstep", post_message : message) {response in
+        DataController.postData(api_string: DataController.Routes.stopBatchRunStep, post_message : message) {response in
             if response["ResponseCode"] != "0" {
                 print("Stopped")
                 self.current_status = "5"
                 self.viewDidAppear(false)
                 self.adjust_buttons()
-                self.timer.invalidate()
             }
         }
         SVProgressHUD.dismiss()
     }
     
     @IBAction func start_button_pressed(_ sender: Any) {
+        self.timer.invalidate()
         SVProgressHUD.show()
         let message:Parameters = form_message(start: true)
-        DataController.postData(api_string: "api/Batchrunstep/StartBatchrunstep", post_message : message) {response in
+        DataController.postData(api_string: DataController.Routes.startBatchRunStep, post_message : message) {response in
             if response["ResponseCode"] != "0" {
                 print("Started")
                 self.current_status = "3"
                 self.viewDidAppear(false)
                 self.adjust_buttons()
-                self.timer.invalidate()
                 self.timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(self.countdown), userInfo: nil, repeats: true)
             }
         }
@@ -172,14 +172,13 @@ class BatchRunStatusViewController: UIViewController, UIImagePickerControllerDel
         batch_run_text_name.text = self.batch_run_name
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
-        let start_string = run_step_info["Start_date_time"].stringValue
-        print(start_string)
+        let start_string = batchRunStep?.startDateTime
         if start_string == "" {
             timer_label.text = "00:00:00"
             return
         }
         else {
-            let start_date = dateFormatter.date(from: start_string.substring(to: 19))
+            let start_date = dateFormatter.date(from: start_string!.substring(to: 19))
             secondSince = Int(Date.init().timeIntervalSince(start_date!))
             hours = secondSince / 3600
             minutes = ( secondSince % 3600 ) / 60
@@ -202,27 +201,8 @@ class BatchRunStatusViewController: UIViewController, UIImagePickerControllerDel
     }
     
     func form_message(start:Bool) -> [String:Any] {
-        run_step_id = run_step_info["Id"].stringValue
-        let date = Date()
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
-        let start_date = dateFormatter.string(from: date as Date)
-        var original_time = run_step_info["Start_date_time"].stringValue
-        if original_time == "" {
-            original_time = start_date
-        }
-        original_time = original_time.substring(to: 19)
-        current_time = start_date
-        batch_run_id = run_step_info["Batch_run_id"].stringValue
-        personnel_id = UserDefaults.standard.string(forKey: "PersonnelID")!
-        if start {
-            let message = ["Id" : run_step_id, "Start_date_time" : original_time, "Batch_run_id" : batch_run_id, "Personnel_id" : personnel_id]
-            return message
-        }
-        else {
-            let message = ["Id" : run_step_id, "End_date_time" : current_time, "Batch_run_id" : batch_run_id, "Personnel_id" : personnel_id]
-            return message
-        }
+        let message = ["id" : batchRunStep!.id]
+        return message as Any as! [String : Any]
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {

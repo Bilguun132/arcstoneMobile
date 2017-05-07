@@ -1,28 +1,29 @@
 PODS:
-  - Alamofire (4.3.0)
+  - Alamofire (4.4.0)
   - Batch (1.7.4)
-  - Firebase/Auth (3.13.0):
+  - Firebase/Auth (3.16.0):
     - Firebase/Core
     - FirebaseAuth (= 3.1.1)
-  - Firebase/Core (3.13.0):
-    - FirebaseAnalytics (= 3.7.0)
-    - FirebaseCore (= 3.5.0)
-  - Firebase/Messaging (3.13.0):
+  - Firebase/Core (3.16.0):
+    - FirebaseAnalytics (= 3.8.0)
+    - FirebaseCore (= 3.6.0)
+  - Firebase/Messaging (3.16.0):
     - Firebase/Core
-    - FirebaseMessaging (= 1.2.2)
-  - FirebaseAnalytics (3.7.0):
-    - FirebaseCore (~> 3.5)
+    - FirebaseMessaging (= 1.2.3)
+  - FirebaseAnalytics (3.8.0):
+    - FirebaseCore (~> 3.6)
     - FirebaseInstanceID (~> 1.0)
     - GoogleToolboxForMac/NSData+zlib (~> 2.1)
   - FirebaseAuth (3.1.1):
     - FirebaseAnalytics (~> 3.7)
     - GoogleToolboxForMac/NSDictionary+URLArguments (~> 2.1)
     - GTMSessionFetcher/Core (~> 1.1)
-  - FirebaseCore (3.5.0):
+  - FirebaseCore (3.6.0):
     - GoogleToolboxForMac/NSData+zlib (~> 2.1)
-  - FirebaseInstanceID (1.0.9)
-  - FirebaseMessaging (1.2.2):
-    - FirebaseAnalytics (~> 3.7)
+  - FirebaseInstanceID (1.0.10):
+    - FirebaseCore (~> 3.6)
+  - FirebaseMessaging (1.2.3):
+    - FirebaseAnalytics (~> 3.8)
     - FirebaseInstanceID (~> 1.0)
     - GoogleToolboxForMac/Logger (~> 2.1)
     - Protobuf (~> 3.1)
@@ -38,15 +39,16 @@ PODS:
     - GoogleToolboxForMac/Defines (= 2.1.1)
     - GoogleToolboxForMac/NSString+URLArguments (= 2.1.1)
   - GoogleToolboxForMac/NSString+URLArguments (2.1.1)
-  - GTMSessionFetcher/Core (1.1.8)
+  - GTMSessionFetcher/Core (1.1.9)
   - KIF (3.5.1):
     - KIF/Core (= 3.5.1)
   - KIF/Core (3.5.1)
-  - Nimble (6.0.1)
-  - Protobuf (3.2.0)
-  - SideMenu (2.2.0)
+  - Nimble (6.1.0)
+  - Protobuf (3.2.1)
+  - SideMenu (2.3.1)
   - SVProgressHUD (2.1.2)
   - SwiftyJSON (3.1.4)
+  - SWXMLHash (3.0.4)
 
 DEPENDENCIES:
   - Alamofire (~> 4.3)
@@ -59,25 +61,27 @@ DEPENDENCIES:
   - SideMenu
   - SVProgressHUD
   - SwiftyJSON
+  - SWXMLHash (~> 3.0.0)
 
 SPEC CHECKSUMS:
-  Alamofire: 856a113053a7bc9cbe5d6367a555d773fc5cfef7
+  Alamofire: dc44b1600b800eb63da6a19039a0083d62a6a62d
   Batch: 4c2ab398e92663ec7132fc348d6f613c541fd9e2
-  Firebase: 5bc34d7b5ff5792e3386c8b28dc6265deeab0da4
-  FirebaseAnalytics: 0d1b7d81d5021155be37702a94ba1ec16d45365d
+  Firebase: 21bf4a89d3f01bfbe11adc3a5d934a4a3d3a5fd6
+  FirebaseAnalytics: 920e46455f27b0a52a80907a6d9b73ee4bd1c635
   FirebaseAuth: cc8a1824170adbd351edb7f994490a3fb5c18be6
-  FirebaseCore: 1c0a13bf59bb95cdd19577252499f0ec6a03e999
-  FirebaseInstanceID: 2d0518b1378fe9d685ef40cbdd63d2fdc1125339
-  FirebaseMessaging: df8267f378580a24174ce7861233aa11d5c90109
+  FirebaseCore: 9691ee2ade70c098d7cf92440f4303f16d83ca75
+  FirebaseInstanceID: b9eedd6846fb5e1f0f7279e1deaa7a7e4cf8392e
+  FirebaseMessaging: 753d05a925e9eb8eadd09a0ffc9b808578b72fac
   GoogleToolboxForMac: 8e329f1b599f2512c6b10676d45736bcc2cbbeb0
-  GTMSessionFetcher: 6f8d8b28b7e345549ac471071608170b31cb4977
+  GTMSessionFetcher: 5c046c76a1f859bc9c187e918f18e4fc7bb57b5e
   KIF: 082eb65279e51c3092923802849eb796a04982ab
-  Nimble: 1527fd1bd2b4cf0636251a36bc8ab37e81da8347
-  Protobuf: 745f59e122e5de98d4d7ef291e264a0eef80f58e
-  SideMenu: eeff6b85456c5c6e14165655691d2033f6b24969
+  Nimble: c53e6903fee94041b90ded74f135820437d8bf59
+  Protobuf: 2ccbaf193f6c65adc67745453ca0c13234c32796
+  SideMenu: 2a3c3da0b3d5f78a047b2271bb7398260fcd7e3d
   SVProgressHUD: c404a55d78acbeb7ebb78b76d3faf986475a6994
   SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
+  SWXMLHash: 29d20b84692fc319ea8ed933058fe7d8d005139b
 
-PODFILE CHECKSUM: 35504000ac35470ec1758f988c2b6b4a0e9e1b05
+PODFILE CHECKSUM: 88557071adfefe097bd4082130ef1f95ae4a91d8
 
 COCOAPODS: 1.2.0

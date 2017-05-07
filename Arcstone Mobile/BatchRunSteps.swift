@@ -18,8 +18,9 @@ class AvailableJobsViewController: UIViewController, UITableViewDataSource, UITa
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = batch_run_name
+        print(batchRunStepList!)
+        print(batch_run_id)
         SVProgressHUD.dismiss()
-        batch_run_id = batch_run_step_json[0]["Batch_run_id"].stringValue
         print(batch_run_step_json)
         setupSideMenu()
         // Do any additional setup after loading the view.
@@ -32,8 +33,8 @@ class AvailableJobsViewController: UIViewController, UITableViewDataSource, UITa
     
     override func viewDidAppear(_ animated: Bool) {
         self.navigationController?.navigationBar.barTintColor = UIColor(colorLiteralRed: (247/255), green: (247/255), blue: (247/255), alpha: 1)
-        DataController.getData(api_string: "api/Batchrunstep/BatchrunstepListByBatchRunID?batchrunID="+(self.batch_run_id)) {response in
-            self.batch_run_step_json = response["BatchrunstepHeaderList"]
+        DataController.getData(api_string: DataController.Routes.getBatchRunStepByBatchRunId+(self.batch_run_id)) {response in
+            self.batchRunStepList = BatchRunStepMap.BatchRunStepMap(BatchStepListJson: response["batchRunStepList"])
             self.table.reloadData()
         }
     }
@@ -47,19 +48,20 @@ class AvailableJobsViewController: UIViewController, UITableViewDataSource, UITa
     var status = ""
     var batch_run_id = ""
     var batch_run_name = ""
+    var batchRunStepList: [BatchRunStep]?
     
     // MARK: - Table view functions
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return batch_run_step_json.count
+        return batchRunStepList!.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = table.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        var run_dict = batch_run_step_json[indexPath.row]
-        let status = DataController.convert_batch_run_step_status(number: run_dict["Status"].stringValue)
+        let run_dict = batchRunStepList![indexPath.row]
+        let status = DataController.convert_batch_run_step_status(number: String(describing: run_dict.status!))
         self.status = status.0
-        cell.textLabel?.text = run_dict["Name"].stringValue
+        cell.textLabel?.text = String(describing: run_dict.name)
         cell.detailTextLabel?.text = status.0
         cell.backgroundColor = status.1
         return cell
@@ -84,10 +86,10 @@ class AvailableJobsViewController: UIViewController, UITableViewDataSource, UITa
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "run_status_segue"  {
             let display_controller = segue.destination as! BatchRunStatusViewController
-            display_controller.run_step_info = batch_run_step_json[selected_table_index]
-            display_controller.current_status = self.batch_run_step_json[selected_table_index]["Status"].stringValue
+            display_controller.batchRunStep = batchRunStepList![selected_table_index]
+            display_controller.current_status = String(describing: self.batchRunStepList![selected_table_index].status!)
             display_controller.batch_run_id = self.batch_run_id
-            display_controller.batch_step_name = self.batch_run_step_json[selected_table_index]["Name"].stringValue
+            display_controller.batch_step_name = self.batchRunStepList![selected_table_index].name
             display_controller.batch_run_name = self.batch_run_name
         }
     }

@@ -13,6 +13,7 @@ class SettingsViewController: UIViewController {
     
     @IBOutlet weak var server_address: UITextField!
     @IBOutlet weak var route_address: UITextField!
+    @IBOutlet weak var dashboardWebAddress: UITextField!
     
     
     override func viewDidLoad() {
@@ -22,6 +23,9 @@ class SettingsViewController: UIViewController {
         }
         if UserDefaults.standard.string(forKey: "Route") != nil {
             route_address.placeholder = UserDefaults.standard.string(forKey: "Route")
+        }
+        if UserDefaults.standard.string(forKey: "DashboardAddress") != nil {
+            dashboardWebAddress.placeholder = UserDefaults.standard.string(forKey: "DashboardAddress")
         }
         //        setupSideMenu()
         // Do any additional setup after loading the view.

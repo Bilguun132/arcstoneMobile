@@ -22,20 +22,22 @@ class AdminBatchRunViewController: UIViewController, UITableViewDelegate, UITabl
     
     //MARK: - Variables
     @IBOutlet weak var tableView: UITableView!
-    var batch_run_list:JSON = ""
+    var BatchRunList: [BatchRun]?
+    var batchRun: BatchRun?
     var batch_info:[[String:Any]] = [[:]]
-    var filteredData: JSON = ""
+    var filteredData: [BatchRun]?
     var searchController: UISearchController!
-    var job_json_data:JSON = ""
+    var job_json_data: JSON = ""
+    var batch_run_list: JSON = []
     
     //MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         SVProgressHUD.dismiss()
+        filteredData = BatchRunList
         setup()
         setupSideMenu()
-        print(batch_run_list)
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
         
@@ -51,30 +53,30 @@ class AdminBatchRunViewController: UIViewController, UITableViewDelegate, UITabl
     // MARK: - Table view data source
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return filteredData.count
+        return filteredData!.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! BatchRunCell
-        var dict = filteredData[indexPath.row]
-        cell.name.text = dict["Name"].stringValue
-        if dict["Start_date_time"].stringValue != "" {
-            cell.start_time.text = dict["Start_date_time"].stringValue
+        let dict = filteredData?[indexPath.row]
+        cell.name.text = dict?.name
+        if dict?.startDateTime != "" {
+            cell.start_time.text = dict?.startDateTime
         }
         else {
             cell.start_time.text = "Have not started yet"
             cell.end_time.text = ""
         }
         if cell.start_time.text != "Have not started yet" {
-            if dict["End_date_time"].stringValue != "" {
-                cell.end_time.text = dict["End_date_time"].stringValue
+            if dict?.endDateTime != "" {
+                cell.end_time.text = dict?.endDateTime
             }
             else {
                 cell.end_time.text = "Still running"
             }
         }
         //gets the status and assigns an appropriate image
-        switch dict["Status"].intValue {
+        switch (dict?.status)!{
         case 5:
             cell.statusImage.image = #imageLiteral(resourceName: "Checked Checkbox 2_100")
         case 10:
@@ -103,7 +105,7 @@ class AdminBatchRunViewController: UIViewController, UITableViewDelegate, UITabl
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.job_json_data = filteredData[indexPath.row]
+        self.batchRun = filteredData?[indexPath.row]
         self.performSegue(withIdentifier: "show_jobs_detail", sender: self)
     }
     
@@ -112,30 +114,29 @@ class AdminBatchRunViewController: UIViewController, UITableViewDelegate, UITabl
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "show_jobs_detail" {
             let display_controller = segue.destination as! ShowJobViewController
-            display_controller.index_json_data = job_json_data
+            display_controller.batchRun = self.batchRun
         }
     }
     //populates the table view with search criteria
     func updateSearchResults(for searchController: UISearchController) {
-        var temp = [[String:Any]]()
+        var temp: [BatchRun] = []
         if let searchText = searchController.searchBar.text {
             if searchText.isEmpty == false {
-                filteredData = ""
-                for (_,subJson):(String, JSON) in batch_run_list {
-                    if subJson["Name"].stringValue.lowercased().contains(searchText.lowercased()){
-                        temp.append(subJson.dictionaryObject!)
+                for batchRun: BatchRun in BatchRunList! {
+                    if batchRun.name.lowercased().contains(searchText.lowercased()){
+                        temp.append(batchRun)
                     }
                 }
-                filteredData = JSON(temp)
+                filteredData = temp
             }
             else {
-                filteredData = batch_run_list
+                filteredData = BatchRunList
             }
             tableView.reloadData()
         }
     }
     
-    //MARL: - User Functions
+    //MARK: - User Functions
     
     func setupSideMenu() {
         // Define the menus
@@ -150,7 +151,7 @@ class AdminBatchRunViewController: UIViewController, UITableViewDelegate, UITabl
         
         searchController = UISearchController(searchResultsController: nil)
         searchController.searchResultsUpdater = self
-        searchController.dimsBackgroundDuringPresentation = true
+        searchController.dimsBackgroundDuringPresentation = false
         searchController.searchBar.sizeToFit()
         searchController.searchBar.searchBarStyle = UISearchBarStyle.prominent
         searchController.hidesNavigationBarDuringPresentation = false
@@ -158,7 +159,6 @@ class AdminBatchRunViewController: UIViewController, UITableViewDelegate, UITabl
         tableView.tableHeaderView = searchController.searchBar
         // Sets this view controller as presenting view controller for the search interface
         definesPresentationContext = true
-        filteredData = batch_run_list
         
     }
     

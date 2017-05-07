@@ -12,6 +12,7 @@ pod 'Firebase/Core'
 pod 'Firebase/Messaging'
 pod 'Batch', '~> 1.7'
 pod 'Firebase/Auth'
+pod 'SWXMLHash', '~> 3.0.0'
   # Pods for Arcstone Mobile
 
   target 'Arcstone MobileTests' do
