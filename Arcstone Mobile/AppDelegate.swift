@@ -77,7 +77,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             UserDefaults.standard.setValue("arcstonesolution.com", forKey: "Server")
         }
         if UserDefaults.standard.string(forKey: "Route") == nil {
-            UserDefaults.standard.set("ArcstoneMobileApi", forKey: "Route")
+            UserDefaults.standard.set("ArcstoneApi", forKey: "Route")
         }
         if UserDefaults.standard.string(forKey: "DashboardAddress") == nil {
             UserDefaults.standard.set("52.77.212.205/dashboard", forKey: "DashboardAddress")

@@ -43,9 +43,9 @@ class GaugeViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         print("In")
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 2) {
-            self.startTimer()
-        }
+        self.timer.invalidate()
+        self.gaugeTimer.invalidate()
+        self.startTimer()
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -91,7 +91,6 @@ class GaugeViewController: UIViewController {
                 digitalLabel.center = view.center
                 digitalLabel.center.y = view.center.y
                 digitalLabel.textAlignment = NSTextAlignment.center
-                digitalLabel.text = "5"
                 digitalLabel.font = UIFont(name: "HelveticaNeue-Thin", size: 170)
                 self.view.addSubview(digitalLabel)
             case DataController.GaugeType.FullCircle.rawValue?:
@@ -151,6 +150,7 @@ class GaugeViewController: UIViewController {
     }
     
     func changeGaugeValue() {
+        gaugeTimer.invalidate()
         count = 0
         difference = Float(currentValue) - oldValue
         if difference != 0 {
