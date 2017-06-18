@@ -231,9 +231,10 @@ class DataController {
         static let stopBatchRunStep = "api/batchRunSteps/stop"
         static let pauseBatchRunStep = "api/batchRunSteps/pause"
         static let startBatchRunStep = "api/batchRunSteps/start"
-        //MARK: - BatchRunStepParamter
+        //MARK: - BatchRunStepParameter
         static let getAllBatchRunStepParameters = "api/batchRunStepParameters"
-        static let getAllBatchRunStepParametersByBatchRunId = "api/batchRunStepParameters/batchRunStepId/"
+        static let getAllBatchRunStepParametersByBatchRunStepId = "api/batchRunStepParameters/batchRunStepId/"
+        static let updateBatchRunStepParameter = "api/batchRunStepParameters/updateBatchRunStepParameter"
         //MARK: - Facility
         static let getAllFacility = "api/facilities"
         static let getAllFacilityAsset = "api/facilityAssets"

@@ -13,13 +13,15 @@ import SVProgressHUD
 class BatchRunStepParameterTableViewController: UITableViewController {
     var batch_run_step_parameter:JSON = ""
     var individual_batch_run_step_parameter:JSON = ""
-    var batch_run_step_id = ""
+    var batch_run_step_id = 0
+    var batchRunStepParameterList: [batchRunStepParameter]?
+    var batchRunStepParameter: batchRunStepParameter?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.title = "Parameter list"
         SVProgressHUD.dismiss()
-        batch_run_step_id = batch_run_step_parameter[0]["Batch_run_step_id"].stringValue
+        batch_run_step_id = batchRunStepParameterList![0].batchRunStepId!
         
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -36,23 +38,23 @@ class BatchRunStepParameterTableViewController: UITableViewController {
     // MARK: - Table view data source
     
     override func viewDidAppear(_ animated: Bool) {
-        DataController.getData(api_string: "api/Batchrunstepparameter/BatchrunstepparameterListByBatchRunStepID?param_id="+(self.batch_run_step_id)) {response in
-            self.batch_run_step_parameter = response["BatchrunstepparameterHeaderList"]
-            self.tableView.reloadData()
-        }
+//        DataController.getData(api_string: "api/Batchrunstepparameter/BatchrunstepparameterListByBatchRunStepID?param_id="+(self.batch_run_step_id)) {response in
+//            self.batch_run_step_parameter = response["BatchrunstepparameterHeaderList"]
+//            self.tableView.reloadData()
+//        }
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return batch_run_step_parameter.count
+        return batchRunStepParameterList!.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        var dict = batch_run_step_parameter[indexPath.row]
-        cell.textLabel?.text = dict["Name"].stringValue
-        cell.detailTextLabel?.text = dict["Actual_value"].stringValue
-        if dict["Actual_value"].stringValue != "" {
+        let dict = batchRunStepParameterList?[indexPath.row]
+        cell.textLabel?.text = dict!.name
+        cell.detailTextLabel?.text = dict!.actualValue
+        if dict!.actualValue != "" {
             cell.backgroundColor = UIColor.green
         }
         else {
@@ -62,14 +64,14 @@ class BatchRunStepParameterTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.individual_batch_run_step_parameter = batch_run_step_parameter[indexPath.row]
+        self.batchRunStepParameter = batchRunStepParameterList?[indexPath.row]
         self.performSegue(withIdentifier: "show_para", sender: self)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "show_para" {
             let display_controller = segue.destination as! BatchRunStepParameterInfoViewController
-            display_controller.batch_step_parameter_info = individual_batch_run_step_parameter
+            display_controller.batchRunStepParameter = batchRunStepParameter
         }
     }
     

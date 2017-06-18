@@ -14,8 +14,9 @@ import SideMenu
 
 class BatchRunStepParameterInfoViewController: UIViewController, UITextViewDelegate {
     
-    var batch_step_parameter_info:JSON = ""
-    var batch_run_para_id = ""
+    var batch_run_para_id = 0
+    var batchRunStepParameter: batchRunStepParameter?
+    var oldActualValue = ""
     
     @IBOutlet weak var para_name: UITextField!
     @IBOutlet weak var expected_value: UITextField!
@@ -28,13 +29,10 @@ class BatchRunStepParameterInfoViewController: UIViewController, UITextViewDeleg
         SVProgressHUD.dismiss()
         self.navigationItem.title = "Parameters"
         populate()
-        print(batch_step_parameter_info)
-        batch_run_para_id = batch_step_parameter_info["Id"].stringValue
         setupSideMenu()
         
         // Do any additional setup after loading the view.
     }
-    
     
     
     override func didReceiveMemoryWarning() {
@@ -48,23 +46,22 @@ class BatchRunStepParameterInfoViewController: UIViewController, UITextViewDeleg
     
     
     @IBAction func update_para_button_clicked(_ sender: Any) {
-        //        if actual_value.text != "" {
-        batch_step_parameter_info["Actual_value"].stringValue = actual_value.text!
-        //            let message = ["Id" : batch_run_para_id, "Actual_value" : actual_value.text!] as [String : Any]
-        let message = batch_step_parameter_info.dictionaryObject
-        DataController.postData(api_string: "api/Batchrunstepparameter/UpdateBatchrunstepparameter", post_message : message!) {response in
-            if response != "0" {
-                print("Updated")
-                _ = self.navigationController?.popViewController(animated: true)
+        if oldActualValue != actual_value.text{
+            if actual_value.text != "" {
+                let message = ["id" : batchRunStepParameter!.id, "value" : actual_value!.text!] as [String : Any]
+                batchRunStepParameter!.actualValue = actual_value.text!
+                print(message)
+                DataController.postData(api_string: DataController.Routes.updateBatchRunStepParameter, post_message : message) {response in
+                }
             }
         }
     }
     
     func populate(){
-        para_name.text = batch_step_parameter_info["Name"].stringValue
-        expected_value.text = batch_step_parameter_info["Expected_value"].stringValue
-        actual_value.text = batch_step_parameter_info["Actual_value"].stringValue
-        notes_textview.text = batch_step_parameter_info["Template_notes"].stringValue
+        para_name.text = batchRunStepParameter?.name
+        expected_value.text = batchRunStepParameter?.expectedValue
+        actual_value.text = batchRunStepParameter?.actualValue
+        notes_textview.text = batchRunStepParameter?.templateNotes
     }
     
     func setupSideMenu() {

@@ -47,7 +47,7 @@ class BatchRunStatusViewController: UIViewController, UIImagePickerControllerDel
     var batch_step_name = ""
     var batch_run_name = ""
     var personnel_id = ""
-    var run_step_parameters:JSON = ""
+    var batchRunStepParameters: [batchRunStepParameter]?
     var batch_run_step_id = ""
     var secondSince = 0
     var hours = 0
@@ -69,14 +69,15 @@ class BatchRunStatusViewController: UIViewController, UIImagePickerControllerDel
     @IBOutlet weak var startDarkView: UIView!
     @IBOutlet weak var pauseDarkView: UIView!
     @IBOutlet weak var stopDarkView: UIView!
+    @IBAction func unwindToBatchRunStatusView(segue:UIStoryboardSegue) { }
     
     
     //MARK: - Buttons
     
     @IBAction func checklist_button_pressed(_ sender: Any) {
         SVProgressHUD.show()
-        DataController.getData(api_string: "api/Batchrunstepparameter/BatchrunstepparameterListByBatchRunStepID?param_id="+(self.batch_run_step_id)) {response in
-            self.run_step_parameters = response["BatchrunstepparameterHeaderList"]
+        DataController.getData(api_string: DataController.Routes.getAllBatchRunStepParametersByBatchRunStepId + String(describing: (self.batchRunStep!.id))) {response in
+            self.batchRunStepParameters = batchRunStepParameterMap.mapBatchRunStepParameterList(batchRunStepParameterListJSON: response["batchRunStepParameterList"])
             self.performSegue(withIdentifier: "show_parameter_segue", sender: self)
         }
     }
@@ -218,7 +219,7 @@ class BatchRunStatusViewController: UIViewController, UIImagePickerControllerDel
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "show_parameter_segue" {
             let display_controller = segue.destination as! BatchRunStepParameterTableViewController
-            display_controller.batch_run_step_parameter = run_step_parameters
+            display_controller.batchRunStepParameterList = batchRunStepParameters
         }
     }
     

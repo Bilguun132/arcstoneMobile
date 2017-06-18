@@ -16,7 +16,7 @@ class batchRunStepParameter: NSObject {
     let name: String
     let expectedValue: String
     let templateNotes: String
-    let actualValue: String
+    var actualValue: String
     let notes: String
     let batchRunStepId: Int?
     let batchTemplateStepParameterId: Int?
@@ -40,5 +40,23 @@ class batchRunStepParameter: NSObject {
         self.contentManagerId = contentManagerId
         self.xmlParameters = xmlParameters
     }
+}
+
+class batchRunStepParameterMap {
     
+    static func mapBatchRunStepParameter(batchRunStepParameterJSON: JSON) -> batchRunStepParameter {
+        return batchRunStepParameter(id: batchRunStepParameterJSON["id"].intValue, name: batchRunStepParameterJSON["name"].stringValue, expectedValue: batchRunStepParameterJSON["expectedValue"].stringValue, templateNotes: batchRunStepParameterJSON["templateNotes"].stringValue, actualValue: batchRunStepParameterJSON["actualValue"].stringValue, notes: batchRunStepParameterJSON["notes"].stringValue, batchRunStepId: batchRunStepParameterJSON["batchRunStepId"].intValue, batchTemplateStepParameterId: batchRunStepParameterJSON["batchTemplateStepParameterId"].intValue, batchTemplateId: batchRunStepParameterJSON["batchTemplateId"].intValue, diagramId: batchRunStepParameterJSON["diagramId"].intValue, contentManagerId: batchRunStepParameterJSON["contentManagerId"].intValue, xmlParameters: batchRunStepParameterJSON["xmlParameters"].stringValue)
+    }
+    
+    static func mapBatchRunStepParameterList(batchRunStepParameterListJSON: JSON) -> [batchRunStepParameter] {
+        
+        var batchRunStepParameterList: [batchRunStepParameter] = []
+        if batchRunStepParameterListJSON.count != 0 {
+            for index in 0...batchRunStepParameterListJSON.count-1 {
+                let batchRunStepParameter: JSON = batchRunStepParameterListJSON[index]
+                batchRunStepParameterList.append(mapBatchRunStepParameter(batchRunStepParameterJSON: batchRunStepParameter))
+            }
+        }
+        return batchRunStepParameterList
+    }
 }
